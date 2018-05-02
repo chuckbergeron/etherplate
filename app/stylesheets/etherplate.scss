@@ -1,0 +1,129 @@
+.navbar > .container .navbar-brand,
+.container > .navbar .navbar-brand {
+  @media screen and (min-width: 1024px) {
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+}
+
+.navbar-brand img {
+  @media all and (max-device-width: 720px) {
+    max-width: 240px;
+  }
+}
+
+.button.is-pink {
+  background-color: $pink;
+  border: 0;
+  color: white;
+}
+
+.button.is-pink:hover {
+  background-color: $pink-two;
+}
+
+.navbar-item {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.navbar-item img {
+  max-height: 3rem;
+}
+
+a.navbar-item:hover,
+a.navbar-item.is-active,
+a.navbar-link:hover,
+a.navbar-link.is-active {
+  background: transparent;
+  color: $primary;
+}
+
+.button.is-dark:hover,
+.button.is-dark.is-hovered {
+  background: #111;
+  color: white;
+}
+
+.section {
+  padding: 1rem 1.5rem;
+}
+
+.label {
+  letter-spacing: 1px;
+}
+
+.input {
+  letter-spacing: 1px;
+}
+
+.input, .textarea {
+  border-radius: 0;
+}
+
+.textarea:not([rows]) {
+  max-height: 600px;
+  min-height: 70px;
+}
+
+.etherplate-form {
+    background: #fcfcfc;
+    align-items: stretch;
+    /*border: 3px solid #f5f5f5;*/
+    /*border-radius: 3px;*/
+    /*border-top-left-radius: 0;*/
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.etherplate-form:not(:last-child) {
+    margin-bottom: 1.5rem;
+}
+
+.etherplate-form--wrapper {
+  padding: 2rem 0;
+  width: 90%;
+}
+
+.table__wrapper {
+  overflow-x: auto;
+}
+
+.title,
+.content .title {
+  line-height: 2;
+}
+
+.subtitle,
+.content .subtitle {
+  font-size: 1.75rem;
+  line-height: 1.5;
+}
+
+.hero.is-dark .subtitle {
+  color: #888;
+}
+
+.etherplate-description {
+  margin: 4rem 0;
+}
+
+.title,
+.content .title {
+  line-height: 1.5;
+}
+
+
+// Might not need any of this:
+.tilt-root {
+  transform-style: preserve3d;
+}
+
+.tilt-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}

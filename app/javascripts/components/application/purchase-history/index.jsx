@@ -1,0 +1,73 @@
+import React, {
+  Component
+} from 'react'
+
+import NFToken from '@/contracts/nfToken-factory'
+import TokenRow from './item-row'
+
+require('./style')
+
+export default class extends Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      items: []
+    }
+  }
+
+  refreshTokenList() {
+    NFToken().then((instance) => {
+      instance.myTokens().then((result) => {
+        this.setState({ items: result })
+      }).catch((error) => {
+        console.error(error)
+      })
+    }).catch((error) => {
+      console.error(error)
+    })
+  }
+
+  componentDidMount() {
+    this.refreshTokenList()
+  }
+
+  render () {
+    var content
+    if (this.state.items.length) {
+      content =
+        <section className='section'>
+          <div className='container'>
+            <div className='table__wrapper'>
+              <table className='table is-striped is-fullwidth'>
+                <thead>
+                  <tr>
+                    <th>
+                    </th>
+                    <th>
+                      Title
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.items.map((itemId) => <TokenRow itemId={itemId} key={itemId} /> )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+    } else {
+      content =
+        <section className='hero is-medium'>
+          <div className='hero-body'>
+            <div className='container'>
+              <h1 className='title has-text-grey-light has-text-centered'>
+                You haven't purchased any items.
+              </h1>
+            </div>
+          </div>
+        </section>
+    }
+    return content
+  }
+}
