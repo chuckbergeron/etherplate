@@ -1,6 +1,6 @@
 # Etherplate
 
-![etherplate red block logo](/chuckbergeron/etherplate/blob/master/app/images/logos/etherplate-logo--red--lg.png)
+![etherplate red block logo](/app/images/logos/etherplate-logo--red--lg.png)
 
 ### What is this?
 
