@@ -44,11 +44,15 @@ Create a directory for Ganache to store it's database in:
 
 `truffle compile`
 
+(Sometimes this hangs for me at the end. You can cancel it and double-check the contents of your ./build/contracts/* folder)
+
 ### Migrate the Contracts
 
 This project is using a custom truffle migration tool available on NPM:
 
 `truffle-migrate-off-chain`
+
+(Sometimes this hangs for me at the end. You can cancel the process and check the contents of the JSON files written in the ./networks/* folder)
 
 # Run the Project
 
