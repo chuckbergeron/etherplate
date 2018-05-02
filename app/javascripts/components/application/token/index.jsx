@@ -7,7 +7,7 @@ import { Address } from '@/components/address'
 
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 import NFToken from '@/contracts/nfToken-factory'
-import getToken from '@/services/get-item'
+import getToken from '@/services/get-token'
 
 require('./style.scss')
 
@@ -21,14 +21,14 @@ export default class extends Component {
     }
   }
 
-  itemId () {
-    return this.props.match.params.itemId
+  tokenId () {
+    return this.props.match.params.tokenId
   }
 
   componentDidMount () {
-    var itemId = this.itemId()
+    var tokenId = this.tokenId()
 
-    getToken(itemId).then((values) => {
+    getToken(tokenId).then((values) => {
       this.setState({
         type: values[0],
         title: values[1]
@@ -46,23 +46,23 @@ export default class extends Component {
     if (this.state.type !== null) {
       content = (
         <div>
-          <div className="item columns is-centered">
+          <div className="token columns is-centered">
             <div className='column is-three-quarters-tablet is-three-quarters-desktop is-one-half-widescreen is-one-half-fullhd has-text-centered'>
 
-              <a className="item__share-link" href="#"><i className="fas fa-lg fa-share-alt"></i></a>
+              <a className="token__share-link" href="#"><i className="fas fa-lg fa-share-alt"></i></a>
 
-              <div className="item__shiny">
+              <div className="token__shiny">
                 <div
-                  className={this.state.animateSheen ? 'item__show-off is-animating' : 'item__show-off' } />
+                  className={this.state.animateSheen ? 'token__show-off is-animating' : 'token__show-off' } />
 
                 <figure
-                  className={this.state.animateToken ? 'item__image is-animating' : 'item__image' }>
+                  className={this.state.animateToken ? 'token__image is-animating' : 'token__image' }>
                   <img src={nfTokenTypeImageUrl(this.state.type)} />
                 </figure>
               </div>
 
 
-              <p className="item__title title has-text-grey">
+              <p className="token__title title has-text-grey">
                 {this.state.title}
               </p>
             </div>

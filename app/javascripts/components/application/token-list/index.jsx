@@ -3,22 +3,22 @@ import React, {
 } from 'react'
 
 import NFToken from '@/contracts/nfToken-factory'
-import TokenListToken from './item-list-item'
+import TokenListItem from './token-list-item'
 
 export default class extends Component {
   render () {
     var content
-    if (this.props.items.length) {
+    if (this.props.tokens.length) {
       content =
         <section className='section'>
           <div className='container'>
             <div className="columns is-multiline">
                 {
-                  this.props.items.map(
-                    item => {
+                  this.props.tokens.map(
+                    token => {
                       return (
-                        <div key={item} className="column is-one-quarter-desktop">
-                          <TokenListToken itemId={item} />
+                        <div key={token} className="column is-one-quarter-desktop">
+                          <TokenListItem tokenId={token} />
                         </div>
                       )
                     }
@@ -33,7 +33,7 @@ export default class extends Component {
           <div className='hero-body'>
             <div className='container'>
               <h1 className='title has-text-grey-light has-text-centered'>
-                You haven't received any items yet.
+                You haven't received any tokens yet.
               </h1>
             </div>
           </div>

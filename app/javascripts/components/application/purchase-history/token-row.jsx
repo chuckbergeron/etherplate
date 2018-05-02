@@ -3,7 +3,7 @@ import React, {
 } from 'react'
 import { Link } from 'react-router-dom'
 
-import getToken from '@/services/get-item'
+import getToken from '@/services/get-token'
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 
 export default class extends Component {
@@ -13,7 +13,7 @@ export default class extends Component {
   }
 
   componentDidMount () {
-    getToken(this.props.itemId).then((values) => {
+    getToken(this.props.tokenId).then((values) => {
       this.setState({
         type: values[0],
         title: values[1]
@@ -22,16 +22,16 @@ export default class extends Component {
   }
 
   render () {
-    let itemLinkUrl = `/items/${this.props.itemId}`
+    let tokenLinkUrl = `/tokens/${this.props.tokenId}`
 
     return (
       <tr>
         <td>
-          <Link to={itemLinkUrl}>
-            <img src={nfTokenTypeImageUrl(this.state.type, 'small')} className='item-row__item-img' />
+          <Link to={tokenLinkUrl}>
+            <img src={nfTokenTypeImageUrl(this.state.type, 'small')} className='token-row__token-img' />
           </Link>
         </td>
-        <td><Link to={itemLinkUrl}>{this.state.title}</Link></td>
+        <td><Link to={tokenLinkUrl}>{this.state.title}</Link></td>
       </tr>
     )
   }

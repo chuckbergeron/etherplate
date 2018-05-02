@@ -1,0 +1,26 @@
+.token-type {
+  background: white;
+  border: 3px solid #f2f2f2;
+  cursor: pointer;
+  border-radius: 2px;
+  opacity: 0.8;
+  line-height: 0;
+}
+
+.token-type.selected,
+.token-type.selected:hover,
+.token-type.selected:focus {
+  border: 3px solid #e7f4ff;
+  opacity: 1;
+}
+
+.token-type:hover,
+.token-type:focus {
+  border: 3px solid #e7e7e7;
+  opacity: 1;
+}
+
+.token-type__img {
+  width: 100%;
+  max-width: 128px;
+}

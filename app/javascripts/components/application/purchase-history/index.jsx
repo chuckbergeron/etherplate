@@ -3,7 +3,7 @@ import React, {
 } from 'react'
 
 import NFToken from '@/contracts/nfToken-factory'
-import TokenRow from './item-row'
+import TokenRow from './token-row'
 
 require('./style')
 
@@ -12,14 +12,14 @@ export default class extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      items: []
+      tokens: []
     }
   }
 
   refreshTokenList() {
     NFToken().then((instance) => {
       instance.myTokens().then((result) => {
-        this.setState({ items: result })
+        this.setState({ tokens: result })
       }).catch((error) => {
         console.error(error)
       })
@@ -34,7 +34,7 @@ export default class extends Component {
 
   render () {
     var content
-    if (this.state.items.length) {
+    if (this.state.tokens.length) {
       content =
         <section className='section'>
           <div className='container'>
@@ -50,7 +50,7 @@ export default class extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.items.map((itemId) => <TokenRow itemId={itemId} key={itemId} /> )}
+                  {this.state.tokens.map((tokenId) => <TokenRow tokenId={tokenId} key={tokenId} /> )}
                 </tbody>
               </table>
             </div>
@@ -62,7 +62,7 @@ export default class extends Component {
           <div className='hero-body'>
             <div className='container'>
               <h1 className='title has-text-grey-light has-text-centered'>
-                You haven't purchased any items.
+                You haven't purchased any tokens.
               </h1>
             </div>
           </div>

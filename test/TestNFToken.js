@@ -8,7 +8,7 @@ contract('NFToken', function (accounts) {
 
   var user = accounts[0]
 
-  var title = 'Name of the item'
+  var title = 'Name of the token'
 
   beforeEach(async function () {
     await NFToken.new().then(function (instance) {
@@ -25,7 +25,7 @@ contract('NFToken', function (accounts) {
       assertRevert(ct.buyToken(2, 'a'))
     })
 
-    it('should return 0 when no items', async () => {
+    it('should return 0 when no tokens', async () => {
       assert.equal((await ct.myTokens()).length, 0)
     })
 
@@ -34,7 +34,7 @@ contract('NFToken', function (accounts) {
 
       assert.equal(transaction.logs.length, 1)
       assert.equal(transaction.logs[0].event, 'BoughtToken')
-      assert.equal(transaction.logs[0].args.itemId.toString(), '0')
+      assert.equal(transaction.logs[0].args.tokenId.toString(), '0')
     })
 
     it('should count trophies properly!', async () => {

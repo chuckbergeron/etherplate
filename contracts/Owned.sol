@@ -1,7 +1,7 @@
 pragma solidity ^0.4.23;
 
 contract Owned {
-  bytes32 private constant ownerPosition = keccak256("org.etherplateitems.owned.owner");
+  bytes32 private constant ownerPosition = keccak256("org.etherplatetokens.owned.owner");
 
   event TransferredOwnership(address previousOwner, address newOwner);
 

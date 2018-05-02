@@ -61,3 +61,9 @@ Once Ganache is running, in another terminal start the Webpack dev server.
 `npm run dev`
 
 Your server should now be running at http://127.0.0.1:8080
+
+
+## TODO:
+
+* Convert all css to scss
+

@@ -4,26 +4,23 @@ import React, {
 import reactMixin from 'react-mixin'
 import TimerMixin from 'react-timer-mixin'
 import FontAwesome from 'react-fontawesome'
-
 import range from 'lodash.range'
 import classnames from 'classnames'
 
-import TokenType from '../item-type'
+import TokenType from '../token-type'
 
-import style from './style'
-
-import buyToken from '@/services/buy-item'
+import buyToken from '@/services/buy-token'
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 
-import canUseVideo from '@/services/can-use-video'
+import BoughtTokenSubscriber from '@/subscribers/bought-token-subscriber'
 
-import BoughtTokenSubscriber from '@/subscribers/bought-item-subscriber'
+import style from './style'
 
 class CustomizeToken extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      itemType: 0,
+      tokenType: 0,
       title: '',
       titleError: '',
       waitingForEthereum: false,
@@ -45,7 +42,7 @@ class CustomizeToken extends Component {
     if (this.state.title.length < 8) {
       this.setState({ titleError: 'Please enter at least 8 characters for the title' })
     } else {
-      buyToken(this.state.itemType, this.state.title)
+      buyToken(this.state.tokenType, this.state.title)
         .then((transaction) => {
           this.setState({ waitingForEthereum: true })
         })
@@ -56,7 +53,7 @@ class CustomizeToken extends Component {
   }
 
   onClickTokenType (index) {
-    this.setState({ itemType: index })
+    this.setState({ tokenType: index })
   }
 
   render () {
@@ -79,7 +76,7 @@ class CustomizeToken extends Component {
                 <div className="etherplate-form--wrapper">
                   <div className="columns is-mobile">
                     {range(2).map(index => {
-                      var selected = this.state.itemType === index
+                      var selected = this.state.tokenType === index
                       return (
                         <div key={index} className="column rotate-in-center is-one-fifth-mobile is-one-fifth-tablet is-one-fifth-desktop">
                           <TokenType
@@ -95,7 +92,7 @@ class CustomizeToken extends Component {
                     <label className="label">Title</label>
                     <div className="control">
                       <input
-                        placeholder="What this item's for (ie. Vancity Hackathon 2018)"
+                        placeholder="What this token's for (ie. Vancity Hackathon 2018)"
                         className="input"
                         value={this.state.title}
                         onChange={(e) => this.setState({ title: e.target.value })} />
@@ -118,7 +115,7 @@ class CustomizeToken extends Component {
             </div>
 
             <div className='column is-one-third'>
-              {itemType}
+              {tokenType}
             </div>
           </div>
         </div>

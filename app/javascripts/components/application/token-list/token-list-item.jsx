@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { Address } from '@/components/address'
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
-import getToken from '@/services/get-item'
+import getToken from '@/services/get-token'
 
 export default class extends Component {
   constructor (props) {
@@ -16,7 +16,7 @@ export default class extends Component {
   }
 
   componentDidMount () {
-    getToken(this.props.itemId).then((values) => {
+    getToken(this.props.tokenId).then((values) => {
       this.setState({
         type: values[0],
         title: values[1]
@@ -31,7 +31,7 @@ export default class extends Component {
         <div className="card">
           <div className="card-image">
             <figure className="image">
-              <Link to={`/items/${this.props.itemId}`}>
+              <Link to={`/tokens/${this.props.tokenId}`}>
                 <img src={nfTokenTypeImageUrl(this.state.type)} />
               </Link>
             </figure>

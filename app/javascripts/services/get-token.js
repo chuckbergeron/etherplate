@@ -1,26 +1,26 @@
 import NFToken from '@/contracts/nfToken-factory'
 
-export default function (itemId) {
+export default function (tokenId) {
   var contract = NFToken()
 
-  var itemType = new Promise((resolve, reject) => {
+  var tokenType = new Promise((resolve, reject) => {
     contract.then((instance) => {
-      instance.getTokenType(itemId).then((response) => {
+      instance.getTokenType(tokenId).then((response) => {
         resolve(parseInt(response.toString()))
       }).catch((error) => reject)
     })
   })
 
-  var itemTitle = new Promise((resolve, reject) => {
+  var tokenTitle = new Promise((resolve, reject) => {
     contract.then((instance) => {
-      instance.getTokenTitle(itemId).then((response) => {
+      instance.getTokenTitle(tokenId).then((response) => {
         resolve(response.toString())
       }).catch((error) => reject)
     })
   })
 
   return Promise.all([
-    itemType,
-    itemTitle
+    tokenType,
+    tokenTitle
   ])
 }

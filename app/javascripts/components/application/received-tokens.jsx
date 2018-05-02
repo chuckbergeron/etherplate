@@ -3,14 +3,14 @@ import React, {
 } from 'react'
 
 import NFToken from '@/contracts/nfToken-factory'
-import TokenList from './item-list'
+import TokenList from './token-list'
 
 export default class extends Component {
 
   constructor (props) {
     super(props)
     this.state = {
-      items: []
+      tokens: []
     }
   }
 
@@ -28,7 +28,7 @@ export default class extends Component {
           console.error(error)
         else
         this.setState({
-          items: this.state.items.concat([result.args.itemId])
+          tokens: this.state.tokens.concat([result.args.tokenId])
         })
       })
     }).catch((error) => {
@@ -43,7 +43,7 @@ export default class extends Component {
   render () {
     return (
       <div>
-        <TokenList items={this.state.items} />
+        <TokenList tokens={this.state.tokens} />
       </div>
     )
   }

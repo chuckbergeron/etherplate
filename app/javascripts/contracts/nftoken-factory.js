@@ -2,7 +2,7 @@ import contract from 'truffle-contract'
 import NFToken from '../../../build/contracts/NFToken.json'
 import stringTo32Bytes from '@/string-to-32bytes'
 
-const NFToken = contract(nfToken)
+const nfToken = contract(NFToken)
 
 export default async function () {
   nfToken.setProvider(web3.currentProvider)
