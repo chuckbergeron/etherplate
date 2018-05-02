@@ -1,5 +1,5 @@
-var NFToken = artifacts.require('./NFToken')
+var nfToken = artifacts.require('NFToken')
 
 module.exports = function(deployer) {
-  NFToken.deploy()
+  deployer.deploy(nfToken)
 };

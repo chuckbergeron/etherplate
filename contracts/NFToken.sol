@@ -1,14 +1,21 @@
 pragma solidity ^0.4.23;
 
-contract NFToken is ERC721 {
+import 'zeppelin-solidity/contracts/token/ERC721/ERC721Token.sol';
+
+contract NFToken is ERC721Token {
   uint256 constant TITLE_MIN_LENGTH = 8;
   uint256 constant TITLE_MAX_LENGTH = 64;
 
   /// The token type (1 for shield, 2 for sword, etc)
-  mapping(uint256 => uint256) tokenType;
+  mapping(uint256 => uint256) tokenTypes;
 
   /// The title of the token
-  mapping(uint256 => string) tokenTitle;
+  mapping(uint256 => string) tokenTitles;
+
+  constructor() ERC721Token("Etherplate NFToken", "ENFT") public {}
+
+  /// The event emitted (useable by web3) when a token is purchased
+  event BoughtToken(address indexed buyer, uint256 indexed tokenId);
 
   /**
    * @dev Creates an instance of an token and mints it to the purchaser
@@ -22,16 +29,17 @@ contract NFToken is ERC721 {
     require(_titleBytes.length > TITLE_MIN_LENGTH);
     require(_titleBytes.length <= TITLE_MAX_LENGTH);
 
-    // this could cause issues:
+    // TODO: test this, it could cause issues:
     require(_type > 0);
 
-    // TODO: Get this after pushing a new owner using the ERC721 standard
-    var index = ?;
+    uint256 index = allTokens.length + 1;
 
-    tokenType[index] = _type;
-    tokenTitle[index] = _title;
+    _mint(msg.sender, index);
 
-    BoughtToken(msg.sender, index);
+    tokenTypes[index] = _type;
+    tokenTitles[index] = _title;
+
+    emit BoughtToken(msg.sender, index);
   }
 
   /**
@@ -39,14 +47,7 @@ contract NFToken is ERC721 {
    * @return An array of token indices
    */
   function myTokens () external view returns (uint256[]) {
-    uint256[] memory tokens = new uint256[](tokenCount[msg.sender]);
-    uint256 currentIndex = 0;
-    for (uint256 i = 0; i < tokenOwners.length; i++) {
-      if (tokenOwners[i] == msg.sender) {
-        tokens[currentIndex++] = i;
-      }
-    }
-    return tokens;
+    return ownedTokens[msg.sender];
   }
 
   function getTokenType (uint256 _tokenId) external view returns (uint256) {
@@ -54,7 +55,7 @@ contract NFToken is ERC721 {
   }
 
   function getTokenTitle (uint256 _tokenId) external view returns (string) {
-    return tokenTitle[_tokenId];
+    return tokenTitles[_tokenId];
   }
 
 }

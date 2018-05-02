@@ -2,7 +2,8 @@ import React, {
   Component
 } from 'react'
 
-import NFToken from '@/contracts/nfToken-factory'
+import nfToken from '@/contracts/nfToken-factory'
+
 import TokenRow from './token-row'
 
 require('./style')
@@ -17,7 +18,7 @@ export default class extends Component {
   }
 
   refreshTokenList() {
-    NFToken().then((instance) => {
+    nfToken().then((instance) => {
       instance.myTokens().then((result) => {
         this.setState({ tokens: result })
       }).catch((error) => {

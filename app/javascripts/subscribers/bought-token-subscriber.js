@@ -1,8 +1,8 @@
-import NFToken from '@/contracts/nfToken-factory'
+import nfToken from '@/contracts/nfToken-factory'
 
 export default class {
   constructor (onBuyCallback) {
-    NFToken().then((instance) => {
+    nfToken().then((instance) => {
       this.boughtTokenEvent = instance.BoughtToken({ buyer: web3.eth.accounts[0] })
       this.boughtTokenEvent.watch((error, result) => {
         if (!error) {

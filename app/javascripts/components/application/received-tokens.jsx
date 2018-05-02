@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react'
 
-import NFToken from '@/contracts/nfToken-factory'
+import nfToken from '@/contracts/nfToken-factory'
 import TokenList from './token-list'
 
 export default class extends Component {
@@ -15,7 +15,7 @@ export default class extends Component {
   }
 
   componentDidMount () {
-    NFToken().then((instance) => {
+    nfToken().then((instance) => {
       this.boughtToken = instance.BoughtToken({
           recipient: web3.eth.accounts[0]
         }, {

@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import { Address } from '@/components/address'
 
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
-import NFToken from '@/contracts/nfToken-factory'
 import getToken from '@/services/get-token'
 
 require('./style.scss')

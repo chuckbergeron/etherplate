@@ -3,8 +3,6 @@ import React, {
 } from 'react'
 import { Link } from 'react-router-dom'
 
-import NFToken from '@/contracts/nfToken-factory'
-
 export default class extends Component {
 
   render () {

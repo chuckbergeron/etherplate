@@ -2,7 +2,6 @@ import React, {
   Component
 } from 'react'
 
-import NFToken from '@/contracts/nfToken-factory'
 import TokenListItem from './token-list-item'
 
 export default class extends Component {

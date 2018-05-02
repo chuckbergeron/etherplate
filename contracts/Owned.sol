@@ -14,8 +14,8 @@ contract Owned {
     address owner = getOwner();
     require(_newOwner != address(0));
     require(_newOwner != owner);
-    TransferredOwnership(owner, _newOwner);
     setOwner(_newOwner);
+    emit TransferredOwnership(owner, _newOwner);
   }
 
   function getOwner() internal view returns (address owner) {

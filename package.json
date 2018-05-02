@@ -11,6 +11,19 @@
   },
   "author": "Chuck Bergeron",
   "license": "CC0",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chuckbergeron/etherplate.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/chuckbergeron/etherplate/issues"
+  },
+  "homepage": "https://github.com/chuckbergeron/etherplate#readme",
   "devDependencies": {
     "@babel/cli": "7.0.0-beta.46",
     "@babel/core": "^7.0.0-beta.46",
@@ -59,7 +72,7 @@
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1",
     "webpack-merge": "^4.1.2",
-    "zeppelin-solidity": "^1.9.0"
+    "zeppelin-solidity": "1.9.0"
   },
   "dependencies": {
     "bulma": "^0.7.1",

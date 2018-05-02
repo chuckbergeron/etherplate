@@ -1,7 +1,7 @@
 import assertRevert from './support/assert-revert'
 import BigNumber from 'bignumber.js'
 import range from 'lodash.range'
-const NFToken = artifacts.require('NFToken')
+const nfToken = artifacts.require('NFToken')
 
 contract('NFToken', function (accounts) {
   var ct
@@ -11,7 +11,7 @@ contract('NFToken', function (accounts) {
   var title = 'Name of the token'
 
   beforeEach(async function () {
-    await NFToken.new().then(function (instance) {
+    await nfToken.new().then(function (instance) {
       ct = instance
     })
   })

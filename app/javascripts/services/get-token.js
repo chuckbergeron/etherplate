@@ -1,7 +1,7 @@
-import NFToken from '@/contracts/nfToken-factory'
+import nfToken from '@/contracts/nfToken-factory'
 
 export default function (tokenId) {
-  var contract = NFToken()
+  var contract = nfToken()
 
   var tokenType = new Promise((resolve, reject) => {
     contract.then((instance) => {
