@@ -34,7 +34,7 @@ export default class extends Component {
 
   render () {
     return (
-      <nav id="navbar" className="navbar is-fixed-top">
+      <nav id="navbar" className="navbar is-fixed-top is-dark">
         <div id="specialShadow" className="bd-special-shadow">
         </div>
 
@@ -62,7 +62,7 @@ export default class extends Component {
                 <span>Purchase History</span>
               </Link>
               <div className="navbar-item">
-                <Link to="/tokens/new" className="button is-dark">
+                <Link to="/tokens/new" className="button is-info">
                   <span>Purchase Token</span>
                 </Link>
               </div>

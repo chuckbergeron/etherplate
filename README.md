@@ -73,3 +73,13 @@ Your server should now be running at http://127.0.0.1:8080
 
 * Convert all css to scss
 * Finish implementing all ERC721 features, such as `safeTransferFrom`
+
+#### Gratitude
+
+Big thanks to all of the fantastic open source developers who have made this technology actual, and to [Brendan Asselstine](https://medium.com/@asselstine) for helping kickstart my development with blockchain technologies.
+
+#### Etherplate Wordmark
+
+The Etherplate Wordmark is set in Sign Painter: https://typekit.com/fonts/signpainter
+
+

@@ -22,9 +22,11 @@ export default class extends Component {
                     <strong>Etherplate</strong> is a pre-architected dapp. It exists to teach you how to hook up your Ethereum Non-Fungible Tokens (NFTs, ERC721, similar to CryptoKitties) contract (or any other contracts) to a React web3 app. It demos web3 events, and is highly opinionated in that it uses Redux, React, React Router, and Bulma. You can rip out of any these or replace them with your favourites (ie. Skeleton.css instead of Bulma, etc.).
                   </p>
 
-                  <Link to="/tokens/new" className="button is-primary is-large">
+                  <Link to="/tokens/new" className="button is-info is-large">
                     <span>Buy a Token Now</span>
                   </Link>
+                  <br />
+                  <small>(Only for testing, does not require actual Ether)</small>
                 </div>
 
                 <div className="column"></div>

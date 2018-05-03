@@ -1,9 +1,7 @@
 import React, {
   Component
 } from 'react'
-import reactMixin from 'react-mixin'
-import TimerMixin from 'react-timer-mixin'
-import FontAwesome from 'react-fontawesome'
+
 import range from 'lodash.range'
 import classnames from 'classnames'
 
@@ -27,6 +25,9 @@ class CustomizeToken extends Component {
       errorMessage: ''
     }
     this.onCode = this.onCode.bind(this)
+
+        console.log('in customize')
+
     this.boughtTokenSubscriber = new BoughtTokenSubscriber(() => this.setState({waitingForEthereum: false}))
   }
 
@@ -123,7 +124,5 @@ class CustomizeToken extends Component {
     )
   }
 }
-
-reactMixin(CustomizeToken.prototype, TimerMixin)
 
 export default CustomizeToken
