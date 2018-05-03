@@ -20,6 +20,10 @@ Apt on Linux:
 
 `apt-get install node npm direnv`
 
+### Install truffle globally:
+
+`npm install truffle -g`
+
 ### Install the local NPM packages:
 
 `npm install`
