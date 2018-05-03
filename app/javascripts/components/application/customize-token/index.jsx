@@ -24,7 +24,6 @@ class CustomizeToken extends Component {
       waitingForEthereum: false,
       errorMessage: ''
     }
-    this.onCode = this.onCode.bind(this)
 
         console.log('in customize')
 
@@ -93,7 +92,7 @@ class CustomizeToken extends Component {
                     <label className="label">Title</label>
                     <div className="control">
                       <input
-                        placeholder="What this token's for (ie. Vancity Hackathon 2018)"
+                        placeholder="Name your sword or shield"
                         className="input"
                         value={this.state.title}
                         onChange={(e) => this.setState({ title: e.target.value })} />
@@ -105,7 +104,7 @@ class CustomizeToken extends Component {
                   <p>
                     <button
                       disabled={this.state.selectedToken === null && !this.state.waitingForEthereum}
-                      className={classnames('button is-primary is-medium', { 'is-loading': this.state.waitingForEthereum })}
+                      className={classnames('button is-success is-medium', { 'is-loading': this.state.waitingForEthereum })}
                       onClick={(e) => this.onClickSave()}>
                       Buy Token
                     </button>
@@ -116,7 +115,7 @@ class CustomizeToken extends Component {
             </div>
 
             <div className='column is-one-third'>
-              {tokenType}
+              {this.state.tokenType}
             </div>
           </div>
         </div>

@@ -1,3 +1,8 @@
+html.has-navbar-fixed-top,
+body.has-navbar-fixed-top {
+  padding-top: 7.25rem;
+}
+
 .navbar > .container .navbar-brand,
 .container > .navbar .navbar-brand {
   @media screen and (min-width: 1024px) {
@@ -36,7 +41,7 @@ a.navbar-item.is-active,
 a.navbar-link:hover,
 a.navbar-link.is-active {
   background: transparent;
-  color: $primary;
+  color: $info;
 }
 
 .button.is-dark:hover,
