@@ -57,6 +57,7 @@
     "node-loader": "^0.6.0",
     "node-sass": "^4.8.3",
     "raw-loader": "^0.5.1",
+    "react-error-overlay": "^4.0.0",
     "sass-loader": "^7.0.1",
     "schema-utils": "^0.4.5",
     "style-loader": "^0.21.0",

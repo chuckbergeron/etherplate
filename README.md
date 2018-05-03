@@ -68,6 +68,12 @@ Once Ganache is running, in another terminal start the Webpack dev server.
 
 Your server should now be running at http://127.0.0.1:8080
 
+### truffle.js & truffle-config.js
+
+Why is there both a truffle and truffle-config file?
+
+* On Windows, truffle-config.js is required. You can safely delete the one you don't need (ie on Mac/Linux you can delete truffle-config.js)
+
 
 ## TODO:
 
