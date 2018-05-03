@@ -34,7 +34,7 @@ export default class extends Component {
 
   render () {
     return (
-      <nav id="navbar" className="navbar">
+      <nav id="navbar" className="navbar is-fixed-top">
         <div id="specialShadow" className="bd-special-shadow">
         </div>
 
@@ -42,7 +42,7 @@ export default class extends Component {
           <div className="navbar-brand">
             <div className="navbar-item">
               <Link to="/">
-                <img src="/images/logos/etherplate--logo--red--lg.png" />
+                <img src="/images/logos/etherplate-logo--red--lg.png" />
               </Link>
             </div>
 
@@ -51,16 +51,6 @@ export default class extends Component {
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
             </a>
-          </div>
-
-          <div className="navbar-menu">
-            <div className="navbar-start">
-              <div className="navbar-item">
-                <Link to="/">
-                  <h1 className="etherplate--wordmark title is-4">Etherplate</h1>
-                </Link>
-              </div>
-            </div>
           </div>
 
           <div className="navbar-menu" id="navMenu">
