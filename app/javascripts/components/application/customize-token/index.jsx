@@ -38,6 +38,9 @@ class CustomizeToken extends Component {
   }
 
   onClickSave () {
+    // Reset the error handling
+    this.setState({ titleError: '' })
+
     // TODO: Replace these magic numbers with an app-wide config:
     if (this.state.title.length < 8) {
       this.setState({ titleError: 'Please enter at least 8 characters for the title' })
@@ -115,7 +118,7 @@ class CustomizeToken extends Component {
             </div>
 
             <div className='column is-one-third'>
-              <figure class="image is-square">
+              <figure className="image is-square">
                 <img src={nfTokenTypeImageUrl(this.state.tokenType)} />
               </figure>
             </div>

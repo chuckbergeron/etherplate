@@ -3,20 +3,21 @@
   border: 3px solid #f2f2f2;
   cursor: pointer;
   border-radius: 2px;
-  opacity: 0.8;
+  opacity: 0.7;
   line-height: 0;
+  transition: 0.2s;
 }
 
 .token-type.selected,
 .token-type.selected:hover,
 .token-type.selected:focus {
-  border: 3px solid #e7f4ff;
+  border: 3px solid #77cfff;
   opacity: 1;
 }
 
 .token-type:hover,
 .token-type:focus {
-  border: 3px solid #e7e7e7;
+  border: 3px solid #a7ffff;
   opacity: 1;
 }
 

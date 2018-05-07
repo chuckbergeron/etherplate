@@ -29,8 +29,6 @@ contract NFToken is ERC721Token {
     require(_titleBytes.length > TITLE_MIN_LENGTH);
     require(_titleBytes.length <= TITLE_MAX_LENGTH);
 
-    // require(_type > 0);
-
     uint256 index = allTokens.length + 1;
 
     _mint(msg.sender, index);

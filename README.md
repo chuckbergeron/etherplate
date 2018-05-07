@@ -81,7 +81,9 @@ Why is there both a truffle and truffle-config file?
 
 ## TODO:
 
+* On successful purchase, show a message about the new purchase and how it needs to be confirmed
 * Convert all css to scss
+* Improve mobile styling / media query support
 * Demo how ERC721 expects you to store data (such as the JSON response when the tokenURI is requested) as per https://eips.ethereum.org/EIPS/eip-721 (For instance, OpenSea has a server which takes a contract address and tokenID, which then does a GET request to the tokenURI to pull more info (as JSON) about the token (images, name, etc), for example: https://opensea-api.herokuapp.com/events/?asset_contract_address=0x06012c8cf97bead5deae237070f9587f8e7a266d&token_id=389343)
 
 #### Gratitude
