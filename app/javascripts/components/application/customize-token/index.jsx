@@ -115,7 +115,9 @@ class CustomizeToken extends Component {
             </div>
 
             <div className='column is-one-third'>
-              {this.state.tokenType}
+              <figure class="image is-square">
+                <img src={nfTokenTypeImageUrl(this.state.tokenType)} />
+              </figure>
             </div>
           </div>
         </div>
