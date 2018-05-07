@@ -11,7 +11,7 @@ import web3Wrap from '@/components/web3Wrap'
 
 import SiteHeader from './layout/site-header'
 
-import Dashboard from './dashboard'
+import Landing from './landing'
 
 // Routes Components
 import CustomizeToken from './customize-token'
@@ -38,7 +38,7 @@ export class Application extends Component {
           <Route path='/tokens/new' component={web3CustomizeToken} />
           <Route path='/tokens/:tokenId' component={Token} />
 
-          <Route exact={true} path='/' component={Dashboard} />
+          <Route exact={true} path='/' component={Landing} />
         </Switch>
       </div>
     )

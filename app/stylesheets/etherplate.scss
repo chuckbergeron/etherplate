@@ -7,7 +7,6 @@ body.has-navbar-fixed-top {
 .container > .navbar .navbar-brand {
   @media screen and (min-width: 1024px) {
     margin-left: -1rem;
-    margin-right: -1rem;
   }
 }
 
@@ -118,16 +117,16 @@ a.navbar-link.is-active {
   line-height: 1.5;
 }
 
-
-// Might not need any of this:
-.tilt-root {
-  transform-style: preserve3d;
-}
-
-.tilt-child {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
+// Figure out how to combat the load order issue by having this here instead
+// in site-header.scss
+.navbar.is-dark .navbar-start > a.navbar-item:hover,
+.navbar.is-dark .navbar-start > a.navbar-item.is-active,
+.navbar.is-dark .navbar-start .navbar-link:hover,
+.navbar.is-dark .navbar-start .navbar-link.is-active,
+.navbar.is-dark .navbar-end > a.navbar-item:hover,
+.navbar.is-dark .navbar-end > a.navbar-item.is-active,
+.navbar.is-dark .navbar-end .navbar-link:hover,
+.navbar.is-dark .navbar-end .navbar-link.is-active {
+  background: transparent;
+  color: $pink;
 }

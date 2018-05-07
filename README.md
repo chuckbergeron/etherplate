@@ -81,6 +81,7 @@ Why is there both a truffle and truffle-config file?
 
 ## TODO:
 
+* Show token ID on purchase history and Tokens#show page
 * On successful purchase, show a message about the new purchase and how it needs to be confirmed
 * Convert all css to scss
 * Improve mobile styling / media query support

@@ -41,8 +41,6 @@ export default class extends Component {
           <div className="token columns is-centered">
             <div className='column is-three-quarters-tablet is-three-quarters-desktop is-one-half-widescreen is-one-half-fullhd has-text-centered'>
 
-              <a className="token__share-link" href="#"><i className="fas fa-lg fa-share-alt"></i></a>
-
               <figure
                 className="token__image">
                 <img src={nfTokenTypeImageUrl(this.state.type)} />

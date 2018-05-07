@@ -53,6 +53,14 @@ export default class extends Component {
             </a>
           </div>
 
+          <div className="navbar-menu">
+            <div className="navbar-start">
+              <Link to='/' className='navbar-item'>
+                <span>Home</span>
+              </Link>
+            </div>
+          </div>
+
           <div className="navbar-menu" id="navMenu">
             <div className="navbar-end">
               <Link to='/tokens/received' className='navbar-item'>
