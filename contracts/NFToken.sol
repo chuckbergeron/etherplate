@@ -15,7 +15,7 @@ contract NFToken is ERC721Token {
   constructor() ERC721Token("Etherplate NFToken", "ENFT") public {}
 
   /// The event emitted (useable by web3) when a token is purchased
-  event BoughtToken(address indexed buyer, uint256 indexed tokenId);
+  event BoughtToken(address indexed buyer, uint256 tokenId);
 
   /**
    * @dev Creates an instance of an token and mints it to the purchaser
@@ -29,8 +29,7 @@ contract NFToken is ERC721Token {
     require(_titleBytes.length > TITLE_MIN_LENGTH);
     require(_titleBytes.length <= TITLE_MAX_LENGTH);
 
-    // TODO: test this, it could cause issues:
-    require(_type > 0);
+    // require(_type > 0);
 
     uint256 index = allTokens.length + 1;
 
