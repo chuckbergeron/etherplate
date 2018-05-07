@@ -25,13 +25,15 @@ export default class extends Component {
     let tokenLinkUrl = `/tokens/${this.props.tokenId}`
 
     return (
-      <tr>
+      <tr className='token-row'>
         <td>
           <Link to={tokenLinkUrl}>
             <img src={nfTokenTypeImageUrl(this.state.type, 'small')} className='token-row__token-img' />
           </Link>
         </td>
-        <td><Link to={tokenLinkUrl}>{this.state.title}</Link></td>
+        <td>
+          <Link to={tokenLinkUrl}>{this.state.title}</Link>
+        </td>
       </tr>
     )
   }

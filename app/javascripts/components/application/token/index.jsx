@@ -14,9 +14,7 @@ export default class extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      type: null,
-      animateToken: false,
-      animateSheen: false
+      type: null
     }
   }
 
@@ -33,11 +31,6 @@ export default class extends Component {
         title: values[1]
       })
     })
-
-    this.setState({
-      animateToken: true,
-      animateSheen: true
-    })
   }
 
   render () {
@@ -50,16 +43,10 @@ export default class extends Component {
 
               <a className="token__share-link" href="#"><i className="fas fa-lg fa-share-alt"></i></a>
 
-              <div className="token__shiny">
-                <div
-                  className={this.state.animateSheen ? 'token__show-off is-animating' : 'token__show-off' } />
-
-                <figure
-                  className={this.state.animateToken ? 'token__image is-animating' : 'token__image' }>
-                  <img src={nfTokenTypeImageUrl(this.state.type)} />
-                </figure>
-              </div>
-
+              <figure
+                className="token__image">
+                <img src={nfTokenTypeImageUrl(this.state.type)} />
+              </figure>
 
               <p className="token__title title has-text-grey">
                 {this.state.title}
