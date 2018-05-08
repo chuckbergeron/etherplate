@@ -15,7 +15,7 @@ import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 
 import BoughtTokenSubscriber from '@/subscribers/bought-token-subscriber'
 
-import style from './style'
+import style from './style.scss'
 
 class CustomizeToken extends Component {
   constructor (props) {

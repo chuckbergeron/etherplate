@@ -6,7 +6,7 @@ import nfToken from '@/contracts/nfToken-factory'
 
 import TokenRow from './token-row'
 
-require('./style')
+require('./style.scss')
 
 export default class extends Component {
 

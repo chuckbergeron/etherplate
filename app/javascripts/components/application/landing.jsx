@@ -18,15 +18,16 @@ export default class extends Component {
                   <p className="title">
                     What is Etherplate?
                   </p>
-                  <p className="subtitle">
-                    <strong>Etherplate</strong> is a pre-architected Dapp. It exists to teach you how to hook up your Ethereum Non-Fungible Tokens (NFTs, ERC721, similar to CryptoKitties) contract (or any other contracts) to a React web3 app. It demos web3 events, and is highly opinionated in that it uses Redux, React, React Router, and Bulma. You can rip out of any these or replace them with your favourites (ie. Skeleton.css instead of Bulma, etc.).
+                  <p>
+                    <strong>Etherplate</strong> is a pre-architected Dapp. It shows how you could hook up Ethereum Non-Fungible Tokens (<a href="http://erc721.org/" title="ERC721 Standard Info Page">ERC721</a>, similar to CryptoKitties) contract (or any other contracts) to a React web3 app. It demos web3 events, and is highly opinionated in that it uses Redux, React, React Router, and Bulma. You can rip out of any these or replace them with your favourites (ie. Skeleton.css instead of Bulma, etc.).
                   </p>
 
+                  <br />
                   <Link to="/tokens/new" className="button is-info is-large">
                     <span>Buy a Token Now</span>
                   </Link>
                   <br />
-                  <small>(Only for testing, does not require actual Ether)</small>
+                  <small className="is-light">(Only for testing, does not require actual Ether)</small>
                 </div>
 
                 <div className="column"></div>
@@ -34,17 +35,6 @@ export default class extends Component {
             </div>
           </div>
         </section>
-
-        <footer className="footer">
-          <div className="container">
-            <div className="content has-text-centered">
-              <p>
-                <strong>Etherplate</strong> is a boilerplate Ethereum example Dapp by <a href="https://chuckbergeron.io">Chuck Bergeron</a>
-                <br />Built on &#128279; in Vancouver.
-              </p>
-            </div>
-          </div>
-        </footer>
 
       </div>
     )

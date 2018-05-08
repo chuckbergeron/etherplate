@@ -81,14 +81,14 @@ Why is there both a truffle and truffle-config file?
 
 ## TODO:
 
+* Mock out a web3 object in the integration spec and test the happy path of filling out the form and purchasing a token via enzyme
 * Make all React prop types required (isRequired) and provide defaultProps for those that are not
 * Figure out if we should use Redux at all for this (thinking web3 events could stash their state in a Redux store)
-* JS E2E / Functional / Unit tests
 * Show token ID on purchase history and Tokens#show page
 * On successful purchase, show a message about the new purchase and how it needs to be confirmed
-* Convert all css to scss
-* Improve mobile styling / media query support
 * Demo how ERC721 expects you to store data (such as the JSON response when the tokenURI is requested) as per https://eips.ethereum.org/EIPS/eip-721 (For instance, OpenSea has a server which takes a contract address and tokenID, which then does a GET request to the tokenURI to pull more info (as JSON) about the token (images, name, etc), for example: https://opensea-api.herokuapp.com/events/?asset_contract_address=0x06012c8cf97bead5deae237070f9587f8e7a266d&token_id=389343)
+* ~~Convert all css to scss~~
+* ~~Improve mobile styling / media query support~~
 
 #### Gratitude
 
