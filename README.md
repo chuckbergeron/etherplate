@@ -81,6 +81,7 @@ Why is there both a truffle and truffle-config file?
 
 ## TODO:
 
+* Figure out if we should use Redux at all for this (thinking web3 events could stash their state in a Redux store)
 * JS E2E / Functional / Unit tests
 * Show token ID on purchase history and Tokens#show page
 * On successful purchase, show a message about the new purchase and how it needs to be confirmed
