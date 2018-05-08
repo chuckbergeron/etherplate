@@ -81,9 +81,9 @@ Why is there both a truffle and truffle-config file?
 
 ## TODO:
 
+* Mock out a web3 object in the integration spec and test the happy path of filling out the form and purchasing a token via enzyme
 * Make all React prop types required (isRequired) and provide defaultProps for those that are not
 * Figure out if we should use Redux at all for this (thinking web3 events could stash their state in a Redux store)
-* JS E2E / Functional / Unit tests
 * Show token ID on purchase history and Tokens#show page
 * On successful purchase, show a message about the new purchase and how it needs to be confirmed
 * Convert all css to scss
