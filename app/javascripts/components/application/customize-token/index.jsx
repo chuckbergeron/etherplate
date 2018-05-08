@@ -102,7 +102,7 @@ class CustomizeToken extends Component {
                     <label className="label">Title</label>
                     <div className="control">
                       <input
-                        placeholder="Name your sword or shield"
+                        placeholder={`Name your ${this.state.tokenType == 0 ? 'sword' : 'shield'}`}
                         className="input"
                         value={this.state.title}
                         onChange={(e) => this.setState({ title: e.target.value })} />

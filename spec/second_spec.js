@@ -1,10 +1,10 @@
-import 'jsdom-global/register';
+// import 'jsdom-global/register';
 
 import React from 'react';
 
-import {
-  BrowserRouter
-} from 'react-router-dom'
+// import {
+  // BrowserRouter
+// } from 'react-router-dom'
 
 import Enzyme, {
   shallow,
@@ -20,20 +20,20 @@ Enzyme.configure({ adapter: new Adapter() });
 
 
 // import { createMemoryHistory } from 'history'
-const createBrowserHistory = require('history/createBrowserHistory').default
-history = createBrowserHistory()
+// const createBrowserHistory = require('history/createBrowserHistory').default
+// history = createBrowserHistory()
 
 
 
-import App from '@/App'
-import Dashboard from '@/javascripts/components/dashboard'
+import { Application } from '@/components/application'
+import Landing from '@/components/application/landing'
 
-
-// beforeEach(cusstomConfig)
 
 describe('basic integration tests', () => {
 
   // let router;
+
+  // beforeEach(cusstomConfig)
 
   // beforeEach(() => {
   //   router = {
@@ -44,12 +44,14 @@ describe('basic integration tests', () => {
 
   it('should change the text on click', () => {
     const app = mount(
-      <App />
+      <Application />
     );
 
 
-    console.log(app.find('#navbar-link__history'));
-    let link = app.find('#navbar-link__history');
+    console.log('----------------------');
+    console.log(app.find('.navbar-item'));
+    console.log('----------------------'));
+    let link = app.find('.navbar-item');
 
     link.find('a').last().simulate('click')
 
