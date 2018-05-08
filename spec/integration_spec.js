@@ -17,9 +17,9 @@ Enzyme.configure({ adapter: new Adapter() });
 import { Application } from '@/components/application'
 
 
-describe('basic integration tests', () => {
+describe('smokescreen integration tests', () => {
 
-  // beforeEach(cusstomConfig)
+  // beforeEach(customConfig)
 
   it('should change the text on click', () => {
     const wrapper = mount(
@@ -31,15 +31,14 @@ describe('basic integration tests', () => {
     let links = wrapper.find('.navbar-item');
 
     let purchaseTokenButton = links.find('a').last();
-    purchaseTokenButton.simulate('click');
+    purchaseTokenButton.simulate('click', { button: 0 });
 
-    console.log(wrapper.debug());
+    // console.log(wrapper.debug());
 
     // FOR NOW until we find a way to mock the Metamask check:
     expect(wrapper.find('h1.title').prop('children')).toEqual("Hold up ...");
 
     // Should be something more like:
-    // console.log(wrapper.debug());
     // expect(wrapper.find('form').length.toEqual(1));
   });
 
