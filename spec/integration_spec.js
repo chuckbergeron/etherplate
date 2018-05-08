@@ -50,7 +50,7 @@ describe('basic integration tests', () => {
 
     console.log('----------------------');
     console.log(app.find('.navbar-item'));
-    console.log('----------------------'));
+    console.log('----------------------');
     let link = app.find('.navbar-item');
 
     link.find('a').last().simulate('click')
