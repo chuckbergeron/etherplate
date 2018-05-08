@@ -2,9 +2,9 @@
 
 import React from 'react';
 
-// import {
-  // BrowserRouter
-// } from 'react-router-dom'
+import {
+  MemoryRouter
+} from 'react-router-dom'
 
 import Enzyme, {
   shallow,
@@ -27,6 +27,23 @@ Enzyme.configure({ adapter: new Adapter() });
 
 import { Application } from '@/components/application'
 import Landing from '@/components/application/landing'
+import NotFound from '@/components/application/not-found'
+
+
+
+
+// import React from 'react';
+// const rrd = require('react-router-dom');
+// // Just render plain div with its children
+// rrd.BrowserRouter = ({children}) => <div>{children}</div>
+// module.exports = rrd;
+
+const rrd = require('react-router-dom');
+// Just render plain div with its children
+const BrowserRouter = ({children}) => <div>{children}</div>
+
+
+
 
 
 describe('basic integration tests', () => {
@@ -42,29 +59,41 @@ describe('basic integration tests', () => {
   //   ({ dispatchSpy } = setupIntegrationTest({ myReducer }, router));
   // });
 
-  it('should change the text on click', () => {
-    const app = mount(
-      <Application />
+  // it('should change the text on click', () => {
+  //   const app = mount(
+  //     <Application />
+  //   );
+
+
+  //   console.log('----------------------');
+  //   console.log(app.find('.navbar-item'));
+  //   console.log('----------------------');
+  //   let link = app.find('.navbar-item');
+
+  //   link.find('a').last().simulate('click')
+
+  //   expect(app.find('label').prop('children')).toEqual('Title');
+  // });
+
+  // it('should have text on dashboard', () => {
+  //   const app = mount(
+  //     <Application />
+  //   );
+
+  //   // console.log(app.debug());
+
+  //   expect(app.find('p.title').prop('children')).toEqual("What is Etherplate?");
+  // });
+
+  it('should render 404 on invalid path', () => {
+    const wrapper = mount(
+      <MemoryRouter initialEntries={[ '/asdf' ]}>
+        <Application />
+      </MemoryRouter>
     );
+    // console.log(wrapper.debug());
 
-
-    console.log('----------------------');
-    console.log(app.find('.navbar-item'));
-    console.log('----------------------');
-    let link = app.find('.navbar-item');
-
-    link.find('a').last().simulate('click')
-
-    // firing before loading dashboard / history?
-    expect(app.find('h1').prop('children')).toEqual('History of Activity');
-  });
-
-  it('should have text on dashboard', () => {
-    const landing = mount(
-      <Landing />
-    );
-
-    expect(dashboard.find('h2').prop('children')).toEqual("Add activities you've completed here:");
+    expect(wrapper.find('NotFound').length).toEqual(1);
   });
 
 });

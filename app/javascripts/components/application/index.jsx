@@ -10,10 +10,10 @@ import {
 import web3Wrap from '@/components/web3Wrap'
 
 import SiteHeader from './layout/site-header'
-
 import Landing from './landing'
+import NotFoundPage from './not-found'
+import Token from './token'
 
-// Routes Components
 import CustomizeToken from './customize-token'
 const web3CustomizeToken = web3Wrap(CustomizeToken)
 
@@ -22,8 +22,6 @@ const web3PurchaseHistory = web3Wrap(PurchaseHistory)
 
 import ReceivedTokens from './received-tokens'
 const web3ReceivedTokens = web3Wrap(ReceivedTokens)
-
-import Token from './token'
 
 export class Application extends Component {
 
@@ -40,6 +38,8 @@ export class Application extends Component {
             <Route path='/tokens/:tokenId' component={Token} />
 
             <Route exact={true} path='/' component={Landing} />
+
+            <Route component={NotFoundPage} />
           </Switch>
         </div>
       </BrowserRouter>
