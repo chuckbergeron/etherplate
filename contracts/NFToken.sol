@@ -26,8 +26,8 @@ contract NFToken is ERC721Token {
     string _title
   ) external payable {
     bytes memory _titleBytes = bytes(_title);
-    require(_titleBytes.length > TITLE_MIN_LENGTH);
-    require(_titleBytes.length <= TITLE_MAX_LENGTH);
+    require(_titleBytes.length > TITLE_MIN_LENGTH, "Title is too short");
+    require(_titleBytes.length <= TITLE_MAX_LENGTH, "Title is too long");
 
     uint256 index = allTokens.length + 1;
 
