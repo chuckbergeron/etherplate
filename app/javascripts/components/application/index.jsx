@@ -2,6 +2,7 @@ import React, {
   Component
 } from 'react'
 import {
+  BrowserRouter,
   Route,
   Switch
 } from 'react-router-dom'
@@ -28,18 +29,20 @@ export class Application extends Component {
 
   render (){
     return (
-      <div>
-        <SiteHeader />
+      <BrowserRouter>
+        <div>
+          <SiteHeader />
 
-        <Switch>
-          <Route path='/tokens/received' component={web3ReceivedTokens} />
-          <Route path='/tokens/purchased' component={web3PurchaseHistory} />
-          <Route path='/tokens/new' component={web3CustomizeToken} />
-          <Route path='/tokens/:tokenId' component={Token} />
+          <Switch>
+            <Route path='/tokens/received' component={web3ReceivedTokens} />
+            <Route path='/tokens/purchased' component={web3PurchaseHistory} />
+            <Route path='/tokens/new' component={web3CustomizeToken} />
+            <Route path='/tokens/:tokenId' component={Token} />
 
-          <Route exact={true} path='/' component={Landing} />
-        </Switch>
-      </div>
+            <Route exact={true} path='/' component={Landing} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     )
   }
 }

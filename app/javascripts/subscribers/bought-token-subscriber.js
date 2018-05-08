@@ -6,6 +6,7 @@ export default class {
       this.boughtTokenEvent = instance.BoughtToken({ buyer: web3.eth.accounts[0] })
       this.boughtTokenEvent.watch((error, result) => {
         if (!error) {
+          console.log(result)
           onBuyCallback(result)
         } else {
           console.error(error)

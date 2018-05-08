@@ -1,6 +1,9 @@
 import React, {
   Component
 } from 'react'
+import {
+  Redirect
+} from 'react-router-dom'
 
 import range from 'lodash.range'
 import classnames from 'classnames'
@@ -21,16 +24,19 @@ class CustomizeToken extends Component {
       tokenType: 0,
       title: '',
       titleError: '',
-      waitingForEthereum: false,
-      errorMessage: ''
+      waitingForNetwork: false,
+      errorMessage: '',
+      redirectToTokensList: false
     }
 
-        console.log('in customize')
-
-    this.boughtTokenSubscriber = new BoughtTokenSubscriber(() => this.setState({waitingForEthereum: false}))
+    this.boughtTokenSubscriber = new BoughtTokenSubscriber(() => { this.purchaseComplete() })
   }
 
-  componentDidMount () {
+  purchaseComplete() {
+    this.setState({
+      waitingForNetwork: false,
+      redirectToTokensList: true
+    })
   }
 
   componentWillUnmount() {
@@ -47,7 +53,7 @@ class CustomizeToken extends Component {
     } else {
       buyToken(this.state.tokenType, this.state.title)
         .then((transaction) => {
-          this.setState({ waitingForEthereum: true })
+          this.setState({ waitingForNetwork: true })
         })
         .catch((error) => {
           this.setState({ errorMessage: error.message })
@@ -60,14 +66,15 @@ class CustomizeToken extends Component {
   }
 
   render () {
-    if (this.state.titleError) {
+    // if (this.state.redirectToTokensList  && this.state.title != '')
+      // return <Redirect to={'/tokens/received'} />
+
+    if (this.state.titleError)
       var titleError =
         <p className="help is-danger">{this.state.titleError}</p>
-    }
 
-    if (this.state.errorMessage) {
+    if (this.state.errorMessage)
       var errorMessage = <p className='help is-danger'>{this.state.errorMessage}</p>
-    }
 
     return (
       <section className='section'>
@@ -106,8 +113,8 @@ class CustomizeToken extends Component {
                   <br />
                   <p>
                     <button
-                      disabled={this.state.selectedToken === null && !this.state.waitingForEthereum}
-                      className={classnames('button is-success is-medium', { 'is-loading': this.state.waitingForEthereum })}
+                      disabled={this.state.selectedToken === null && !this.state.waitingForNetwork}
+                      className={classnames('button is-success is-medium', { 'is-loading': this.state.waitingForNetwork })}
                       onClick={(e) => this.onClickSave()}>
                       Buy Token
                     </button>
