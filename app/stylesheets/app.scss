@@ -4,9 +4,11 @@ $primary: #00b1c2;
 $pink: #e45a98;
 $pink-two: #ff6aa8;
 
-$family-primary: "Futura", sans-serif;
+$family-primary: "Futura", "futura pt", "Helvetica", "Helvetica Neue", Arial, sans-serif;
 
 // 6. Import the rest of Bulma
 @import '~bulma/bulma';
+
+@import 'responsive-type';
 
 @import 'etherplate';

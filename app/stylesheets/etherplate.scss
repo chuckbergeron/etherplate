@@ -3,6 +3,14 @@ body.has-navbar-fixed-top {
   padding-top: 7.25rem;
 }
 
+.navbar-burger {
+  color: white;
+}
+
+.navbar-burger:hover {
+  color: #ddd;
+}
+
 .navbar > .container .navbar-brand,
 .container > .navbar .navbar-brand {
   @media screen and (min-width: 1024px) {
@@ -27,8 +35,10 @@ body.has-navbar-fixed-top {
 }
 
 .navbar-item {
+  font-size: 16px;
   padding-bottom: 0;
   padding-top: 0;
+  margin: 0.5rem 0;
 }
 
 .navbar-item img {
@@ -129,4 +139,9 @@ a.navbar-link.is-active {
 .navbar.is-dark .navbar-end .navbar-link.is-active {
   background: transparent;
   color: $pink;
+}
+
+.footer {
+  color: #b2b2b2;
+  font-size: 14px;
 }

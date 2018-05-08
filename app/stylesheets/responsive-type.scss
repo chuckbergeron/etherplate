@@ -1,0 +1,99 @@
+// FONT WEIGHTS
+$regular: 400;
+$bold: 700;
+
+// BODY TEXT
+$mobile:  14px;
+$tablet:  17px;
+$desktop: 20px;
+
+// HEADING TEXT
+$heading-base-size: 1.25em;
+$heading-scale-ratio: 1.333;
+
+// LINE HEIGHTS
+$heading-line-height: 1.5;
+$body-line-height: 1.666;
+
+@function pow($number, $exponent) {
+  $value: 1;
+
+  @if $exponent > 0 {
+    @for $i from 1 through $exponent {
+      $value: $value * $number;
+    }
+  }
+
+  @return $value;
+}
+
+body,
+input,
+textarea,
+option,
+select {
+  font-weight: $regular;
+  line-height: $body-line-height;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+p,
+input,
+textarea,
+select,
+option {
+  font-size: inherit;
+}
+i,
+.i,
+em {
+  font-style: italic;
+}
+b,
+.b,
+strong {
+  font-weight: $bold;
+}
+a {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: $heading-base-size * pow($heading-scale-ratio, 3);
+}
+h2 {
+  font-size: $heading-base-size * pow($heading-scale-ratio, 2);
+}
+h3 {
+  font-size: $heading-base-size * pow($heading-scale-ratio, 1);
+}
+h4 {
+  font-size: $heading-base-size * pow($heading-scale-ratio, 0);
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: $bold;
+  line-height: $heading-line-height;
+}
+
+@media all and (min-width: 960px) {
+  body{
+    font-size: $desktop;
+  }
+}
+@media all and (max-width: 959px) and (min-width: 600px) {
+  body{
+    font-size: $tablet;
+  }
+}
+@media all and (max-width: 599px) {
+  body{
+    font-size: $mobile;
+  }
+}
