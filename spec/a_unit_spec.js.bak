@@ -1,0 +1,15 @@
+import React from 'react';
+import { shallow, mount, render } from 'enzyme';
+
+import { Application } from '@/components/application'
+import { SiteHeader } from '@/components/application/layout/site-header'
+
+describe("Test Application React component", function() {
+  it("contains the SiteHeader component", function() {
+    expect(shallow(<Application />).contains(<SiteHeader />)).toEqual(true);
+  });
+
+  it("contains only 1 navbar", function() {
+    expect(render(<Application />).find('.navbar').length).toEqual(1);
+  });
+});

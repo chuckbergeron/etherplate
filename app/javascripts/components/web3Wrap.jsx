@@ -57,7 +57,7 @@ export default function web3Wrap(WrappedComponent) {
                     <div className="column" />
                     <div className="column is-two-thirds">
                       <h1 className="title">
-                        One second ...
+                        Hold up ...
                       </h1>
                       <h2 className="subtitle">
                         To use Etherplate you will need to install the <a href='https://metamask.io/' title='MetaMask' target='_blank'>MetaMask</a> extension for Chrome, Firefox or Brave desktop browsers:
