@@ -2,8 +2,6 @@ import React, {
   Component
 } from 'react'
 
-import SiteHeader from '@/components/application/layout/site-header'
-
 import DownloadMetamaskButtonImg from '../../images/button--download-metamask.png'
 
 import AppStoreButtonImg from '../../images/button--app-store.png'

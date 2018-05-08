@@ -9,7 +9,8 @@ import {
 
 import web3Wrap from '@/components/web3Wrap'
 
-import SiteHeader from './layout/site-header'
+import Header from './layout/header'
+import Footer from './layout/footer'
 import Landing from './landing'
 import NotFoundPage from './not-found'
 import Token from './token'
@@ -28,7 +29,7 @@ export class Application extends Component {
   render (){
     return (
       <div>
-        <SiteHeader />
+        <Header />
 
         <Switch>
           <Route path='/tokens/received' component={web3ReceivedTokens} />
@@ -41,16 +42,7 @@ export class Application extends Component {
           <Route component={NotFoundPage} />
         </Switch>
 
-        <footer className="footer">
-          <div className="container">
-            <div className="content has-text-centered">
-              <p>
-                <strong>Etherplate</strong> is a boilerplate Ethereum example Dapp by <a href="https://chuckbergeron.io">Chuck Bergeron</a>
-                <br />Built on &#128279; in Vancouver.
-              </p>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
     )
   }
