@@ -7,7 +7,8 @@
     "lint": "eslint ./",
     "build": "webpack --mode production --config webpack.prod.js",
     "dev": "webpack-dev-server --config webpack.dev.js --mode development",
-    "test": "babel-node spec/support/run.js"
+    "test": "docker run -d -p 8545:8545 --name ganache-cli trufflesuite/ganache-cli:latest -e 100 -a 10 && truffle test",
+    "posttest": "docker stop ganache-cli"
   },
   "author": "Chuck Bergeron",
   "license": "CC0",
@@ -73,7 +74,6 @@
     "truffle-migrate-off-chain": "^0.1.4",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "vanilla-tilt": "^1.4.1",
-    "web3": "1.0.0-beta.34",
     "webpack": "^4.6.0",
     "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^2.0.13",
@@ -95,6 +95,8 @@
     "redux": "^4.0.0",
     "request": "^2.85.0",
     "tmp": "^0.0.33",
-    "truffle-hdwallet-provider": "^0.0.5"
+    "truffle-hdwallet-provider": "^0.0.5",
+    "truffle": "^4.1.8",
+    "web3": "1.0.0-beta.34"
   }
 }
