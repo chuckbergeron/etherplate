@@ -75,15 +75,17 @@ describe('basic integration tests', () => {
   //   expect(app.find('label').prop('children')).toEqual('Title');
   // });
 
-  // it('should have text on dashboard', () => {
-  //   const app = mount(
-  //     <Application />
-  //   );
+  it('should have text on dashboard', () => {
+    const wrapper = mount(
+      <MemoryRouter initialEntries={[ '/tokens/new' ]}>
+        <Application />
+      </MemoryRouter>
+    );
 
-  //   // console.log(app.debug());
+    console.log(wrapper.debug());
 
-  //   expect(app.find('p.title').prop('children')).toEqual("What is Etherplate?");
-  // });
+    expect(wrapper.find('p.title').prop('children')).toEqual("What is Etherplate?");
+  });
 
   it('should render 404 on invalid path', () => {
     const wrapper = mount(
@@ -91,7 +93,6 @@ describe('basic integration tests', () => {
         <Application />
       </MemoryRouter>
     );
-    // console.log(wrapper.debug());
 
     expect(wrapper.find('NotFound').length).toEqual(1);
   });

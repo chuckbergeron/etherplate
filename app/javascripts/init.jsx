@@ -7,5 +7,9 @@ import '../stylesheets/app.scss';
 import { Application } from './components/application'
 
 export const init = (elem) => {
-  ReactDOM.render(<Application />, elem)
+  ReactDOM.render(
+    <BrowserRouter>
+      <Application />
+    </BrowserRouter>
+  , elem)
 }

@@ -27,22 +27,20 @@ export class Application extends Component {
 
   render (){
     return (
-      <BrowserRouter>
-        <div>
-          <SiteHeader />
+      <div>
+        <SiteHeader />
 
-          <Switch>
-            <Route path='/tokens/received' component={web3ReceivedTokens} />
-            <Route path='/tokens/purchased' component={web3PurchaseHistory} />
-            <Route path='/tokens/new' component={web3CustomizeToken} />
-            <Route path='/tokens/:tokenId' component={Token} />
+        <Switch>
+          <Route path='/tokens/received' component={web3ReceivedTokens} />
+          <Route path='/tokens/purchased' component={web3PurchaseHistory} />
+          <Route path='/tokens/new' component={web3CustomizeToken} />
+          <Route path='/tokens/:tokenId' component={Token} />
 
-            <Route exact={true} path='/' component={Landing} />
+          <Route exact={true} path='/' component={Landing} />
 
-            <Route component={NotFoundPage} />
-          </Switch>
-        </div>
-      </BrowserRouter>
+          <Route component={NotFoundPage} />
+        </Switch>
+      </div>
     )
   }
 }
