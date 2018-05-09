@@ -86,7 +86,7 @@ Why is there both a truffle and truffle-config file?
 * Make into a truffle box and submit to trufflesuite
 * Mock out a web3 object in the integration spec and test the happy path of filling out the form and purchasing a token via enzyme
 * Figure out if we should use Redux at all for this (thinking web3 events could stash their state in a Redux store)
-* Show token ID on purchase history and Tokens#show page
+* Show token ID / transaction ID on purchase history and Tokens#show page, link to Ropsten
 * On successful purchase, show a message about the new purchase and how it needs to be confirmed
 * Demo how ERC721 expects you to store data (such as the JSON response when the tokenURI is requested) as per https://eips.ethereum.org/EIPS/eip-721 (For instance, OpenSea has a server which takes a contract address and tokenID, which then does a GET request to the tokenURI to pull more info (as JSON) about the token (images, name, etc), for example: https://opensea-api.herokuapp.com/events/?asset_contract_address=0x06012c8cf97bead5deae237070f9587f8e7a266d&token_id=389343)
 * Make sure 'Purchase History' page works

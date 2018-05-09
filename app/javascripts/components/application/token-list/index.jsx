@@ -17,8 +17,8 @@ export default class TokenList extends Component {
                   this.props.tokens.map(
                     token => {
                       return (
-                        <div key={token} className="column is-one-quarter-desktop">
-                          <TokenListItem tokenId={token} />
+                        <div key={token.args.tokenId.toNumber()} className="column is-one-quarter-desktop">
+                          <TokenListItem token={token} />
                         </div>
                       )
                     }

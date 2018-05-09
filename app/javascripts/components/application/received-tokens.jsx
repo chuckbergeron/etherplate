@@ -26,10 +26,11 @@ export default class ReceivedTokens extends Component {
       this.boughtToken.watch((error, result) => {
         if (error)
           console.error(error)
-        else
-        this.setState({
-          tokens: this.state.tokens.concat([result.args.tokenId])
-        })
+        else {
+          this.setState({
+            tokens: this.state.tokens.concat(result)
+          })
+        }
       })
     }).catch((error) => {
       console.error(error)
