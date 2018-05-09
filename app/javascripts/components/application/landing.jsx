@@ -19,7 +19,7 @@ export default class extends Component {
                     What is Etherplate?
                   </p>
                   <p>
-                    <strong>Etherplate</strong> is a pre-architected Dapp. It shows how you could hook up Ethereum Non-Fungible Tokens (<a href="http://erc721.org/" title="ERC721 Standard Info Page">ERC721</a>, similar to CryptoKitties) contract (or any other contracts) to a React web3 app. It demos web3 events, and is highly opinionated in that it uses Redux, React, React Router, and Bulma. You can rip out of any these or replace them with your favourites (ie. Skeleton.css instead of Bulma, etc.).
+                    <strong>Etherplate</strong> is a pre-architected DApp. It shows how you could hook up Ethereum Non-Fungible Tokens (<a href="http://erc721.org/" title="ERC721 Standard Info Page">ERC721</a>, similar to CryptoKitties) contract (or any other contracts) to a React web3 app. It demos web3 events, and is highly opinionated in that it uses Redux, React, React Router, and Bulma. You can rip out of any these or replace them with your favourites (ie. Skeleton.css instead of Bulma, etc.).
                   </p>
 
                   <br />

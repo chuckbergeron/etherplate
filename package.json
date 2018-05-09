@@ -2,7 +2,7 @@
   "name": "etherplate",
   "private": true,
   "version": "0.0.1",
-  "description": "Ethereum Dapp example project demoing web3 events, Redux, React & React Router",
+  "description": "Ethereum DApp example project demoing web3 events, Redux, React & React Router",
   "scripts": {
     "lint": "eslint ./",
     "build": "webpack --mode production --config webpack.prod.js",
