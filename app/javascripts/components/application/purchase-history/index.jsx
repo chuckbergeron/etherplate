@@ -8,7 +8,7 @@ import TokenRow from './token-row'
 
 require('./style.scss')
 
-export default class extends Component {
+export default class PurchaseHistory extends Component {
 
   constructor (props) {
     super(props)

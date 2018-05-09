@@ -3,7 +3,9 @@ import React, {
 } from 'react'
 import { Link } from 'react-router-dom'
 
-export default class extends Component {
+import Ether from '../ether'
+
+export default class Landing extends Component {
 
   render () {
     return (

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 require('./address.scss')
 
-export const Address = class extends Component {
+export default class Address extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -44,8 +44,8 @@ export const Address = class extends Component {
 }
 
 Address.propTypes = {
-  toggleFull: PropTypes.bool,
-  address: PropTypes.any
+  address: PropTypes.string.isRequired,
+  toggleFull: PropTypes.bool
 }
 
 Address.defaultProps = {

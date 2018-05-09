@@ -1,13 +1,14 @@
 import React, {
   Component
 } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import { Address } from '@/components/address'
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 import getToken from '@/services/get-token'
 
-export default class extends Component {
+export default class TokenListItem extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -57,4 +58,8 @@ export default class extends Component {
       <span>{img}</span>
     )
   }
+}
+
+TokenListItem.propTypes = {
+  tokenId: PropTypes.number.isRequired
 }

@@ -17,7 +17,7 @@ import BoughtTokenSubscriber from '@/subscribers/bought-token-subscriber'
 
 import style from './style.scss'
 
-class CustomizeToken extends Component {
+export default class CustomizeToken extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -135,5 +135,3 @@ class CustomizeToken extends Component {
     )
   }
 }
-
-export default CustomizeToken

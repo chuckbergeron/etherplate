@@ -5,7 +5,7 @@ import React, {
 import nfToken from '@/contracts/nfToken-factory'
 import TokenList from './token-list'
 
-export default class extends Component {
+export default class ReceivedTokens extends Component {
 
   constructor (props) {
     super(props)

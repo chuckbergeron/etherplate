@@ -61,7 +61,7 @@
     "lodash.get": "^4.4.2",
     "lodash.range": "^3.2.0",
     "node-loader": "^0.6.0",
-    "node-sass": "^4.8.3",
+    "node-sass": "^4.9.0",
     "raw-loader": "^0.5.1",
     "react-error-overlay": "^4.0.0",
     "require-hacker": "^3.0.1",

@@ -1,10 +1,11 @@
 import React, {
   Component
 } from 'react'
+import PropTypes from 'prop-types'
 
 import TokenListItem from './token-list-item'
 
-export default class extends Component {
+export default class TokenList extends Component {
   render () {
     var content
     if (this.props.tokens.length) {
@@ -41,4 +42,8 @@ export default class extends Component {
 
     return content;
   }
+}
+
+TokenList.propTypes = {
+  tokens: PropTypes.array.isRequired
 }

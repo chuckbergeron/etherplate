@@ -2,6 +2,7 @@ import React, {
   Component
 } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import { Address } from '@/components/address'
 
@@ -10,7 +11,7 @@ import getToken from '@/services/get-token'
 
 require('./style.scss')
 
-export default class extends Component {
+export default class Token extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -63,4 +64,8 @@ export default class extends Component {
       </section>
     )
   }
+}
+
+Token.propTypes = {
+  match: PropTypes.object.isRequired
 }
