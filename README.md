@@ -81,8 +81,6 @@ Why is there both a truffle and truffle-config file?
 
 * On successful purchase, show a message about the new purchase and how it needs to be confirmed by the network, and redirect to show the now confirming token on Purchase History or My Tokens page
 * Deploy to Netlify & Ropsten, use Infura
-* Make into a truffle box and submit to trufflesuite
-* BUG: Getting duplicate entries when Ropsten returns the BoughtToken event (active subscriber listening for events in browser)
 
 ## Nice-to-haves:
 
@@ -92,9 +90,11 @@ Why is there both a truffle and truffle-config file?
 * Switch all .jsx to simply .js
 * If the user switches their MetaMask account, need to refresh the page or stop/restart event listeners with new wallet address
 * Demo how ERC721 expects you to store data (such as the JSON response when the tokenURI is requested) as per https://eips.ethereum.org/EIPS/eip-721 (For instance, OpenSea has a server which takes a contract address and tokenID, which then does a GET request to the tokenURI to pull more info (as JSON) about the token (images, name, etc), for example: https://opensea-api.herokuapp.com/events/?asset_contract_address=0x06012c8cf97bead5deae237070f9587f8e7a266d&token_id=389343)
+* Fix getting duplicate entries when Ropsten returns the BoughtToken event (active subscriber listening for events in browser)
 
 ## Done:
 
+* ~~Make into a truffle box and submit to trufflesuite~~
 * ~~BUG: Purchase History only showing some purchases while My Tokens shows more ... ?~~
 * ~~Show token ID / transaction ID on purchase history and Tokens#show page~~
 * ~~Make sure 'Purchase History' page works~~
