@@ -1,4 +1,4 @@
-import nfToken from '@/contracts/nfToken-factory'
+import nfToken from '@/contracts/nftoken-factory'
 
 export default class BoughtTokenSubscriber {
   constructor (onBuyCallback) {

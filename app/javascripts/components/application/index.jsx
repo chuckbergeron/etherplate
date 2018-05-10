@@ -12,7 +12,7 @@ import { Provider } from 'react-redux'
 import { addToken } from '@/redux/actions'
 import { boughtTokenReducer } from '@/redux/reducers'
 
-import nfToken from '@/contracts/nfToken-factory'
+import nfToken from '@/contracts/nftoken-factory'
 
 import web3Wrap from '@/components/web3Wrap'
 

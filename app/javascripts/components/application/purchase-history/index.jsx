@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react'
 
-import nfToken from '@/contracts/nfToken-factory'
+import nfToken from '@/contracts/nftoken-factory'
 
 import Hero from '@/components/hero'
 import TokenRow from './token-row'
