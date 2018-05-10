@@ -86,9 +86,11 @@ Why is there both a truffle and truffle-config file?
 * On successful purchase, show a message about the new purchase and how it needs to be confirmed by the network, and redirect to show the now confirming token on Purchase History or My Tokens page
 * Deploy to Netlify & Ropsten, use Infura
 * Make into a truffle box and submit to trufflesuite
+* BUG: Getting duplicate entries when Ropsten returns the BoughtToken event (active subscriber listening for events in browser)
 
 ## Nice-to-haves:
 
+* Use a local web3 (1.0.0.beta?) instead of the current MetaMask/browser's web3 instance (which is deprecated)
 * Mock out a web3 object in the integration spec and test the happy path of filling out the form and purchasing a token via enzyme
 * Get `circleci` branch up and running, put a badge on the README for test runs
 * Switch all .jsx to simply .js

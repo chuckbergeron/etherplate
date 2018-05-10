@@ -55,6 +55,7 @@ export default class CustomizeToken extends Component {
     } else {
       buyToken(this.state.tokenType, this.state.title)
         .then((transaction) => {
+          console.log(transaction)
           this.setState({ waitingForNetwork: true })
         })
         .catch((error) => {
