@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "description": "Ethereum DApp example project demoing web3 events, Redux, React & React Router",
   "scripts": {
-    "lint": "eslint ./",
+    "lint": "eslint app",
     "build": "webpack --mode production --config webpack.prod.js",
     "dev": "webpack-dev-server --config webpack.dev.js --mode development",
     "test": "babel-node spec/support/run.js"
@@ -71,7 +71,7 @@
     "sass-loader": "^7.0.1",
     "schema-utils": "^0.4.5",
     "style-loader": "^0.21.0",
-    "truffle-contract": "^3.0.5",
+    "truffle": "^4.1.7",
     "truffle-deployer": "^2.0.5",
     "truffle-migrate-off-chain": "^0.1.4",
     "uglifyjs-webpack-plugin": "^1.2.4",
@@ -98,6 +98,7 @@
     "redux": "^4.0.0",
     "request": "^2.85.0",
     "tmp": "^0.0.33",
+    "truffle-contract": "^3.0.5",
     "truffle-hdwallet-provider": "^0.0.5",
     "web3-redux": "^0.5.2"
   }
