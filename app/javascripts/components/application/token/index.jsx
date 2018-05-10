@@ -50,13 +50,30 @@ export default class Token extends Component {
                 {this.state.title}
               </p>
 
-              <p>
-                TokenID: {this.tokenId()}
-              </p>
-              <p>
-                Transaction ID: ${this.state.transactionID} -
-                <a href={`https://ropsten.etherscan.io/tx/${this.state.transactionID}`}>View on Ropsten</a>
-              </p>
+              <table className='table is-striped is-fullwidth'>
+                <thead>
+                  <tr>
+                    <th>
+                      TokenID
+                    </th>
+                    <th>
+                      Transaction Hash
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      {this.tokenId()}
+                    </td>
+                    <td>
+                      ${this.state.transactionID}
+                      <br />
+                      <a href={`https://ropsten.etherscan.io/tx/${this.state.transactionID}`}>View on Ropsten</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
