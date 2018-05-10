@@ -2,7 +2,7 @@
   "name": "etherplate",
   "private": true,
   "version": "0.0.1",
-  "description": "Ethereum Dapp example project demoing web3 events, Redux, React & React Router",
+  "description": "Ethereum DApp example project demoing web3 events, Redux, React & React Router",
   "scripts": {
     "lint": "eslint ./",
     "build": "webpack --mode production --config webpack.prod.js",
@@ -38,6 +38,7 @@
     "babel-eslint": "^8.2.2",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-root-import": "^5.1.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "commonjs": "0.0.1",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
@@ -61,7 +62,7 @@
     "lodash.get": "^4.4.2",
     "lodash.range": "^3.2.0",
     "node-loader": "^0.6.0",
-    "node-sass": "^4.8.3",
+    "node-sass": "^4.9.0",
     "raw-loader": "^0.5.1",
     "react-error-overlay": "^4.0.0",
     "require-hacker": "^3.0.1",
@@ -95,6 +96,7 @@
     "redux": "^4.0.0",
     "request": "^2.85.0",
     "tmp": "^0.0.33",
-    "truffle-hdwallet-provider": "^0.0.5"
+    "truffle-hdwallet-provider": "^0.0.5",
+    "web3-redux": "^0.5.2"
   }
 }

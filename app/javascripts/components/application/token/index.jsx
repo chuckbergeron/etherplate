@@ -2,6 +2,7 @@ import React, {
   Component
 } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import { Address } from '@/components/address'
 
@@ -10,7 +11,7 @@ import getToken from '@/services/get-token'
 
 require('./style.scss')
 
-export default class extends Component {
+export default class Token extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -40,7 +41,6 @@ export default class extends Component {
         <div>
           <div className="token columns is-centered">
             <div className='column is-three-quarters-tablet is-three-quarters-desktop is-one-half-widescreen is-one-half-fullhd has-text-centered'>
-
               <figure
                 className="token__image">
                 <img src={nfTokenTypeImageUrl(this.state.type)} />
@@ -48,6 +48,14 @@ export default class extends Component {
 
               <p className="token__title title has-text-grey">
                 {this.state.title}
+              </p>
+
+              <p>
+                TokenID: {this.tokenId()}
+              </p>
+              <p>
+                Transaction ID: ${this.state.transactionID} -
+                <a href={`https://ropsten.etherscan.io/tx/${this.state.transactionID}`}>View on Ropsten</a>
               </p>
             </div>
           </div>
@@ -63,4 +71,8 @@ export default class extends Component {
       </section>
     )
   }
+}
+
+Token.propTypes = {
+  match: PropTypes.object.isRequired
 }

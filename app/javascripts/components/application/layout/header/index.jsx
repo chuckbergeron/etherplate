@@ -3,9 +3,9 @@ import React, {
 } from 'react'
 import { Link } from 'react-router-dom'
 
-import './site-header.scss';
+import './header.scss';
 
-export default class extends Component {
+export default class Header extends Component {
 
   componentDidMount(){
     // Get all "navbar-burger" elements

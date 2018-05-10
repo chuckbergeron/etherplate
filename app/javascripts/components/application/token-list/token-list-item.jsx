@@ -1,22 +1,24 @@
 import React, {
   Component
 } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import { Address } from '@/components/address'
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 import getToken from '@/services/get-token'
 
-export default class extends Component {
+export default class TokenListItem extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      type: null
+      type: null,
+      title: ''
     }
   }
 
   componentDidMount () {
-    getToken(this.props.tokenId).then((values) => {
+    getToken(this.props.token.args.tokenId.toNumber()).then((values) => {
       this.setState({
         type: values[0],
         title: values[1]
@@ -31,7 +33,7 @@ export default class extends Component {
         <div className="card">
           <div className="card-image">
             <figure className="image">
-              <Link to={`/tokens/${this.props.tokenId}`}>
+              <Link to={`/tokens/${this.props.token.args.tokenId}`}>
                 <img src={nfTokenTypeImageUrl(this.state.type)} />
               </Link>
             </figure>
@@ -43,6 +45,7 @@ export default class extends Component {
                 <p className="title is-4">
                   {this.state.title}
                 </p>
+                {this.props.token.transactionHash}
               </div>
             </div>
           </div>
@@ -57,4 +60,8 @@ export default class extends Component {
       <span>{img}</span>
     )
   }
+}
+
+TokenListItem.propTypes = {
+  token: PropTypes.object.isRequired
 }

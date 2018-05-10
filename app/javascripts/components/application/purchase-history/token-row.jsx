@@ -2,11 +2,12 @@ import React, {
   Component
 } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import getToken from '@/services/get-token'
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 
-export default class extends Component {
+export default class TokenRow extends Component {
   constructor (props) {
     super(props)
     this.state = {}
@@ -37,4 +38,8 @@ export default class extends Component {
       </tr>
     )
   }
+}
+
+TokenRow.propTypes = {
+  tokenId: PropTypes.number.isRequired
 }
