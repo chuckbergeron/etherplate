@@ -27,6 +27,7 @@ export default class PurchaseHistory extends Component {
     nfToken().then((instance) => {
       instance.myTokens().then((result) => {
         this.setState({ tokens: result })
+        // this.setState({ tokens: result.reverse() })
       }).catch((error) => {
         console.error(error)
       })

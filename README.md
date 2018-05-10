@@ -84,6 +84,7 @@ Why is there both a truffle and truffle-config file?
 ## TODO:
 
 * On successful purchase, show a message about the new purchase and how it needs to be confirmed by the network, and redirect to show the now confirming token on Purchase History or My Tokens page
+* Deploy to Netlify & Ropsten, use Infura
 * Make into a truffle box and submit to trufflesuite
 
 ## Nice-to-haves:
