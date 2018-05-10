@@ -4,6 +4,7 @@ import React, {
 
 import nfToken from '@/contracts/nfToken-factory'
 
+import Hero from '@/components/hero'
 import TokenRow from './token-row'
 
 require('./style.scss')
@@ -59,15 +60,11 @@ export default class PurchaseHistory extends Component {
         </section>
     } else {
       content =
-        <section className='hero is-medium'>
-          <div className='hero-body'>
-            <div className='container'>
-              <h1 className='title has-text-grey-light has-text-centered'>
-                You haven't purchased any tokens.
-              </h1>
-            </div>
-          </div>
-        </section>
+        <Hero>
+          <h1 className='title has-text-grey-light has-text-centered'>
+            You haven't purchased any tokens.
+          </h1>
+        </Hero>
     }
     return content
   }

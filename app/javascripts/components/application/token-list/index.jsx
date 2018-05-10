@@ -3,10 +3,12 @@ import React, {
 } from 'react'
 import PropTypes from 'prop-types'
 
+import Hero from '@/components/hero'
 import TokenListItem from './token-list-item'
 
 export default class TokenList extends Component {
   render () {
+    console.log(this.props.tokens)
     var content
     if (this.props.tokens.length) {
       content =
@@ -29,15 +31,11 @@ export default class TokenList extends Component {
         </section>
     } else {
       content =
-        <section className='hero is-medium'>
-          <div className='hero-body'>
-            <div className='container'>
-              <h1 className='title has-text-grey-light has-text-centered'>
-                You haven't received any tokens yet.
-              </h1>
-            </div>
-          </div>
-        </section>
+        <Hero>
+          <h1 className='title has-text-grey-light has-text-centered'>
+            You haven't received any tokens yet.
+          </h1>
+        </Hero>
     }
 
     return content;
@@ -46,4 +44,8 @@ export default class TokenList extends Component {
 
 TokenList.propTypes = {
   tokens: PropTypes.array.isRequired
+}
+
+TokenList.defaultProps = {
+  tokens: []
 }

@@ -34,14 +34,6 @@ let store = createStore(boughtTokenReducer)
 
 export class Application extends Component {
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      tokens: []
-    }
-  }
-
   componentDidMount() {
     // Checking if Web3 has been injected by the browser (Mist/MetaMask/Trust/etc)
     if ((typeof web3 !== 'undefined') && web3.eth.accounts.length)
@@ -66,7 +58,10 @@ export class Application extends Component {
         if (error)
           console.error(error)
         else
-          store.dispatch({ type: ADD_TOKEN, token: result })
+        {
+          store.dispatch(addToken(result))
+          console.log(store.getState())
+        }
       })
     })
   }
