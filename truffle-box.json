@@ -6,9 +6,12 @@
   "commands": {
     "Compile contracts": "truffle compile",
     "Migrate contracts": "truffle migrate",
-    "Test contracts": "truffle test"
+    "Test contracts": "truffle test",
+    "Test dapp": "npm test",
+    "Run local webpack": "npm run dev",
+    "Build for production": "npm run build"
   },
   "hooks": {
-    "post-unpack": ""
+    "post-unpack": "npm install"
   }
 }
