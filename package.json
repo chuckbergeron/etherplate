@@ -87,6 +87,7 @@
   "dependencies": {
     "bulma": "^0.7.1",
     "classnames": "^2.2.5",
+    "ethereumjs-abi": "^0.6.5",
     "immutability-helper": "^2.6.4",
     "npm": "^6.0.1",
     "prop-types": "^15.6.0",
