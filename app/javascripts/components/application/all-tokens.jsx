@@ -11,6 +11,6 @@ const mapStateToProps = state => {
   }
 }
 
-const ReceivedTokens = connect(mapStateToProps)(TokenList)
+const AllTokens = connect(mapStateToProps)(TokenList)
 
-export default ReceivedTokens
+export default AllTokens

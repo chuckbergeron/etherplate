@@ -1,7 +1,9 @@
 import React, {
   Component
 } from 'react'
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+import _ from 'lodash';
 import PropTypes from 'prop-types'
 
 import { Address } from '@/components/address'
@@ -11,7 +13,7 @@ import getToken from '@/services/get-token'
 
 require('./style.scss')
 
-export default class Token extends Component {
+const Token = class extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -67,9 +69,7 @@ export default class Token extends Component {
                       {this.tokenId()}
                     </td>
                     <td>
-                      ${this.state.transactionID}
-                      <br />
-                      <a href={`https://ropsten.etherscan.io/tx/${this.state.transactionID}`}>View on Ropsten</a>
+                      {this.props.token.transactionHash}
                     </td>
                   </tr>
                 </tbody>
@@ -93,3 +93,22 @@ export default class Token extends Component {
 Token.propTypes = {
   match: PropTypes.object.isRequired
 }
+
+Token.defaultProps = {
+  token: PropTypes.object
+}
+
+const mapStateToProps = function(state, props) {
+  if (state.tokens.length > 0) {
+    var tokenIdAsBigNumber = web3.toBigNumber(props.match.params.tokenId)
+    return {
+      token: _.find(state.tokens, { args: { tokenId: tokenIdAsBigNumber } })
+    }
+  }
+  else
+    return {
+      token: {}
+    }
+}
+
+export default connect(mapStateToProps)(Token);

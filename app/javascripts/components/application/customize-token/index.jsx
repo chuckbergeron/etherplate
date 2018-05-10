@@ -26,7 +26,7 @@ export default class CustomizeToken extends Component {
       titleError: '',
       waitingForNetwork: false,
       errorMessage: '',
-      redirectToTokensList: false
+      redirectToPurchaseHistory: false
     }
 
     this.boughtTokenSubscriber = new BoughtTokenSubscriber(() => {
@@ -37,7 +37,7 @@ export default class CustomizeToken extends Component {
   purchaseComplete() {
     this.setState({
       waitingForNetwork: false,
-      redirectToTokensList: true
+      redirectToPurchaseHistory: true
     })
   }
 
@@ -69,8 +69,8 @@ export default class CustomizeToken extends Component {
   }
 
   render () {
-    // if (this.state.redirectToTokensList)
-      // return <Redirect to={'/tokens/received'} />
+    // if (this.state.redirectToPurchaseHistory)
+      // return <Redirect to={'/tokens/purchase-history'} />
 
     if (this.state.titleError)
       var titleError =

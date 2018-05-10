@@ -62,11 +62,11 @@ export default class Header extends Component {
 
           <div className="navbar-menu" id="navMenu">
             <div className="navbar-end">
-              <Link to='/tokens/received' className='navbar-item'>
-                <span>My Tokens</span>
+              <Link to='/tokens/all' className='navbar-item'>
+                <span>All Tokens</span>
               </Link>
               <Link to='/tokens/purchased' className='navbar-item'>
-                <span>Purchase History</span>
+                <span>My Purchase History</span>
               </Link>
               <div className="navbar-item">
                 <Link to="/tokens/new" className="button is-info">
