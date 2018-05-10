@@ -19,5 +19,7 @@ export default class TokenType extends Component {
 }
 
 TokenType.propTypes = {
-  tokenId: PropTypes.string.isRequired
+  onClick: PropTypes.func.isRequired,
+  selected: PropTypes.bool.isRequired,
+  url: PropTypes.string.isRequired
 }

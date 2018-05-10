@@ -8,7 +8,6 @@ import TokenListItem from './token-list-item'
 
 export default class TokenList extends Component {
   render () {
-    console.log(this.props.tokens)
     var content
     if (this.props.tokens.length) {
       content =
