@@ -9,7 +9,7 @@ import {
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-import { ADD_TOKEN, addToken } from '@/redux/actions'
+import { addToken } from '@/redux/actions'
 import { boughtTokenReducer } from '@/redux/reducers'
 
 import nfToken from '@/contracts/nfToken-factory'
@@ -24,11 +24,11 @@ import Token from './token'
 
 import CustomizeToken from './customize-token'
 import PurchaseHistory from './purchase-history'
-import ReceivedTokens from './received-tokens'
+import AllTokens from './all-tokens'
 
 const web3CustomizeToken = web3Wrap(CustomizeToken)
 const web3PurchaseHistory = web3Wrap(PurchaseHistory)
-const web3ReceivedTokens = web3Wrap(ReceivedTokens)
+const web3AllTokens = web3Wrap(AllTokens)
 
 let store = createStore(boughtTokenReducer)
 
@@ -47,32 +47,25 @@ export class Application extends Component {
   }
 
   componentWillUnmount () {
-    if (this.boughtToken)
-      this.boughtToken.stopWatching()
+    if (this.boughtTokenEvent)
+      this.boughtTokenEvent.stopWatching()
   }
 
   getTokensAndSubscribeToEvent() {
     nfToken().then((instance) => {
-      // filter: { buyer: web3.eth.accounts[0] },
-      this.boughtToken = instance.BoughtToken({
-        fromBlock: 0
+      this.boughtTokenEvent = instance.BoughtToken({}, {
+        fromBlock: 0, toBlock: 'latest'
+      });
+      // ALl previous logs and also every time a new token is bought
+      this.boughtTokenEvent.watch((error, result) => {
+        if (error) {
+          console.error(error)
+        } else {
+          store.dispatch(addToken(result))
+        }
       })
-
-      this.subscribeToBoughtTokenEvent()
     }).catch((error) => {
       console.error(error)
-    })
-  }
-
-  subscribeToBoughtTokenEvent() {
-    this.boughtToken.watch((error, result) => {
-      if (error) {
-        console.error(error)
-      }
-      else {
-        store.dispatch(addToken(result))
-        console.log(store.getState())
-      }
     })
   }
 
@@ -83,7 +76,7 @@ export class Application extends Component {
           <Header />
 
           <Switch>
-            <Route path='/tokens/received' component={web3ReceivedTokens} />
+            <Route path='/tokens/all' component={web3AllTokens} />
             <Route path='/tokens/purchased' component={web3PurchaseHistory} />
             <Route path='/tokens/new' component={web3CustomizeToken} />
             <Route path='/tokens/:tokenId' component={Token} />

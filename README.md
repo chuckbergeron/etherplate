@@ -84,20 +84,24 @@ Why is there both a truffle and truffle-config file?
 ## TODO:
 
 * Make into a truffle box and submit to trufflesuite
-* Mock out a web3 object in the integration spec and test the happy path of filling out the form and purchasing a token via enzyme
-* Show token ID / transaction ID on purchase history and Tokens#show page, link to Ropsten
 * On successful purchase, show a message about the new purchase and how it needs to be confirmed by the network, and redirect to show the now confirming token on Purchase History or My Tokens page
-* Demo how ERC721 expects you to store data (such as the JSON response when the tokenURI is requested) as per https://eips.ethereum.org/EIPS/eip-721 (For instance, OpenSea has a server which takes a contract address and tokenID, which then does a GET request to the tokenURI to pull more info (as JSON) about the token (images, name, etc), for example: https://opensea-api.herokuapp.com/events/?asset_contract_address=0x06012c8cf97bead5deae237070f9587f8e7a266d&token_id=389343)
-* Get `circleci` branch up and running, put a badge on the README for test runs
-* Switch all .jsx to simply .js
-* If the user switches their MetaMask account, need to refresh the page or stop/restart event listeners with new wallet address
-* BUG: Purchase History only showing some purchases while My Tokens shows more ... ?
 
+* ~~BUG: Purchase History only showing some purchases while My Tokens shows more ... ?~~
+* ~~Show token ID / transaction ID on purchase history and Tokens#show page~~
 * ~~Make sure 'Purchase History' page works~~
 * ~~Implement Redux for web3 events~~
 * ~~Make all React prop types required (isRequired) and provide defaultProps for those that are not~~
 * ~~Convert all css to scss~~
 * ~~Improve mobile styling / media query support~~
+
+## Nice-to-haves:
+
+* Mock out a web3 object in the integration spec and test the happy path of filling out the form and purchasing a token via enzyme
+* Get `circleci` branch up and running, put a badge on the README for test runs
+* Switch all .jsx to simply .js
+* If the user switches their MetaMask account, need to refresh the page or stop/restart event listeners with new wallet address
+* Demo how ERC721 expects you to store data (such as the JSON response when the tokenURI is requested) as per https://eips.ethereum.org/EIPS/eip-721 (For instance, OpenSea has a server which takes a contract address and tokenID, which then does a GET request to the tokenURI to pull more info (as JSON) about the token (images, name, etc), for example: https://opensea-api.herokuapp.com/events/?asset_contract_address=0x06012c8cf97bead5deae237070f9587f8e7a266d&token_id=389343)
+
 
 #### Gratitude
 

@@ -7,7 +7,6 @@ const initialState = {
 export function boughtTokenReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TOKEN:
-      // return { ...state, newToken }
       return Object.assign({}, state, {
         tokens: [
           ...state.tokens,

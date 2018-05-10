@@ -32,7 +32,7 @@ export default class TokenList extends Component {
       content =
         <Hero>
           <h1 className='title has-text-grey-light has-text-centered'>
-            You haven't received any tokens yet.
+            Nobody has bought any tokens yet.
           </h1>
         </Hero>
     }

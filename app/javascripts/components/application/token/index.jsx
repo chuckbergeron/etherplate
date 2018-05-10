@@ -69,9 +69,7 @@ const Token = class extends Component {
                       {this.tokenId()}
                     </td>
                     <td>
-                      ${this.props.token.transactionID}
-                      <br />
-                      <a href={`https://ropsten.etherscan.io/tx/${this.props.token.transactionID}`}>View on Ropsten</a>
+                      {this.props.token.transactionHash}
                     </td>
                   </tr>
                 </tbody>
@@ -96,16 +94,21 @@ Token.propTypes = {
   match: PropTypes.object.isRequired
 }
 
-// const mapStateToProps = (state, props) => ({
-//   token: state[props.match.params.tokenId]
-// });
+Token.defaultProps = {
+  token: PropTypes.object
+}
 
 const mapStateToProps = function(state, props) {
-  debugger
-  return { token: {} }
+  if (state.tokens.length > 0) {
+    var tokenIdAsBigNumber = web3.toBigNumber(props.match.params.tokenId)
+    return {
+      token: _.find(state.tokens, { args: { tokenId: tokenIdAsBigNumber } })
+    }
+  }
+  else
+    return {
+      token: {}
+    }
 }
-  // {
-  // token: state[props.match.params.tokenId]
-// });
 
 export default connect(mapStateToProps)(Token);
