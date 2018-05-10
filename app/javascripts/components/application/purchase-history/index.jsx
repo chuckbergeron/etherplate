@@ -9,6 +9,11 @@ import TokenRow from './token-row'
 
 require('./style.scss')
 
+//
+// This component demos using a view method on the contract to pull
+// the current Ethereum addresses tokens directly, instead of
+// replaying the events as is the case in the parent Application component
+//
 export default class PurchaseHistory extends Component {
 
   constructor (props) {
@@ -52,7 +57,7 @@ export default class PurchaseHistory extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.tokens.map((tokenId) => <TokenRow tokenId={tokenId} key={tokenId} /> )}
+                  {this.state.tokens.map((tokenId) => <TokenRow tokenId={tokenId.toNumber()} key={tokenId.toNumber()} /> )}
                 </tbody>
               </table>
             </div>

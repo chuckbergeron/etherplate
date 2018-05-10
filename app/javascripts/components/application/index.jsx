@@ -32,12 +32,18 @@ const web3ReceivedTokens = web3Wrap(ReceivedTokens)
 
 let store = createStore(boughtTokenReducer)
 
+//
+// This component demos replaying the events from the blockchain network
+// to pull all data associated with the current wallet address into a
+// redux store, as well as subscribing to the event and adding new
+// tokens to the store
+//
 export class Application extends Component {
 
   componentDidMount() {
     // Checking if Web3 has been injected by the browser (Mist/MetaMask/Trust/etc)
     if ((typeof web3 !== 'undefined') && web3.eth.accounts.length)
-      this.getTokens();
+      this.getTokensAndSubscribeToEvent();
   }
 
   componentWillUnmount () {
@@ -45,8 +51,9 @@ export class Application extends Component {
       this.boughtToken.stopWatching()
   }
 
-  getTokens() {
+  getTokensAndSubscribeToEvent() {
     nfToken().then((instance) => {
+      console.log('hello der')
       this.boughtToken = instance.BoughtToken({
           recipient: web3.eth.accounts[0]
         }, {
@@ -54,15 +61,19 @@ export class Application extends Component {
         }
       )
 
-      this.boughtToken.watch((error, result) => {
-        if (error)
-          console.error(error)
-        else
-        {
-          store.dispatch(addToken(result))
-          console.log(store.getState())
-        }
-      })
+      this.subscribeToBoughtTokenEvent()
+    }).catch((error) => {
+      console.error(error)
+    })
+  }
+
+  subscribeToBoughtTokenEvent() {
+    this.boughtToken.watch((error, result) => {
+      console.log(error, result)
+      if (error)
+        console.error(error)
+      else
+        store.dispatch(addToken(result))
     })
   }
 
