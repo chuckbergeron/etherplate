@@ -45,7 +45,6 @@ export default class TokenListItem extends Component {
                 <p className="title is-4">
                   {this.state.title}
                 </p>
-                {this.props.token.transactionHash}
               </div>
             </div>
           </div>

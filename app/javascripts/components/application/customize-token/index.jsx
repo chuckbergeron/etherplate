@@ -30,13 +30,11 @@ export default class CustomizeToken extends Component {
     }
 
     this.boughtTokenSubscriber = new BoughtTokenSubscriber(() => {
-      console.log('here')
       this.purchaseComplete()
     })
   }
 
   purchaseComplete() {
-    console.log('purchase complete handler')
     this.setState({
       waitingForNetwork: false,
       redirectToTokensList: true
@@ -58,7 +56,6 @@ export default class CustomizeToken extends Component {
       buyToken(this.state.tokenType, this.state.title)
         .then((transaction) => {
           this.setState({ waitingForNetwork: true })
-          console.log(transaction)
         })
         .catch((error) => {
           console.error(error)
@@ -72,7 +69,7 @@ export default class CustomizeToken extends Component {
   }
 
   render () {
-    // if (this.state.redirectToTokensList  && this.state.title != '')
+    // if (this.state.redirectToTokensList)
       // return <Redirect to={'/tokens/received'} />
 
     if (this.state.titleError)
