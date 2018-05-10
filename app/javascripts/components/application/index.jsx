@@ -53,8 +53,8 @@ export class Application extends Component {
 
   getTokensAndSubscribeToEvent() {
     nfToken().then((instance) => {
+      // filter: { buyer: web3.eth.accounts[0] },
       this.boughtToken = instance.BoughtToken({
-        filter: { recipient: web3.eth.accounts[0] },
         fromBlock: 0
       })
 
@@ -66,10 +66,13 @@ export class Application extends Component {
 
   subscribeToBoughtTokenEvent() {
     this.boughtToken.watch((error, result) => {
-      if (error)
+      if (error) {
         console.error(error)
-      else
+      }
+      else {
         store.dispatch(addToken(result))
+        console.log(store.getState())
+      }
     })
   }
 

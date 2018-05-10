@@ -1,7 +1,9 @@
 import React, {
   Component
 } from 'react'
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+import _ from 'lodash';
 import PropTypes from 'prop-types'
 
 import { Address } from '@/components/address'
@@ -11,7 +13,7 @@ import getToken from '@/services/get-token'
 
 require('./style.scss')
 
-export default class Token extends Component {
+const Token = class extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -67,9 +69,9 @@ export default class Token extends Component {
                       {this.tokenId()}
                     </td>
                     <td>
-                      ${this.state.transactionID}
+                      ${this.props.token.transactionID}
                       <br />
-                      <a href={`https://ropsten.etherscan.io/tx/${this.state.transactionID}`}>View on Ropsten</a>
+                      <a href={`https://ropsten.etherscan.io/tx/${this.props.token.transactionID}`}>View on Ropsten</a>
                     </td>
                   </tr>
                 </tbody>
@@ -93,3 +95,17 @@ export default class Token extends Component {
 Token.propTypes = {
   match: PropTypes.object.isRequired
 }
+
+// const mapStateToProps = (state, props) => ({
+//   token: state[props.match.params.tokenId]
+// });
+
+const mapStateToProps = function(state, props) {
+  debugger
+  return { token: {} }
+}
+  // {
+  // token: state[props.match.params.tokenId]
+// });
+
+export default connect(mapStateToProps)(Token);
