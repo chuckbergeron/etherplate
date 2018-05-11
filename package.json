@@ -71,7 +71,7 @@
     "sass-loader": "^7.0.1",
     "schema-utils": "^0.4.5",
     "style-loader": "^0.21.0",
-    "truffle": "^4.1.7",
+    "truffle": "4.1.8",
     "truffle-deployer": "^2.0.5",
     "truffle-migrate-off-chain": "^0.1.4",
     "uglifyjs-webpack-plugin": "^1.2.4",
