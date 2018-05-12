@@ -36,7 +36,20 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: [{
+          loader: "style-loader",
+        }, {
+          loader: "css-loader"
+        }, {
+          loader: "sass-loader",
+          options: {
+            sourceMap: true,
+            data: '@import "variables";',
+            includePaths: [
+              path.join(__dirname, 'app/stylesheets')
+            ]
+          }
+        }]
       },
       {
         test: /\.(js|jsx)$/,

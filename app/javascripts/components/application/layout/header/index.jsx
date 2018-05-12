@@ -7,7 +7,7 @@ import './header.scss';
 
 export default class Header extends Component {
 
-  componentDidMount(){
+  componentDidMount() {
     // Get all "navbar-burger" elements
     var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
@@ -25,10 +25,31 @@ export default class Header extends Component {
           // Toggle the class on both the "navbar-burger" and the "navbar-menu"
           $el.classList.toggle('is-active');
           $target.classList.toggle('is-active');
-
         });
       });
     }
+
+    // Links
+    var $navbarLinks = Array.prototype.slice.call(document.querySelectorAll('.navbar-item a'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+      // Add a click event on each of them
+      $navbarLinks.forEach(function ($el) {
+        $el.addEventListener('click', function () {
+          $navbarLinks.forEach(function ($el) { $el.classList.remove('is-active'); });
+
+          // Get the target from the "data-target" attribute of navbarBurger
+          var target = $navbarBurgers[0].dataset.target;
+          var $target = document.getElementById(target);
+
+          // Toggle the class on both the "navbar-item" and the "navbar-menu"
+          $el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
+
   }
 
   render () {
@@ -54,20 +75,26 @@ export default class Header extends Component {
 
           <div className="navbar-menu">
             <div className="navbar-start">
-              <Link to='/' className='navbar-item'>
-                <span>Home</span>
-              </Link>
+              <div className="navbar-item">
+                <Link to='/'>
+                  <span>Home</span>
+                </Link>
+              </div>
             </div>
           </div>
 
           <div className="navbar-menu" id="navMenu">
             <div className="navbar-end">
-              <Link to='/tokens/all' className='navbar-item'>
-                <span>All Tokens</span>
-              </Link>
-              <Link to='/tokens/purchased' className='navbar-item'>
-                <span>My Purchase History</span>
-              </Link>
+              <div className="navbar-item">
+                <Link to='/tokens/all'>
+                  <span>All Tokens</span>
+                </Link>
+              </div>
+              <div className="navbar-item">
+                <Link to='/tokens/purchased'>
+                  <span>My Purchase History</span>
+                </Link>
+              </div>
               <div className="navbar-item">
                 <Link to="/tokens/new" className="button is-info">
                   <span>Purchase Token</span>
