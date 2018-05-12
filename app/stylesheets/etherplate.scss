@@ -3,38 +3,6 @@ body.has-navbar-fixed-top {
   padding-top: 7.25rem;
 }
 
-.navbar-burger {
-  color: white;
-  margin-top: 0.5rem;
-}
-
-.navbar-burger:hover {
-  color: #ddd;
-}
-
-.navbar > .container .navbar-brand,
-.container > .navbar .navbar-brand {
-  @media screen and (min-width: 1024px) {
-    margin-left: -1rem;
-  }
-}
-
-.navbar-brand img {
-  @media all and (max-device-width: 720px) {
-    max-width: 240px;
-  }
-}
-
-.button.is-pink {
-  background-color: $pink;
-  border: 0;
-  color: white;
-}
-
-.button.is-pink:hover {
-  background-color: $pink-two;
-}
-
 .button.is-dark:hover,
 .button.is-dark.is-hovered {
   background: #111;
@@ -65,16 +33,13 @@ body.has-navbar-fixed-top {
 .etherplate-form {
     background: #fcfcfc;
     align-items: stretch;
-    /*border: 3px solid #f5f5f5;*/
-    /*border-radius: 3px;*/
-    /*border-top-left-radius: 0;*/
     display: flex;
     justify-content: center;
     position: relative;
 }
 
 .etherplate-form:not(:last-child) {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .etherplate-form--wrapper {
@@ -108,18 +73,3 @@ body.has-navbar-fixed-top {
 .content .title {
   line-height: 1.5;
 }
-
-// Figure out how to combat the load order issue by having this here instead
-// in site-header.scss
-.navbar.is-dark .navbar-start > a.navbar-item:hover,
-.navbar.is-dark .navbar-start > a.navbar-item.is-active,
-.navbar.is-dark .navbar-start .navbar-link:hover,
-.navbar.is-dark .navbar-start .navbar-link.is-active,
-.navbar.is-dark .navbar-end > a.navbar-item:hover,
-.navbar.is-dark .navbar-end > a.navbar-item.is-active,
-.navbar.is-dark .navbar-end .navbar-link:hover,
-.navbar.is-dark .navbar-end .navbar-link.is-active {
-  background: transparent;
-  color: $pink;
-}
-

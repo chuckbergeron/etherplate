@@ -1,5 +1,5 @@
 #! /bin/sh
 
 truffle compile && \
-truffle-migrate-off-chain --network ropsten && \
+truffle --network ropsten && \
 npm run build

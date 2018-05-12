@@ -5,7 +5,8 @@ const nfToken = contract(NFTokenABI)
 
 export default async function () {
   nfToken.setProvider(web3.currentProvider)
-  nfToken.web3.eth.defaultAccount = web3.eth.accounts[0]
+  nfToken.web3.eth.defaultAccount = web3.eth.defaultAccount
 
   return nfToken.deployed()
 }
+

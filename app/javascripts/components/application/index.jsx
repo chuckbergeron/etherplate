@@ -9,6 +9,8 @@ import {
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
+import web3Initializer from '@/web3Initializer'
+
 import { addToken } from '@/redux/actions'
 import { boughtTokenReducer } from '@/redux/reducers'
 
@@ -32,6 +34,8 @@ const web3AllTokens = web3Wrap(AllTokens)
 
 let store = createStore(boughtTokenReducer)
 
+web3Initializer()
+
 //
 // This component demos replaying the events from the blockchain network
 // to pull all data associated with the current wallet address into a
@@ -41,8 +45,7 @@ let store = createStore(boughtTokenReducer)
 export class Application extends Component {
 
   componentDidMount() {
-    // Checking if Web3 has been injected by the browser (Mist/MetaMask/Trust/etc)
-    if ((typeof web3 !== 'undefined') && web3.eth.accounts.length)
+    if (typeof web3 !== 'undefined')
       this.getTokensAndSubscribeToEvent();
   }
 
@@ -56,8 +59,9 @@ export class Application extends Component {
       this.boughtTokenEvent = instance.BoughtToken({}, {
         fromBlock: 0, toBlock: 'latest'
       });
-      // ALl previous logs and also every time a new token is bought
+      // All previous logs and also every time a new token is bought
       this.boughtTokenEvent.watch((error, result) => {
+        console.log('bought token 1')
         if (error) {
           console.error(error)
         } else {

@@ -20,7 +20,11 @@ export default function web3Wrap(WrappedComponent) {
       var contents = <div />
 
       // Checking if Web3 has been injected by the browser (Mist/MetaMask/Trust/etc)
-      if ((typeof web3 !== 'undefined') && web3.eth.accounts.length) {
+      if (
+        (typeof web3 !== 'undefined')
+          && web3.isInitialized
+          && web3.eth.defaultAccount.length > 0
+      ) {
         // Use the browser's ethereum provider
         // var provider = web3.currentProvider
         return <WrappedComponent {...this.props} />

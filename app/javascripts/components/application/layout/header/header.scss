@@ -37,3 +37,40 @@
     background-color: #333;
   }
 }
+
+.navbar-burger {
+  color: white;
+  margin-top: 0.5rem;
+}
+
+.navbar-burger:hover {
+  color: #ddd;
+}
+
+.navbar > .container .navbar-brand,
+.container > .navbar .navbar-brand {
+  @media screen and (min-width: 1024px) {
+    margin-left: -1rem;
+  }
+}
+
+.navbar-brand img {
+  @media all and (max-device-width: 720px) {
+    max-width: 240px;
+  }
+}
+
+// Figure out how to combat the load order issue by having this here instead
+// in site-header.scss
+.navbar.is-dark .navbar-start > a.navbar-item:hover,
+.navbar.is-dark .navbar-start > a.navbar-item.is-active,
+.navbar.is-dark .navbar-start .navbar-link:hover,
+.navbar.is-dark .navbar-start .navbar-link.is-active,
+.navbar.is-dark .navbar-end > a.navbar-item:hover,
+.navbar.is-dark .navbar-end > a.navbar-item.is-active,
+.navbar.is-dark .navbar-end .navbar-link:hover,
+.navbar.is-dark .navbar-end .navbar-link.is-active {
+  background: transparent;
+  color: $pink;
+}
+
