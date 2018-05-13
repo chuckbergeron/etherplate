@@ -50,8 +50,13 @@ export class Application extends Component {
   }
 
   componentWillUnmount () {
-    if (this.boughtTokenEvent)
-      this.boughtTokenEvent.stopWatching()
+    // web3 betas stopWatching() is currently returning
+    // Uncaught Error: Invalid JSON RPC response: undefined
+    // when run against my current ganache-cli in development
+    // So we're not unsubscribing from this event listener properly at the moment
+
+    // if (this.boughtTokenEvent)
+      // this.boughtTokenEvent.stopWatching()
   }
 
   getTokensAndSubscribeToEvent() {

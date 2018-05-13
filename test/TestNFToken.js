@@ -1,5 +1,4 @@
 import assertRevert from './support/assert-revert'
-import BigNumber from 'bignumber.js'
 import range from 'lodash.range'
 const nfToken = artifacts.require('NFToken')
 

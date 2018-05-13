@@ -13,8 +13,6 @@ import TokenType from '../token-type'
 import buyToken from '@/services/buy-token'
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 
-import BoughtTokenSubscriber from '@/subscribers/bought-token-subscriber'
-
 import style from './style.scss'
 
 export default class CustomizeToken extends Component {
@@ -24,25 +22,9 @@ export default class CustomizeToken extends Component {
       tokenType: 0,
       title: '',
       titleError: '',
-      waitingForNetwork: false,
       errorMessage: '',
       redirectToPurchaseHistory: false
     }
-
-    this.boughtTokenSubscriber = new BoughtTokenSubscriber(() => {
-      this.purchaseComplete()
-    })
-  }
-
-  purchaseComplete() {
-    this.setState({
-      waitingForNetwork: false,
-      redirectToPurchaseHistory: true
-    })
-  }
-
-  componentWillUnmount() {
-    this.boughtTokenSubscriber.stop()
   }
 
   onClickSave () {
@@ -55,8 +37,10 @@ export default class CustomizeToken extends Component {
     } else {
       buyToken(this.state.tokenType, this.state.title)
         .then((transaction) => {
+          this.setState({
+            redirectToPurchaseHistory: true
+          })
           console.log(transaction)
-          this.setState({ waitingForNetwork: true })
         })
         .catch((error) => {
           console.error(error)
@@ -70,8 +54,8 @@ export default class CustomizeToken extends Component {
   }
 
   render () {
-    // if (this.state.redirectToPurchaseHistory)
-      // return <Redirect to={'/tokens/purchase-history'} />
+    if (this.state.redirectToPurchaseHistory)
+      return <Redirect to={'/tokens/purchased'} />
 
     if (this.state.titleError)
       var titleError =
@@ -117,8 +101,8 @@ export default class CustomizeToken extends Component {
                   <br />
                   <p>
                     <button
-                      disabled={this.state.selectedToken === null && !this.state.waitingForNetwork}
-                      className={classnames('button is-success is-medium', { 'is-loading': this.state.waitingForNetwork })}
+                      disabled={this.state.selectedToken === null}
+                      className={classnames('button is-success is-medium')}
                       onClick={(e) => this.onClickSave()}>
                       Buy Token
                     </button>

@@ -23,6 +23,7 @@ export default function web3Wrap(WrappedComponent) {
       if (
         (typeof web3 !== 'undefined')
           && web3.isInitialized
+          && web3.eth.defaultAccount
           && web3.eth.defaultAccount.length > 0
       ) {
         // Use the browser's ethereum provider

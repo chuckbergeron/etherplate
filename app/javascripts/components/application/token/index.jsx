@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import _ from 'lodash';
 import PropTypes from 'prop-types'
-
+import { BigNumber } from 'bignumber.js';
 import { Address } from '@/components/address'
 
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
@@ -100,7 +100,7 @@ Token.defaultProps = {
 
 const mapStateToProps = function(state, props) {
   if (state.tokens.length > 0) {
-    var tokenIdAsBigNumber = web3.toBigNumber(props.match.params.tokenId)
+    var tokenIdAsBigNumber = new BigNumber(props.match.params.tokenId)
     return {
       token: _.find(state.tokens, { args: { tokenId: tokenIdAsBigNumber } })
     }

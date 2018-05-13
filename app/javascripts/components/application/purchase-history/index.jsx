@@ -58,7 +58,7 @@ export default class PurchaseHistory extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.tokens.map((tokenId) => <TokenRow tokenId={tokenId.toNumber()} key={tokenId.toNumber()} /> )}
+                  {this.state.tokens.reverse().map((tokenId) => <TokenRow tokenId={tokenId.toNumber()} key={tokenId.toNumber()} /> )}
                 </tbody>
               </table>
             </div>

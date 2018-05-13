@@ -15,7 +15,7 @@ export default class TokenList extends Component {
           <div className='container'>
             <div className="columns is-multiline">
                 {
-                  this.props.tokens.map(
+                  this.props.tokens.reverse().map(
                     token => {
                       return (
                         <div key={token.args.tokenId.toNumber()} className="column is-one-quarter-desktop">

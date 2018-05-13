@@ -84,6 +84,7 @@
     "zeppelin-solidity": "1.9.0"
   },
   "dependencies": {
+    "bignumber.js": "^7.0.1",
     "bulma": "^0.7.1",
     "classnames": "^2.2.5",
     "ethereumjs-abi": "^0.6.5",
