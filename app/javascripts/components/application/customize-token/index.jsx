@@ -24,7 +24,7 @@ export default class CustomizeToken extends Component {
       title: '',
       titleError: '',
       errorMessage: '',
-      redirectToPurchaseHistory: false
+      redirectToTokenList: false
     }
   }
 
@@ -49,7 +49,7 @@ export default class CustomizeToken extends Component {
       .send()
       .once('transactionHash', (hash) => {
         this.setState({
-          redirectToPurchaseHistory: true
+          redirectToTokenList: true
         })
         console.log(hash)
       })
@@ -58,14 +58,16 @@ export default class CustomizeToken extends Component {
       })
       .on('confirmation', (confNumber, receipt) => {
         // happens for every blockchain network confirmation
-        console.log(confNumber, receipt)
+        // console.log(confNumber, receipt)
       })
-      .on('error', (error) => {
+      .on('error', (error, receipt) => {
         console.error(error)
+        console.error(receipt)
         this.setState({ errorMessage: error.message })
       })
       .then(function(receipt){
         // will be fired once the receipt its mined
+        console.log(receipt)
       });
 
     }
@@ -76,7 +78,7 @@ export default class CustomizeToken extends Component {
   }
 
   render () {
-    if (this.state.redirectToPurchaseHistory)
+    if (this.state.redirectToTokenList)
       return <Redirect to={'/tokens/all'} />
 
     if (this.state.titleError)

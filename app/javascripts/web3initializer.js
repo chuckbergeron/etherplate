@@ -1,5 +1,7 @@
 import Web3 from 'web3'
 
+// Currently this relies on the MetaMask (or similar) web3 to figure out what network
+// the user wants
 const providerUrl = () => {
   let url = ''
 
@@ -32,15 +34,21 @@ export default async function () {
   if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
   } else {
-    // this path is still foggy as all hell to me:
-    web3 = new Web3(
-      new Web3.providers.HttpProvider(providerUrl())
-    );
+    console.error('Currently requires MetaMask or similar')
+    return;
   }
+  // } else if (providerUrl().length > 0) {
+  //   // this path is still foggy as all hell to me:
+  //   web3 = new Web3(
+  //     new Web3.providers.HttpProvider(providerUrl())
+  //     new Web3.providers.HttpProvider('http://localhost:8545')
+  //   );
 
   web3.isInitialized = true
 
   await web3.eth.getAccounts().then((accounts) => {
     web3.eth.defaultAccount = accounts[0]
+  }).catch((error) => {
+    console.error(error)
   })
 }
