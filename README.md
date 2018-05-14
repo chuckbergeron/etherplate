@@ -82,6 +82,11 @@ Why is there both a truffle and truffle-config file?
 * On successful purchase, show a message about the new purchase and how it needs to be confirmed by the network, and redirect to show the now confirming token on Purchase History or My Tokens page
 * Deploy to Netlify & Ropsten, use Infura
 
+## Web3 1.0.0.beta34 -- Upgrade
+
+* race condition on not having list of accounts from MetaMask on page load?
+* finish getting `.events.BoughtToken()` working again
+
 ## Nice-to-haves:
 
 * Use a local web3 (1.0.0.beta?) instead of the current MetaMask/browser's web3 instance (which is deprecated)
