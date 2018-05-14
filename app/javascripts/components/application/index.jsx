@@ -60,22 +60,22 @@ export class Application extends Component {
   }
 
   getTokensAndSubscribeToEvent() {
-    nfToken().then((instance) => {
-      this.boughtTokenEvent = instance.BoughtToken({}, {
-        fromBlock: 0, toBlock: 'latest'
-      });
-      // All previous logs and also every time a new token is bought
-      this.boughtTokenEvent.watch((error, result) => {
-        console.log('bought token 1')
-        if (error) {
-          console.error(error)
-        } else {
-          store.dispatch(addToken(result))
-        }
-      })
-    }).catch((error) => {
-      console.error(error)
-    })
+    // nfToken().then((instance) => {
+    //   this.boughtTokenEvent = instance.BoughtToken({}, {
+    //     fromBlock: 0, toBlock: 'latest'
+    //   });
+    //   // All previous logs and also every time a new token is bought
+    //   this.boughtTokenEvent.watch((error, result) => {
+    //     console.log('bought token 1')
+    //     if (error) {
+    //       console.error(error)
+    //     } else {
+    //       store.dispatch(addToken(result))
+    //     }
+    //   })
+    // }).catch((error) => {
+    //   console.error(error)
+    // })
   }
 
   render (){

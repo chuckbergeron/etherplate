@@ -8,9 +8,10 @@ import {
 import range from 'lodash.range'
 import classnames from 'classnames'
 
+import nfToken from '@/contracts/nftoken-factory'
+
 import TokenType from '../token-type'
 
-import buyToken from '@/services/buy-token'
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 
 import style from './style.scss'
@@ -27,7 +28,7 @@ export default class CustomizeToken extends Component {
     }
   }
 
-  onClickSave () {
+  async onClickSave () {
     // Reset the error handling
     this.setState({ titleError: '' })
 
@@ -35,17 +36,38 @@ export default class CustomizeToken extends Component {
     if (this.state.title.length < 8) {
       this.setState({ titleError: 'Please enter at least 8 characters for the title' })
     } else {
-      buyToken(this.state.tokenType, this.state.title)
-        .then((transaction) => {
-          this.setState({
-            redirectToPurchaseHistory: true
-          })
-          console.log(transaction)
+      let contractInstance
+
+      await nfToken().then(function(instance) {
+        contractInstance = instance
+      })
+      .catch(function(error) {
+        console.error(error)
+      })
+
+      contractInstance.methods.buyToken(this.state.tokenType, this.state.title)
+      .send()
+      .once('transactionHash', (hash) => {
+        this.setState({
+          redirectToPurchaseHistory: true
         })
-        .catch((error) => {
-          console.error(error)
-          this.setState({ errorMessage: error.message })
-        })
+        console.log(hash)
+      })
+      .once('receipt', (receipt) => {
+        console.log(receipt)
+      })
+      .on('confirmation', (confNumber, receipt) => {
+        // happens for every blockchain network confirmation
+        console.log(confNumber, receipt)
+      })
+      .on('error', (error) => {
+        console.error(error)
+        this.setState({ errorMessage: error.message })
+      })
+      .then(function(receipt){
+        // will be fired once the receipt its mined
+      });
+
     }
   }
 
@@ -55,7 +77,7 @@ export default class CustomizeToken extends Component {
 
   render () {
     if (this.state.redirectToPurchaseHistory)
-      return <Redirect to={'/tokens/purchased'} />
+      return <Redirect to={'/tokens/all'} />
 
     if (this.state.titleError)
       var titleError =
