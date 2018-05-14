@@ -85,7 +85,7 @@ Why is there both a truffle and truffle-config file?
 ## Web3 1.0.0.beta34 -- Upgrade
 
 * race condition on not having list of accounts from MetaMask on page load?
-* finish getting `.events.BoughtToken()` working again
+* finish getting `.events.BoughtToken()` working again: (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)
 
 ## Nice-to-haves:
 

@@ -3,6 +3,7 @@ import React, {
 } from 'react'
 
 import nfToken from '@/contracts/nftoken-factory'
+import { BigNumber } from 'bignumber.js';
 
 import Hero from '@/components/hero'
 import TokenRow from './token-row'
@@ -25,13 +26,15 @@ export default class PurchaseHistory extends Component {
 
   refreshTokenList() {
     nfToken().then((instance) => {
-      instance.myTokens().then((result) => {
-        this.setState({ tokens: result })
-        // this.setState({ tokens: result.reverse() })
-      }).catch((error) => {
-        console.error(error)
+      instance.methods.myTokens().call((error, result) => {
+        this.setState({
+          tokens: result.map( (tokenId) => {
+            return new BigNumber(tokenId)
+          } )
+        })
       })
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.error(error)
     })
   }

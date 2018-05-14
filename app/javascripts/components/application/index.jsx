@@ -14,7 +14,7 @@ import web3Initializer from '@/web3Initializer'
 import { addToken } from '@/redux/actions'
 import { boughtTokenReducer } from '@/redux/reducers'
 
-import nfToken from '@/contracts/nftoken-factory'
+import oldNfToken from '@/contracts/old-nftoken-factory'
 
 import web3Wrap from '@/components/web3Wrap'
 
@@ -60,27 +60,49 @@ export class Application extends Component {
   }
 
   getTokensAndSubscribeToEvent() {
-    nfToken().then((instance) => {
-      this.boughtTokenEvent = instance.events.BoughtToken({
-        fromBlock: 0,
-        toBlock: 'latest'
+    oldNfToken().then((instance) => {
+      this.boughtTokenEvent = instance.BoughtToken({}, {
+        fromBlock: 0, toBlock: 'latest'
+      });
+      // ALl previous logs and also every time a new token is bought
+      this.boughtTokenEvent.watch((error, result) => {
+        if (error) {
+          console.error(error)
+        } else {
+          store.dispatch(addToken(result))
+        }
       })
-      .on('data', (event) => {
-        // All previous logs and also every time a new token is bought
-        console.log('bought token !')
-        console.log(event)
-        store.dispatch(addToken(event))
-      })
-      .on('changed', (event) => {
-        console.log(event)
-        console.log('event changed?')
-          // remove event from local database
-      })
-      .on('error', console.error);
     }).catch((error) => {
       console.error(error)
     })
   }
+
+  // New way of doing things in Web3 beta 1.0 but doesn't work w/ current MetaMask provider
+  // (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)
+  //
+  // getTokensAndSubscribeToEvent() {
+  //   nfToken().then((instance) => {
+  //     console.log(instance)
+  //     this.boughtTokenEvent = instance.events.BoughtToken({
+  //       fromBlock: 0,
+  //       toBlock: 'latest'
+  //     })
+  //     .on('data', (event) => {
+  //       // All previous logs and also every time a new token is bought
+  //       console.log('bought token !')
+  //       console.log(event)
+  //       store.dispatch(addToken(event))
+  //     })
+  //     .on('changed', (event) => {
+  //       console.log(event)
+  //       console.log('event changed?')
+  //         // remove event from local database
+  //     })
+  //     .on('error', console.error);
+  //   }).catch((error) => {
+  //     console.error(error)
+  //   })
+  // }
 
   render (){
     return (
