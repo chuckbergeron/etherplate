@@ -35,26 +35,32 @@ function setup() {
 
 describe('components', () => {
   describe('Token', () => {
-    it('should render self and subcomponents', () => {
+    it('should render container if no state set yet', () => {
       const { enzymeWrapper } = setup()
 
-      expect(enzymeWrapper.find('header').hasClass('header')).toBe(true)
-
-      expect(enzymeWrapper.find('h1').text()).toBe('todos')
-
-      const todoInputProps = enzymeWrapper.find('TodoTextInput').props()
-      expect(todoInputProps.newTodo).toBe(true)
-      expect(todoInputProps.placeholder).toEqual('What needs to be done?')
+      expect(enzymeWrapper.find('div').hasClass('container')).toBe(true)
     })
 
-    it('should call addTodo if length of text is greater than 0', () => {
-      const { enzymeWrapper, props } = setup()
-      const input = enzymeWrapper.find('TodoTextInput')
-      input.props().onSave('')
-      expect(props.addTodo.mock.calls.length).toBe(0)
-      input.props().onSave('Use Redux')
-      expect(props.addTodo.mock.calls.length).toBe(1)
+    describe('after getToken() (with state set)', () => {
+      it('should render the image', () => {
+        const { enzymeWrapper, props } = setup()
+
+        expect(false).toBe(1)
+      })
+
+      it('should render the transaction hash', () => {
+        const { enzymeWrapper, props } = setup()
+
+        expect(false).toBe(1)
+      })
+
+      it('should render the transaction ID', () => {
+        const { enzymeWrapper, props } = setup()
+
+        expect(false).toBe(1)
+      })
     })
+
   })
 })
 

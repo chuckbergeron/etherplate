@@ -40,41 +40,39 @@ const Token = class extends Component {
     var content
     if (this.state.type !== null) {
       content = (
-        <div>
-          <div className="token columns is-centered">
-            <div className='column is-three-quarters-tablet is-three-quarters-desktop is-one-half-widescreen is-one-half-fullhd has-text-centered'>
-              <figure
-                className="token__image">
-                <img src={nfTokenTypeImageUrl(this.state.type)} />
-              </figure>
+        <div className="token columns is-centered">
+          <div className='column is-three-quarters-tablet is-three-quarters-desktop is-one-half-widescreen is-one-half-fullhd has-text-centered'>
+            <figure
+              className="token__image">
+              <img src={nfTokenTypeImageUrl(this.state.type)} />
+            </figure>
 
-              <p className="token__title title has-text-grey">
-                {this.state.title}
-              </p>
+            <p className="token__title title has-text-grey">
+              {this.state.title}
+            </p>
 
-              <table className='table is-striped is-fullwidth'>
-                <thead>
-                  <tr>
-                    <th>
-                      TokenID
-                    </th>
-                    <th>
-                      Transaction Hash
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      {this.tokenId()}
-                    </td>
-                    <td>
-                      {this.props.token.transactionHash}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <table className='table is-striped is-fullwidth'>
+              <thead>
+                <tr>
+                  <th>
+                    TokenID
+                  </th>
+                  <th>
+                    Transaction Hash
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {this.tokenId()}
+                  </td>
+                  <td>
+                    {this.props.token.transactionHash}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       )
