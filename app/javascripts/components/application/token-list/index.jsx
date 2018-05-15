@@ -19,7 +19,7 @@ export default class TokenList extends Component {
                   tokens.map(
                     token => {
                       return (
-                        <div key={token.transactionHash} className="column is-one-quarter-desktop">
+                        <div key={token.transactionHash} className="column is-one-quarter-desktop is-half-tablet is-half-mobile">
                           <TokenListItem token={token} />
                         </div>
                       )

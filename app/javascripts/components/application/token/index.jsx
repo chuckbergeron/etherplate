@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import _ from 'lodash';
 import PropTypes from 'prop-types'
 import { BigNumber } from 'bignumber.js';
-import { Address } from '@/components/address'
+import Address from '@/components/address'
 
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 import getToken from '@/services/get-token'
@@ -39,6 +39,10 @@ const Token = class extends Component {
   render () {
     var content
     if (this.state.type !== null) {
+      var address = 'asdf';
+      if (typeof this.props.token.transactionHash !== 'undefined')
+        address = this.props.token.transactionHash
+
       content = (
         <div className="token columns is-centered">
           <div className='column is-three-quarters-tablet is-three-quarters-desktop is-one-half-widescreen is-one-half-fullhd has-text-centered'>
@@ -68,7 +72,7 @@ const Token = class extends Component {
                     {this.tokenId()}
                   </td>
                   <td>
-                    {this.props.token.transactionHash}
+                    <Address address={address} toggleFull={true} />
                   </td>
                 </tr>
               </tbody>
