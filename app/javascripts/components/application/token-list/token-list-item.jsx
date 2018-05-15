@@ -19,67 +19,73 @@ export default class TokenListItem extends Component {
   }
 
   componentDidMount () {
-    if (typeof this.props.token.args !== 'undefined') {
+    if (typeof this.props.token.args !== 'undefined')
       getToken(this.props.token.args.tokenId.toNumber()).then((values) => {
         this.setState({
           type: values[0],
           title: values[1]
         })
       })
-    }
+  }
+
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   if (prevState.type === null && nextProps.token.args === 'object') {
+
+  //   }
+  //   else {
+  //     return null
+  //   }
+  // }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    getToken(this.props.token.args.tokenId.toNumber()).then((values) => {
+      return {
+        type: values[0],
+        title: values[1]
+      }
+    })
   }
 
   render () {
     var tokenHtml
+    var image
+    var title
 
     if (typeof this.props.token.args === 'undefined') {
-      tokenHtml = (
-        <div className="card">
-          <div className="card-image">
-            <figure className="image">
-              <Loading />
-            </figure>
-          </div>
-
-          <div className="card-content">
-            <div className="media">
-              <div className="media-content">
-                <p className="title is-4">
-                  Loading ...
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
+      image = <Loading />
+      title = 'Loading ...'
     } else if (this.state.type !== null) {
-      tokenHtml = (
-        <div className="card">
-          <div className="card-image">
-            <figure className="image">
-              <Link to={`/tokens/${this.props.token.args.tokenId}`}>
-                <img src={nfTokenTypeImageUrl(this.state.type)} />
-              </Link>
-            </figure>
-          </div>
-
-          <div className="card-content">
-            <div className="media">
-              <div className="media-content">
-                <p className="title is-4">
-                  {this.state.title}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
+      image =
+        <Link to={`/tokens/${this.props.token.args.tokenId}`}>
+          <img src={nfTokenTypeImageUrl(this.state.type)} />
+        </Link>
+      title =
+        <Link to={`/tokens/${this.props.token.args.tokenId}`}>
+          {this.state.title}
+        </Link>
     } else {
-      tokenHtml = <span></span>
+      image = <img src='https://bulma.io/images/placeholders/480x480.png' />
+      title = 'Unknown'
     }
 
     return (
-      <span>{tokenHtml}</span>
+      <div className="card">
+        <div className="card-image">
+          <figure className="image is-square">
+            {image}
+          </figure>
+        </div>
+
+        <div className="card-content">
+          <div className="media">
+            <div className="media-content">
+              <p className="title is-4">
+                {title}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 }

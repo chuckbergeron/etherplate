@@ -46,6 +46,8 @@ export default class PurchaseHistory extends Component {
   render () {
     var content
     if (this.state.tokens.length) {
+      var tokens = [...this.state.tokens].reverse()
+
       content =
         <section className='section'>
           <div className='container'>
@@ -61,7 +63,7 @@ export default class PurchaseHistory extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.tokens.reverse().map((tokenId) => <TokenRow tokenId={tokenId.toNumber()} key={tokenId.toNumber()} /> )}
+                  {tokens.map((tokenId) => <TokenRow tokenId={tokenId.toNumber()} key={tokenId.toNumber()} /> )}
                 </tbody>
               </table>
             </div>
