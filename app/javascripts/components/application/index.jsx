@@ -71,14 +71,10 @@ export class Application extends Component {
         } else {
           var tokens = store.getState().tokens;
 
-          if (tokens.filter((token) => token.transactionHash === result.transactionHash).length > 0) {
-            console.log('updating found 1')
+          if (tokens.filter((token) => token.transactionHash === result.transactionHash).length > 0)
             store.dispatch(updateTokenAction(result))
-          }
-          else {
-            console.log('adding new')
+          else
             store.dispatch(addTokenAction(result))
-          }
         }
       })
     }).catch((error) => {
