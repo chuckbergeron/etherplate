@@ -11,8 +11,8 @@ import { Provider } from 'react-redux'
 
 import web3Initializer from '@/web3Initializer'
 
-import { addToken } from '@/redux/actions'
-import { boughtTokenReducer } from '@/redux/reducers'
+import { addTokenAction, updateTokenAction } from '@/redux/actions'
+import { tokenReducer } from '@/redux/reducers'
 
 import oldNfToken from '@/contracts/old-nftoken-factory'
 
@@ -32,7 +32,7 @@ const web3CustomizeToken = web3Wrap(CustomizeToken)
 const web3PurchaseHistory = web3Wrap(PurchaseHistory)
 const web3AllTokens = web3Wrap(AllTokens)
 
-let store = createStore(boughtTokenReducer)
+let store = createStore(tokenReducer)
 
 web3Initializer()
 
@@ -69,7 +69,16 @@ export class Application extends Component {
         if (error) {
           console.error(error)
         } else {
-          store.dispatch(addToken(result))
+          var tokens = store.getState().tokens;
+
+          if (tokens.filter((token) => token.transactionHash === result.transactionHash).length > 0) {
+            console.log('updating found 1')
+            store.dispatch(updateTokenAction(result))
+          }
+          else {
+            console.log('adding new')
+            store.dispatch(addTokenAction(result))
+          }
         }
       })
     }).catch((error) => {
@@ -91,7 +100,7 @@ export class Application extends Component {
   //       // All previous logs and also every time a new token is bought
   //       console.log('bought token !')
   //       console.log(event)
-  //       store.dispatch(addToken(event))
+  //       store.dispatch(addTokenAction(event))
   //     })
   //     .on('changed', (event) => {
   //       console.log(event)

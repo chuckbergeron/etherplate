@@ -8,6 +8,7 @@ import TokenListItem from './token-list-item'
 
 export default class TokenList extends Component {
   render () {
+    console.log(this.props.tokens.length)
     var content
     if (this.props.tokens.length) {
       content =
@@ -18,7 +19,7 @@ export default class TokenList extends Component {
                   this.props.tokens.reverse().map(
                     token => {
                       return (
-                        <div key={token.args.tokenId.toNumber()} className="column is-one-quarter-desktop">
+                        <div key={token.transactionHash} className="column is-one-quarter-desktop">
                           <TokenListItem token={token} />
                         </div>
                       )

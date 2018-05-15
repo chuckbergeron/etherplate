@@ -82,8 +82,12 @@ Why is there both a truffle and truffle-config file?
 
 ## TODO:
 
-* get DApp tests working again
+* New token updated from transaction receipt event is not being added to state properly in realtime
+* Get DApp tests working again
 * On successful purchase, show a message about the new purchase and how it needs to be confirmed by the network, and redirect to show the now confirming token on Purchase History or My Tokens page
+* Numbers (eg. 'NewSword222') in token name causes Ethereum transaction to fail (could be byte counting validation in smart contract)
+* Store transactionHash in localStorage and call info on it after page refreshes if it isn't in `store.getState().tokens` pool
+
 
 ## Nice-to-haves:
 

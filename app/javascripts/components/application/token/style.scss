@@ -13,21 +13,6 @@ $token--border-color: #eaeaea;
 }
 
 .token__title {
-  font-size: 4.5vmin;
   letter-spacing: 2px;
   text-transform: uppercase;
-}
-
-.token__subtitle {
-  font-size: 3.5vmin;
-  letter-spacing: 1px;
-}
-
-.token__title_and_subtitle_ruler {
-  background-image: linear-gradient(to right, #eee 33%, white 0%);
-  background-position: bottom;
-  background-size: 25px 5px;
-  background-repeat: repeat-x;
-
-  height: 5px;
 }

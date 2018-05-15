@@ -1,14 +1,13 @@
-import React, {
-  Component
-} from 'react'
-import {
-  Redirect
-} from 'react-router-dom'
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import range from 'lodash.range'
 import classnames from 'classnames'
 
 import nfToken from '@/contracts/nftoken-factory'
+
+import { addTokenAction } from '@/redux/actions'
 
 import TokenType from '../token-type'
 
@@ -16,7 +15,7 @@ import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 
 import style from './style.scss'
 
-export default class CustomizeToken extends Component {
+const CustomizeToken = class extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -48,13 +47,11 @@ export default class CustomizeToken extends Component {
       contractInstance.methods.buyToken(this.state.tokenType, this.state.title)
       .send()
       .once('transactionHash', (hash) => {
-        this.setState({
-          redirectToTokenList: true
-        })
-        console.log(hash)
+        this.props.addToken({ transactionHash: hash })
+        this.setState({ redirectToTokenList: true })
       })
       .once('receipt', (receipt) => {
-        console.log(receipt)
+        // console.log(receipt)
       })
       .on('confirmation', (confNumber, receipt) => {
         // happens for every blockchain network confirmation
@@ -67,7 +64,7 @@ export default class CustomizeToken extends Component {
       })
       .then(function(receipt){
         // will be fired once the receipt its mined
-        console.log(receipt)
+        // console.log(receipt)
       });
 
     }
@@ -147,3 +144,13 @@ export default class CustomizeToken extends Component {
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToken: (token) => {
+      dispatch(addTokenAction(token))
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CustomizeToken);

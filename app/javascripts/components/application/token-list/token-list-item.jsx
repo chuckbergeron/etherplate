@@ -4,6 +4,7 @@ import React, {
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
+import Loading from '@/components/loading'
 import { Address } from '@/components/address'
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 import getToken from '@/services/get-token'
@@ -18,18 +19,41 @@ export default class TokenListItem extends Component {
   }
 
   componentDidMount () {
-    getToken(this.props.token.args.tokenId.toNumber()).then((values) => {
-      this.setState({
-        type: values[0],
-        title: values[1]
+    if (typeof this.props.token.args !== 'undefined') {
+      getToken(this.props.token.args.tokenId.toNumber()).then((values) => {
+        this.setState({
+          type: values[0],
+          title: values[1]
+        })
       })
-    })
+    }
   }
 
   render () {
-    var img
-    if (this.state.type !== null) {
-      img = (
+    var tokenHtml
+
+    if (typeof this.props.token.args === 'undefined') {
+      tokenHtml = (
+        <div className="card">
+          <div className="card-image">
+            <figure className="image">
+              <Loading />
+            </figure>
+          </div>
+
+          <div className="card-content">
+            <div className="media">
+              <div className="media-content">
+                <p className="title is-4">
+                  Loading ...
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    } else if (this.state.type !== null) {
+      tokenHtml = (
         <div className="card">
           <div className="card-image">
             <figure className="image">
@@ -50,13 +74,12 @@ export default class TokenListItem extends Component {
           </div>
         </div>
       )
-
     } else {
-      img = <span></span>
+      tokenHtml = <span></span>
     }
 
     return (
-      <span>{img}</span>
+      <span>{tokenHtml}</span>
     )
   }
 }
