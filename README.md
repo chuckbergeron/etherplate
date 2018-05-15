@@ -4,9 +4,6 @@
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![CC0](https://img.shields.io/badge/license-CC0-green.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 
-## Note: This is the develop branch where I am currently attempting to upgrade Etherplate to it's own Web3 provider on Web3 1.0 beta
-
-
 ### What is this?
 
 This is an example project showing how you can hook up your Ethereum Non-Fungible Tokens (NFTs, ERC721, similar to CryptoKitties) contract in a DApp. It demos web3 events, and is highly opinionated in that it uses Redux, React, React Router, and Bulma. You can rip out of any these or replace them with your favourites (ie. Skeleton.css instead of Bulma, etc.).
@@ -82,27 +79,19 @@ Why is there both a truffle and truffle-config file?
 
 ## TODO:
 
-* New token updated from transaction receipt event is not being added to state properly in realtime
-* Get DApp tests working again
-* On successful purchase, show a message about the new purchase and how it needs to be confirmed by the network, and redirect to show the now confirming token on Purchase History or My Tokens page
 * Numbers (eg. 'NewSword222') in token name causes Ethereum transaction to fail (could be byte counting validation in smart contract)
 * Store transactionHash in localStorage and call info on it after page refreshes if it isn't in `store.getState().tokens` pool
-
+* Race condition: sometimes we do not have the list of accounts from MetaMask on time when page loads (google for onPageLoad code)
+* Finish upgrade path by removing `old-nftoken-factory` and in turn get `.events.BoughtToken()` working again: (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)
+* Add more DApp tests and refactor React components to have both presentation and container components
 
 ## Nice-to-haves:
 
-* Use a local web3 (1.0.0.beta?) instead of the current MetaMask/browser's web3 instance (which is deprecated)
 * Mock out a web3 object in the integration spec and test the happy path of filling out the form and purchasing a token via enzyme
 * Get `circleci` branch up and running, put a badge on the README for test runs
 * Switch all .jsx to simply .js
 * If the user switches their MetaMask account, need to refresh the page or stop/restart event listeners with new wallet address
 * Demo how ERC721 expects you to store data (such as the JSON response when the tokenURI is requested) as per https://eips.ethereum.org/EIPS/eip-721 (For instance, OpenSea has a server which takes a contract address and tokenID, which then does a GET request to the tokenURI to pull more info (as JSON) about the token (images, name, etc), for example: https://opensea-api.herokuapp.com/events/?asset_contract_address=0x06012c8cf97bead5deae237070f9587f8e7a266d&token_id=389343)
-* Fix getting duplicate entries when Ropsten returns the BoughtToken event (active subscriber listening for events in browser)
-
-## Web3 1.0.0.beta34 -- Upgrade
-
-* race condition on not having list of accounts from MetaMask on page load?
-* finish getting `.events.BoughtToken()` working again: (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)
 
 
 ## Done:
@@ -116,6 +105,11 @@ Why is there both a truffle and truffle-config file?
 * ~~Convert all css to scss~~
 * ~~Improve mobile styling / media query support~~
 * ~~Deploy to Netlify & Ropsten, use Infura~~
+* ~~Use a local web3 (1.0.0.beta?) instead of the current MetaMask/browser's web3 instance (which is deprecated)~~
+* ~~Fix getting duplicate entries when Ropsten returns the BoughtToken event (active subscriber listening for events in browser)~~
+* ~~New token updated from transaction receipt event is not being added to state properly in realtime~~
+* ~~Get DApp tests working again~~
+* ~~On successful purchase, show a message about the new purchase and how it needs to be confirmed by the network, and redirect to show the now confirming token on Purchase History or My Tokens page~~
 
 #### Gratitude
 
