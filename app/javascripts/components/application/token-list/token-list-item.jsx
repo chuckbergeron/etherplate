@@ -20,29 +20,24 @@ export default class TokenListItem extends Component {
 
   componentDidMount () {
     if (typeof this.props.token.args !== 'undefined')
-      getToken(this.props.token.args.tokenId.toNumber()).then((values) => {
-        this.setState({
-          type: values[0],
-          title: values[1]
-        })
-      })
+      this.getTokenFromBlockchain();
   }
 
-  // static getDerivedStateFromProps(nextProps, prevState) {
-  //   if (prevState.type === null && nextProps.token.args === 'object') {
-
-  //   }
-  //   else {
-  //     return null
-  //   }
-  // }
-
   componentDidUpdate(prevProps, prevState, snapshot) {
+    if (
+      prevState.type === null
+      && typeof prevProps.token.args === 'undefined'
+      && typeof this.props.token.args !== 'undefined'
+    )
+      this.getTokenFromBlockchain();
+  }
+
+  getTokenFromBlockchain() {
     getToken(this.props.token.args.tokenId.toNumber()).then((values) => {
-      return {
+      this.setState({
         type: values[0],
         title: values[1]
-      }
+      })
     })
   }
 
@@ -56,24 +51,27 @@ export default class TokenListItem extends Component {
       title = 'Loading ...'
     } else if (this.state.type !== null) {
       image =
-        <Link to={`/tokens/${this.props.token.args.tokenId}`}>
-          <img src={nfTokenTypeImageUrl(this.state.type)} />
-        </Link>
+        <figure className="image is-square">
+          <Link to={`/tokens/${this.props.token.args.tokenId}`}>
+            <img src={nfTokenTypeImageUrl(this.state.type)} />
+          </Link>
+        </figure>
       title =
         <Link to={`/tokens/${this.props.token.args.tokenId}`}>
           {this.state.title}
         </Link>
     } else {
-      image = <img src='https://bulma.io/images/placeholders/480x480.png' />
-      title = 'Unknown'
+      image =
+        <figure className="image is-square">
+          <img src='https://bulma.io/images/placeholders/480x480.png' />
+        </figure>
+      title = '...'
     }
 
     return (
       <div className="card">
         <div className="card-image">
-          <figure className="image is-square">
-            {image}
-          </figure>
+          {image}
         </div>
 
         <div className="card-content">
