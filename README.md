@@ -10,6 +10,12 @@ This is an example project showing how you can hook up your Ethereum Non-Fungibl
 
 Etherplate uses OpenZeppelin's fantastic community-audited contracts as a base to implement the ERC721 standard.
 
+### View Demo
+
+[View Demo on Netlify](http://etherplate.netlify.com/)
+
+![Etherplate Demo Gif](https://raw.githubusercontent.com/chuckbergeron/etherplate/master/app/images/etherplate-demo.gif)
+
 # Setup
 
 ### Requires NPM & Direnv
