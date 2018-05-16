@@ -12,7 +12,7 @@ Etherplate uses OpenZeppelin's fantastic community-audited contracts as a base t
 
 ### View Demo
 
-[View Demo on Netlify](http://etherplate.netlify.com/)
+[View Demo on Netlify (Uses Ropsten testnet)](http://etherplate.netlify.com/)
 
 ![Etherplate Demo Gif](https://raw.githubusercontent.com/chuckbergeron/etherplate/master/app/images/etherplate-demo.gif)
 
