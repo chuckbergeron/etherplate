@@ -16,6 +16,10 @@ const providerUrl = () => {
         url = process.env.ROPSTEN_PROVIDER_URL
         console.log('This is the Ropsten test network.')
         break
+      case "4":
+        url = process.env.RINKEBY_PROVIDER_URL
+        console.log('This is the Rinkeby test network.')
+        break
       case "1234":
         console.log('This is the localhost private network.')
         url = 'http://localhost:8545'

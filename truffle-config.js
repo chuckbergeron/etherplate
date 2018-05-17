@@ -14,7 +14,12 @@ module.exports = {
       gas: 4612388,
       gasPrice: 100000000000
     },
-
+    rinkeby: {
+      provider: new HDWalletProvider(mnemonic, process.env.RINKEBY_PROVIDER_URL),
+      network_id: 4,
+      gas: 4612388,
+      gasPrice: 100000000000
+    },
     development: {
       host: '127.0.0.1',
       port: 8545,
