@@ -1,0 +1,13 @@
+{
+  "migrationVersion": 1524867261,
+  "contracts": [
+    {
+      "contractName": "Migrations",
+      "address": "0x068b63f802cb50db04461b4897e2453216ed353d"
+    },
+    {
+      "contractName": "NFToken",
+      "address": "0x9f92a5620dddc30a2558c9c652cfd7e8cf87f1af"
+    }
+  ]
+}
