@@ -85,7 +85,6 @@ Why is there both a truffle and truffle-config file?
 
 ## TODO:
 
-* Remove the build directory from the repo, build server-side on each deploy and possibly use truffle-migrate-off-chain (https://github.com/asselstine/truffle-migrate-off-chain)
 * Integrate EthLawyer for better MetaMask events (login, logout, switch accounts, etc) (ensure this works for Web3-integrated browsers such as Trust) (https://github.com/QuantumProductions/eth-lawyer)
 * Set up a basic server to respond to tokenURI requests and store the tokenURI in the contract (`buyToken()` function)
 * Numbers (eg. 'NewSword222') in token name causes Ethereum transaction to fail (could be byte counting validation in smart contract)
@@ -120,6 +119,7 @@ Why is there both a truffle and truffle-config file?
 * ~~On successful purchase, show a message about the new purchase and how it needs to be confirmed by the network, and redirect to show the now confirming token on Purchase History or My Tokens page~~
 * ~~Instead of 'Loading ...' should say confirming (show # of confirmations?)~~
 * ~~Race condition: sometimes we do not have the list of accounts from MetaMask on time when page loads (google for onPageLoad code)~~
+* ~~Remove the build directory from the repo, build server-side on each deploy and possibly use truffle-migrate-off-chain (https://github.com/asselstine/truffle-migrate-off-chain)~~
 
 #### Gratitude
 
