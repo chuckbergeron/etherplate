@@ -85,8 +85,8 @@ Why is there both a truffle and truffle-config file?
 
 ## TODO:
 
-* Instead of 'Loading ...' should say confirming (show # of confirmations?)
-* Integrate EthLawyer for better MetaMask events (login, logout, switch accounts, etc) (ensure this works for Web3-integrated browsers such as Trust)
+* Remove the build directory from the repo, build server-side on each deploy and possibly use truffle-migrate-off-chain (https://github.com/asselstine/truffle-migrate-off-chain)
+* Integrate EthLawyer for better MetaMask events (login, logout, switch accounts, etc) (ensure this works for Web3-integrated browsers such as Trust) (https://github.com/QuantumProductions/eth-lawyer)
 * Set up a basic server to respond to tokenURI requests and store the tokenURI in the contract (`buyToken()` function)
 * Numbers (eg. 'NewSword222') in token name causes Ethereum transaction to fail (could be byte counting validation in smart contract)
 * Store transactionHash in localStorage and call info on it after page refreshes if it isn't in `store.getState().tokens` pool
@@ -119,6 +119,7 @@ Why is there both a truffle and truffle-config file?
 * ~~New token updated from transaction receipt event is not being added to state properly in realtime~~
 * ~~Get DApp tests working again~~
 * ~~On successful purchase, show a message about the new purchase and how it needs to be confirmed by the network, and redirect to show the now confirming token on Purchase History or My Tokens page~~
+* ~~Instead of 'Loading ...' should say confirming (show # of confirmations?)~~
 
 #### Gratitude
 

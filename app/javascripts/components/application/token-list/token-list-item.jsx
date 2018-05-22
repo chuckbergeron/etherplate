@@ -9,6 +9,8 @@ import { Address } from '@/components/address'
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 import getToken from '@/services/get-token'
 
+import PlaceholderImg from '@/../images/placeholder.png'
+
 export default class TokenListItem extends Component {
   constructor (props) {
     super(props)
@@ -48,7 +50,7 @@ export default class TokenListItem extends Component {
 
     if (typeof this.props.token.args === 'undefined') {
       image = <Loading />
-      title = 'Loading ...'
+      title = 'Confirming ...'
     } else if (this.state.type !== null) {
       image =
         <figure className="image is-square">
@@ -63,7 +65,7 @@ export default class TokenListItem extends Component {
     } else {
       image =
         <figure className="image is-square">
-          <img src='https://bulma.io/images/placeholders/480x480.png' />
+          <img src={`/${PlaceholderImg}`} />
         </figure>
       title = '...'
     }

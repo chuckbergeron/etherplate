@@ -26,8 +26,6 @@ export default function web3Wrap(WrappedComponent) {
           && web3.eth.defaultAccount
           && web3.eth.defaultAccount.length > 0
       ) {
-        // Use the browser's ethereum provider
-        // var provider = web3.currentProvider
         return <WrappedComponent {...this.props} />
       } else if ((typeof web3 !== 'undefined')) {
         return (
