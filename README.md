@@ -92,7 +92,6 @@ Why is there both a truffle and truffle-config file?
 * Store transactionHash in localStorage and call info on it after page refreshes if it isn't in `store.getState().tokens` pool
 * Finish upgrade path by removing `old-nftoken-factory` and in turn get `.events.BoughtToken()` working again: (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)
 * Add more DApp tests and refactor React components to have both presentation and container components
-* Race condition: sometimes we do not have the list of accounts from MetaMask on time when page loads (google for onPageLoad code)
 
 ## Nice-to-haves:
 
@@ -120,6 +119,7 @@ Why is there both a truffle and truffle-config file?
 * ~~Get DApp tests working again~~
 * ~~On successful purchase, show a message about the new purchase and how it needs to be confirmed by the network, and redirect to show the now confirming token on Purchase History or My Tokens page~~
 * ~~Instead of 'Loading ...' should say confirming (show # of confirmations?)~~
+* ~~Race condition: sometimes we do not have the list of accounts from MetaMask on time when page loads (google for onPageLoad code)~~
 
 #### Gratitude
 
