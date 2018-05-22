@@ -22,7 +22,6 @@ export default function web3Wrap(WrappedComponent) {
       // Checking if Web3 has been injected by the browser (Mist/MetaMask/Trust/etc)
       if (
         (typeof web3 !== 'undefined')
-          && web3.isInitialized
           && web3.eth.defaultAccount
           && web3.eth.defaultAccount.length > 0
       ) {

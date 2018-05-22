@@ -9,7 +9,7 @@ import {
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-import web3Initializer from '@/web3Initializer'
+import { initWeb3 } from '@/initWeb3'
 
 import { addTokenAction, updateTokenAction } from '@/redux/actions'
 import { tokenReducer } from '@/redux/reducers'
@@ -34,8 +34,6 @@ const web3AllTokens = web3Wrap(AllTokens)
 
 let store = createStore(tokenReducer)
 
-web3Initializer()
-
 //
 // This component demos replaying the events from the blockchain network
 // to pull all data associated with the current wallet address into a
@@ -45,8 +43,14 @@ web3Initializer()
 export class Application extends Component {
 
   componentDidMount() {
-    if (typeof web3 !== 'undefined')
-      this.getTokensAndSubscribeToEvent();
+    // Checking if Web3 has been injected by the browser (Mist/MetaMask/Trust/etc)
+    if (typeof web3 === 'undefined') {
+      console.log('Currently requires MetaMask or similar')
+    } else {
+      initWeb3().then(() => {
+        this.getTokensAndSubscribeToEvent();
+      });
+    }
   }
 
   componentWillUnmount () {
