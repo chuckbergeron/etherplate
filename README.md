@@ -94,6 +94,7 @@ Why is there both a truffle and truffle-config file?
 
 ## Nice-to-haves:
 
+* Remove the build directory from the repo, build server-side on each deploy and possibly use truffle-migrate-off-chain (https://github.com/asselstine/truffle-migrate-off-chain)
 * Mock out a web3 object in the integration spec and test the happy path of filling out the form and purchasing a token via enzyme
 * Get `circleci` branch up and running, put a badge on the README for test runs
 * Switch all .jsx to simply .js
@@ -119,7 +120,6 @@ Why is there both a truffle and truffle-config file?
 * ~~On successful purchase, show a message about the new purchase and how it needs to be confirmed by the network, and redirect to show the now confirming token on Purchase History or My Tokens page~~
 * ~~Instead of 'Loading ...' should say confirming (show # of confirmations?)~~
 * ~~Race condition: sometimes we do not have the list of accounts from MetaMask on time when page loads (google for onPageLoad code)~~
-* ~~Remove the build directory from the repo, build server-side on each deploy and possibly use truffle-migrate-off-chain (https://github.com/asselstine/truffle-migrate-off-chain)~~
 
 #### Gratitude
 
