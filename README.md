@@ -82,6 +82,12 @@ Why is there both a truffle and truffle-config file?
 
 * On Windows, truffle-config.js is required. You can safely delete the one you don't need (ie on Mac/Linux you can delete truffle-config.js)
 
+# Building the Project
+
+`npm run build`
+
+*Note: Currently we are manually migrating contracts against the Ropsten & Rinkeby testnets, and checking the build into the repo. This is pretty lame. Ideally we would use a build script such as the [netlify-build.sh](https://github.com/chuckbergeron/etherplate/blob/master/netlify-build.sh) file and build / migrate contracts on the server.*
+
 
 ## TODO:
 
