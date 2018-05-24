@@ -1,6 +1,6 @@
 .navbar > .container {
-  padding-bottom: 1.5rem;
-  padding-top: 1.5rem;
+  padding-bottom: 1.0rem;
+  padding-top: 1.0rem;
 
   @media screen and (max-width: 720px) {
     padding-bottom: 0rem;
@@ -74,3 +74,6 @@
   color: $pink;
 }
 
+.navbar-item .address__short {
+  color: white;
+}

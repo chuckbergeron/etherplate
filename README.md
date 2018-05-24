@@ -91,20 +91,17 @@ Why is there both a truffle and truffle-config file?
 
 ## TODO:
 
-show account balance, network and account address / avatar
-like https://www.dropbox.com/s/v8v9uaogakjiljd/Screenshot%202018-05-23%2006.56.08.png?dl=0
-
-toast message to say token purchase was accepted
-see on etherscan link
-
-add frozen() to test immutability
-
+* Clean up JS in Header.jsx for controlling Bulma link active states
+* Show account balance, network and account address / avatar
+* Toast message to say token purchase was broadcast
+* Link to view on on etherscan
 * Integrate EthLawyer for better MetaMask events (login, logout, switch accounts, etc) (ensure this works for Web3-integrated browsers such as Trust) (https://github.com/QuantumProductions/eth-lawyer)
 * Set up a basic server to respond to tokenURI requests and store the tokenURI in the contract (`buyToken()` function)
 * Numbers (eg. 'NewSword222') in token name causes Ethereum transaction to fail (could be byte counting validation in smart contract)
 * Store transactionHash in localStorage and call info on it after page refreshes if it isn't in `store.getState().tokens` pool
 * Finish upgrade path by removing `oldNfTokenFactory` and in turn get `.events.BoughtToken()` working again: (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)
 * Add more DApp tests and refactor React components to have both presentation and container components
+* Add deepFreeze() to test immutability of Redux reducers
 
 ## Nice-to-haves:
 

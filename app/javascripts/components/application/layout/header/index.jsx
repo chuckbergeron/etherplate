@@ -3,6 +3,11 @@ import React, {
 } from 'react'
 import { Link } from 'react-router-dom'
 
+import Address from '@/components/address'
+
+import EtherplateWhiteLogoImage from '@/../images/logos/etherplate-logo--white--lg.png'
+import AvatarPlaceholderImage from '@/../images/avatar-placeholder.png'
+
 import './header.scss';
 
 export default class Header extends Component {
@@ -62,7 +67,7 @@ export default class Header extends Component {
           <div className="navbar-brand">
             <div className="navbar-item">
               <Link to="/">
-                <img src="/images/logos/etherplate-logo--red--lg.png" />
+                <img src={`/${EtherplateWhiteLogoImage}`} />
               </Link>
             </div>
 
@@ -73,18 +78,13 @@ export default class Header extends Component {
             </a>
           </div>
 
-          <div className="navbar-menu">
+          <div className="navbar-menu" id="navMenu">
             <div className="navbar-start">
               <div className="navbar-item">
-                <Link to='/'>
-                  <span>Home</span>
+                <Link to="/tokens/new" className="button is-info">
+                  <span>Purchase Token</span>
                 </Link>
               </div>
-            </div>
-          </div>
-
-          <div className="navbar-menu" id="navMenu">
-            <div className="navbar-end">
               <div className="navbar-item">
                 <Link to='/tokens/all'>
                   <span>All Tokens</span>
@@ -95,10 +95,23 @@ export default class Header extends Component {
                   <span>My Purchase History</span>
                 </Link>
               </div>
+            </div>
+          </div>
+
+          <div className="navbar-menu">
+            <div className="navbar-end">
               <div className="navbar-item">
-                <Link to="/tokens/new" className="button is-info">
-                  <span>Purchase Token</span>
-                </Link>
+                &bull; Rinkeby Testnet
+              </div>
+              <div className="navbar-item">
+                1.2 Ξ
+              </div>
+              <div className="navbar-item">
+                <figure className="image is-32x32">
+                  <img className="is-circular" src={`/${AvatarPlaceholderImage}`} />
+                </figure>
+                &nbsp;
+                <Address address='0xaefbae9e2582318a3869a347067109679d5861fb' toggleFull={true} />
               </div>
             </div>
           </div>
