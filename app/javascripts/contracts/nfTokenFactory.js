@@ -3,7 +3,7 @@ import NFTokenABI from '../../../build/contracts/NFToken.json'
 
 const nfToken = contract(NFTokenABI)
 
-export default async function () {
+export default async function (web3) {
   var contractInstance
 
   nfToken.setProvider(web3.currentProvider)

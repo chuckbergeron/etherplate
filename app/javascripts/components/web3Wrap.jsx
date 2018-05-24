@@ -1,6 +1,5 @@
-import React, {
-  Component
-} from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import Hero from '@/components/hero'
 
@@ -11,19 +10,18 @@ import PlayStoreButtonImg from '../../images/button--play-store.png'
 
 // This is a Higher Order Component (HOC) that wraps up any components that require
 // an unlocked Web3 account instance
-export default function web3Wrap(WrappedComponent) {
+export default function(WrappedComponent) {
 
   // ...and returns another component...
-  return class Web3Wrap extends React.Component {
+  const Web3Wrap = class extends Component {
 
     render () {
       var contents = <div />
 
-      // Checking if Web3 has been injected by the browser (Mist/MetaMask/Trust/etc)
       if (
-        (typeof web3 !== 'undefined')
-          && web3.eth.defaultAccount
-          && web3.eth.defaultAccount.length > 0
+        this.props.web3
+        && this.props.web3.eth.defaultAccount
+        && this.props.web3.eth.defaultAccount.length > 0
       ) {
         return <WrappedComponent {...this.props} />
       } else if ((typeof web3 !== 'undefined')) {
@@ -76,5 +74,9 @@ export default function web3Wrap(WrappedComponent) {
     }
 
   }
+
+  const mapStateToProps = (state, props) => { return { web3: state.web3 } }
+
+  return connect(mapStateToProps)(Web3Wrap);
 
 }

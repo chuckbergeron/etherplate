@@ -6,15 +6,15 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
-import { createStore } from 'redux'
+import { combineReducers, createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import { initWeb3 } from '@/initWeb3'
 
-import { addTokenAction, updateTokenAction } from '@/redux/actions'
-import { tokenReducer } from '@/redux/reducers'
+import { addTokenAction, updateTokenAction, addWeb3Action } from '@/redux/actions'
+import { tokens, web3 } from '@/redux/reducers'
 
-import oldNfToken from '@/contracts/old-nftoken-factory'
+import oldNfToken from '@/contracts/oldNfTokenFactory'
 
 import web3Wrap from '@/components/web3Wrap'
 
@@ -28,11 +28,8 @@ import CustomizeToken from './customize-token'
 import PurchaseHistory from './purchase-history'
 import AllTokens from './all-tokens'
 
-const web3CustomizeToken = web3Wrap(CustomizeToken)
-const web3PurchaseHistory = web3Wrap(PurchaseHistory)
-const web3AllTokens = web3Wrap(AllTokens)
-
-let store = createStore(tokenReducer)
+const rootReducer = combineReducers({ tokens, web3 })
+const store = createStore(rootReducer)
 
 //
 // This component demos replaying the events from the blockchain network
@@ -42,32 +39,38 @@ let store = createStore(tokenReducer)
 //
 export class Application extends Component {
 
-  componentDidMount() {
-    // Checking if Web3 has been injected by the browser (Mist/MetaMask/Trust/etc)
-    if (typeof web3 === 'undefined') {
-      console.log('Currently requires MetaMask or similar')
-    } else {
-      initWeb3().then(() => {
-        this.getTokensAndSubscribeToEvent();
-      });
+  constructor (props) {
+    super(props)
+    this.state = {
+      web3: null
     }
+
+    this.web3CustomizeToken = web3Wrap(CustomizeToken)
+    this.web3PurchaseHistory = web3Wrap(PurchaseHistory)
+    this.web3AllTokens = web3Wrap(AllTokens)
+  }
+
+  componentDidMount() {
+    initWeb3().then(newWeb3 => {
+      store.dispatch(addWeb3Action(newWeb3))
+      this.getTokensAndSubscribeToEvent();
+    }).catch((error) => console.error(error))
   }
 
   componentWillUnmount () {
-    // web3 betas stopWatching() is currently returning
-    // Uncaught Error: Invalid JSON RPC response: undefined
-    // when run against my current ganache-cli in development
-    // So we're not unsubscribing from this event listener properly at the moment
+    // web3 1.0 beta events are not yet implemented
+    // So we're not properly unsubscribing from this event listener properly at the moment
 
     // if (this.boughtTokenEvent)
       // this.boughtTokenEvent.stopWatching()
   }
 
   getTokensAndSubscribeToEvent() {
-    oldNfToken().then((instance) => {
+    oldNfToken(store.getState().web3).then((instance) => {
       this.boughtTokenEvent = instance.BoughtToken({}, {
         fromBlock: 0, toBlock: 'latest'
       });
+
       // ALl previous logs and also every time a new token is bought
       this.boughtTokenEvent.watch((error, result) => {
         if (error) {
@@ -120,9 +123,9 @@ export class Application extends Component {
           <Header />
 
           <Switch>
-            <Route path='/tokens/all' component={web3AllTokens} />
-            <Route path='/tokens/purchased' component={web3PurchaseHistory} />
-            <Route path='/tokens/new' component={web3CustomizeToken} />
+            <Route path='/tokens/all' component={this.web3AllTokens} />
+            <Route path='/tokens/purchased' component={this.web3PurchaseHistory} />
+            <Route path='/tokens/new' component={this.web3CustomizeToken} />
             <Route path='/tokens/:tokenId' component={Token} />
 
             <Route exact={true} path='/' component={Landing} />

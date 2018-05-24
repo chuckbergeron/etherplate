@@ -1,8 +1,8 @@
-import React, {
-  Component
-} from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-import nfToken from '@/contracts/nftoken-factory'
+import nfToken from '@/contracts/nfTokenFactory'
 import { BigNumber } from 'bignumber.js';
 
 import Hero from '@/components/hero'
@@ -15,32 +15,47 @@ require('./style.scss')
 // the current Ethereum addresses tokens directly, instead of
 // replaying the events as is the case in the parent Application component
 //
-export default class PurchaseHistory extends Component {
+const PurchaseHistory = class extends Component {
+
+  seconds = 1000;
 
   constructor (props) {
     super(props)
+
     this.state = {
       tokens: []
     }
   }
 
-  refreshTokenList() {
-    nfToken().then((instance) => {
-      instance.methods.myTokens().call((error, result) => {
-        this.setState({
-          tokens: result.map( (tokenId) => {
-            return new BigNumber(tokenId)
-          } )
-        })
-      })
-    })
-    .catch((error) => {
-      console.error(error)
-    })
+  componentDidMount() {
+    this._isMounted = true;
+
+    this.refreshTokensInterval = setInterval(this.refreshTokenList.bind(this), this.seconds);
   }
 
-  componentDidMount() {
-    this.refreshTokenList()
+  componentWillUnmount() {
+    this._isMounted = false;
+
+    clearInterval(this.refreshTokensInterval);
+  }
+
+  refreshTokenList() {
+    if (this.props && this.props.web3 !== null) {
+      nfToken(this.props.web3).then((instance) => {
+        instance.methods.myTokens().call((error, result) => {
+          if (this._isMounted) {
+            this.setState({
+              tokens: result.map( (tokenId) => {
+                return new BigNumber(tokenId)
+              } )
+            })
+          }
+        })
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+    }
   }
 
   render () {
@@ -80,3 +95,13 @@ export default class PurchaseHistory extends Component {
     return content
   }
 }
+
+PurchaseHistory.propTypes = {
+  web3: PropTypes.object
+}
+
+const mapStateToProps = (state, props) => {
+  return { web3: state.web3 }
+}
+
+export default connect(mapStateToProps)(PurchaseHistory)

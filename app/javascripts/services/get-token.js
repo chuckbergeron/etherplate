@@ -1,7 +1,7 @@
-import oldNfToken from '@/contracts/old-nftoken-factory'
+import oldNfToken from '@/contracts/oldNfTokenFactory'
 
-export default function (tokenId) {
-  var contract = oldNfToken()
+export default function (tokenId, web3) {
+  var contract = oldNfToken(web3)
 
   var tokenType = new Promise((resolve, reject) => {
     contract.then((instance) => {

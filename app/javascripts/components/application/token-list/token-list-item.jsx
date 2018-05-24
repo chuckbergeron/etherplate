@@ -1,6 +1,7 @@
 import React, {
   Component
 } from 'react'
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
@@ -11,7 +12,7 @@ import getToken from '@/services/get-token'
 
 import PlaceholderImg from '@/../images/placeholder.png'
 
-export default class TokenListItem extends Component {
+const TokenListItem = class extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -35,7 +36,8 @@ export default class TokenListItem extends Component {
   }
 
   getTokenFromBlockchain() {
-    getToken(this.props.token.args.tokenId.toNumber()).then((values) => {
+    let tokenId = this.props.token.args.tokenId.toNumber()
+    getToken(tokenId, this.props.web3).then((values) => {
       this.setState({
         type: values[0],
         title: values[1]
@@ -93,3 +95,7 @@ export default class TokenListItem extends Component {
 TokenListItem.propTypes = {
   token: PropTypes.object.isRequired
 }
+
+const mapStateToProps = (state, props) => { return { web3: state.web3 } }
+
+export default connect(mapStateToProps)(TokenListItem);

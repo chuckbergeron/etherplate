@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import range from 'lodash.range'
 import classnames from 'classnames'
 
-import nfToken from '@/contracts/nftoken-factory'
+import nfToken from '@/contracts/nfTokenFactory'
 
 import { addTokenAction } from '@/redux/actions'
 
@@ -37,7 +37,7 @@ const CustomizeToken = class extends Component {
     } else {
       let contractInstance
 
-      await nfToken().then(function(instance) {
+      await nfToken(this.props.web3).then(function(instance) {
         contractInstance = instance
       })
       .catch(function(error) {
@@ -145,12 +145,14 @@ const CustomizeToken = class extends Component {
   }
 }
 
+const mapStateToProps = (state, props) => { return { web3: state.web3 } }
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addToken: (token) => {
       dispatch(addTokenAction(token))
     }
-  };
-};
+  }
+}
 
-export default connect(null, mapDispatchToProps)(CustomizeToken);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomizeToken)

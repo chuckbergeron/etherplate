@@ -14,6 +14,9 @@ import getToken from '@/services/get-token'
 require('./style.scss')
 
 const Token = class extends Component {
+
+  seconds = 1000;
+
   constructor (props) {
     super(props)
     this.state = {
@@ -25,21 +28,37 @@ const Token = class extends Component {
     return this.props.match.params.tokenId
   }
 
-  componentDidMount () {
+  componentDidMount() {
+    this._isMounted = true;
+
+    this.getTokenInterval = setInterval(this.getTokenFromBlockchain.bind(this), this.seconds);
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+
+    clearInterval(this.getTokenInterval);
+  }
+
+  getTokenFromBlockchain() {
     var tokenId = this.tokenId()
 
-    getToken(tokenId).then((values) => {
-      this.setState({
-        type: values[0],
-        title: values[1]
+    if (this.props.web3 !== null) {
+      getToken(tokenId, this.props.web3).then((values) => {
+        if (this._isMounted) {
+          this.setState({
+            type: values[0],
+            title: values[1]
+          })
+        }
       })
-    })
+    }
   }
 
   render () {
     var content
     if (this.state.type !== null) {
-      var address = 'asdf';
+      var address = 'no-address';
       if (typeof this.props.token.transactionHash !== 'undefined')
         address = this.props.token.transactionHash
 
@@ -101,16 +120,17 @@ Token.defaultProps = {
 }
 
 const mapStateToProps = function(state, props) {
+  let token = {}
+
   if (state.tokens.length > 0) {
-    var tokenIdAsBigNumber = new BigNumber(props.match.params.tokenId)
-    return {
-      token: _.find(state.tokens, { args: { tokenId: tokenIdAsBigNumber } })
-    }
+    let tokenIdAsBigNumber = new BigNumber(props.match.params.tokenId)
+    token = _.find(state.tokens, { args: { tokenId: tokenIdAsBigNumber } })
   }
-  else
-    return {
-      token: {}
-    }
+
+  return {
+    token: token,
+    web3: state.web3
+  }
 }
 
 export default connect(mapStateToProps)(Token);

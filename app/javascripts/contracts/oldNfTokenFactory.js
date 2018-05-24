@@ -3,7 +3,7 @@ import NFTokenABI from '../../../build/contracts/NFToken.json'
 
 const oldNfTokenContract = contract(NFTokenABI)
 
-export default async function () {
+export default function (web3) {
   oldNfTokenContract.setProvider(web3.currentProvider)
   oldNfTokenContract.web3.eth.defaultAccount = web3.eth.accounts[0]
 

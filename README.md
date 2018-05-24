@@ -91,11 +91,19 @@ Why is there both a truffle and truffle-config file?
 
 ## TODO:
 
+show account balance, network and account address / avatar
+like https://www.dropbox.com/s/v8v9uaogakjiljd/Screenshot%202018-05-23%2006.56.08.png?dl=0
+
+toast message to say token purchase was accepted
+see on etherscan link
+
+add frozen() to test immutability
+
 * Integrate EthLawyer for better MetaMask events (login, logout, switch accounts, etc) (ensure this works for Web3-integrated browsers such as Trust) (https://github.com/QuantumProductions/eth-lawyer)
 * Set up a basic server to respond to tokenURI requests and store the tokenURI in the contract (`buyToken()` function)
 * Numbers (eg. 'NewSword222') in token name causes Ethereum transaction to fail (could be byte counting validation in smart contract)
 * Store transactionHash in localStorage and call info on it after page refreshes if it isn't in `store.getState().tokens` pool
-* Finish upgrade path by removing `old-nftoken-factory` and in turn get `.events.BoughtToken()` working again: (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)
+* Finish upgrade path by removing `oldNfTokenFactory` and in turn get `.events.BoughtToken()` working again: (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)
 * Add more DApp tests and refactor React components to have both presentation and container components
 
 ## Nice-to-haves:
@@ -103,7 +111,6 @@ Why is there both a truffle and truffle-config file?
 * Remove the build directory from the repo, build server-side on each deploy and possibly use truffle-migrate-off-chain (https://github.com/asselstine/truffle-migrate-off-chain)
 * Mock out a web3 object in the integration spec and test the happy path of filling out the form and purchasing a token via enzyme
 * Get `circleci` branch up and running, put a badge on the README for test runs
-* Switch all .jsx to simply .js
 * If the user switches their MetaMask account, need to refresh the page or stop/restart event listeners with new wallet address
 * Demo how ERC721 expects you to store data (such as the JSON response when the tokenURI is requested) as per https://eips.ethereum.org/EIPS/eip-721 (For instance, OpenSea has a server which takes a contract address and tokenID, which then does a GET request to the tokenURI to pull more info (as JSON) about the token (images, name, etc), for example: https://opensea-api.herokuapp.com/events/?asset_contract_address=0x06012c8cf97bead5deae237070f9587f8e7a266d&token_id=389343)
 

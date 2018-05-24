@@ -1,12 +1,13 @@
 import React, {
   Component
 } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import Hero from '@/components/hero'
 import TokenListItem from './token-list-item'
 
-export default class TokenList extends Component {
+const TokenList = class extends Component {
   render () {
     var content
     if (this.props.tokens.length) {
@@ -49,3 +50,7 @@ TokenList.propTypes = {
 TokenList.defaultProps = {
   tokens: []
 }
+
+const mapStateToProps = (state, props) => { return { web3: state.web3 } }
+
+export default connect(mapStateToProps)(TokenList)
