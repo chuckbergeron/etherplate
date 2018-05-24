@@ -1,18 +1,26 @@
-import React, {
-  Component
-} from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 
 import Address from '@/components/address'
+import Ether from '@/components/ether'
 
 import EtherplateWhiteLogoImage from '@/../images/logos/etherplate-logo--white--lg.png'
 import AvatarPlaceholderImage from '@/../images/avatar-placeholder.png'
 
 import './header.scss';
 
-export default class Header extends Component {
+const Header = class extends Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      balance: null
+    }
+  }
 
   componentDidMount() {
+
     // Get all "navbar-burger" elements
     var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
@@ -57,7 +65,41 @@ export default class Header extends Component {
 
   }
 
+  getBalance() {
+    this.props.web3.eth.getBalance(this.props.web3.eth.defaultAccount).then((balance) => {
+      this.setState({ balance })
+    })
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.web3 === null && this.props.web3 !== null)
+      this.getBalance();
+  }
+
   render () {
+    let networkInfo = null
+
+    if (this.props.web3 !== null)
+      networkInfo = (
+        <div className="navbar-menu">
+          <div className="navbar-end">
+            <div className="navbar-item">
+              &bull; Rinkeby Testnet
+            </div>
+            <div className="navbar-item">
+              <Ether wei={this.state.balance} />
+            </div>
+            <div className="navbar-item">
+              <figure className="image is-32x32">
+                <img className="is-circular" src={`/${AvatarPlaceholderImage}`} />
+              </figure>
+              &nbsp;
+              <Address address='0xaefbae9e2582318a3869a347067109679d5861fb' toggleFull={true} />
+            </div>
+          </div>
+        </div>
+      )
+
     return (
       <nav id="navbar" className="navbar is-fixed-top is-dark">
         <div id="specialShadow" className="bd-special-shadow">
@@ -98,26 +140,14 @@ export default class Header extends Component {
             </div>
           </div>
 
-          <div className="navbar-menu">
-            <div className="navbar-end">
-              <div className="navbar-item">
-                &bull; Rinkeby Testnet
-              </div>
-              <div className="navbar-item">
-                1.2 Ξ
-              </div>
-              <div className="navbar-item">
-                <figure className="image is-32x32">
-                  <img className="is-circular" src={`/${AvatarPlaceholderImage}`} />
-                </figure>
-                &nbsp;
-                <Address address='0xaefbae9e2582318a3869a347067109679d5861fb' toggleFull={true} />
-              </div>
-            </div>
-          </div>
+          {networkInfo}
         </div>
 
       </nav>
     )
   }
 }
+
+const mapStateToProps = (state) => { return { web3: state.web3 } }
+
+export default connect(mapStateToProps)(Header);
