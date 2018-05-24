@@ -44,11 +44,13 @@ const PurchaseHistory = class extends Component {
       nfToken(this.props.web3).then((instance) => {
         instance.methods.myTokens().call((error, result) => {
           if (this._isMounted) {
-            this.setState({
-              tokens: result.map( (tokenId) => {
-                return new BigNumber(tokenId)
-              } )
-            })
+            if (result !== undefined) {
+              this.setState({
+                tokens: result.map( (tokenId) => {
+                  return new BigNumber(tokenId)
+                } )
+              })
+            }
           }
         })
       })

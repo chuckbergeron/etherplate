@@ -20,21 +20,17 @@ export default class Address extends Component {
   }
 
   render () {
-    if (this.props.address) {
-      var address = this.props.address.toString()
-    } else {
-      address = ''
-    }
+    var address = (this.props.address === undefined) ? '?' : this.props.address.toString()
+
     if (this.state.showFull) {
       var displayed =
         <span className='tag address__full'>{address}</span>
-    }
-    else
-    {
+    } else {
       displayed = <span onClick={() => this.toggleFull()} className="address__short">
         {address.substring(0, 6)}...
       </span>
     }
+
     return (
       <span title={address} className='address'>
         {displayed}
@@ -44,7 +40,7 @@ export default class Address extends Component {
 }
 
 Address.propTypes = {
-  address: PropTypes.string.isRequired,
+  address: PropTypes.string,
   toggleFull: PropTypes.bool
 }
 

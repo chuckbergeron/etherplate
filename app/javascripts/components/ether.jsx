@@ -5,7 +5,7 @@ export default class Ether extends Component {
   render() {
     let balance = (this.props.wei === null)
       ? '?'
-      : parseInt(web3.fromWei(this.props.wei, 'ether')).toFixed(2)
+      : parseFloat(web3.fromWei(this.props.wei, 'ether')).toFixed(2)
 
     return `${balance} Ξ`
   }

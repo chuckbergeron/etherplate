@@ -15,7 +15,9 @@ const Header = class extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      balance: null
+      accountAddress: '',
+      balance: null,
+      networkName: ''
     }
   }
 
@@ -65,15 +67,53 @@ const Header = class extends Component {
 
   }
 
+  getNetworkName() {
+    this.props.web3.eth.net.getId().then(netId => {
+      let networkName = '';
+
+      switch (netId) {
+        case 1:
+          networkName = "Ethereum Main";
+          break
+        case 2:
+          networkName = "Morden Testnet";
+          break
+        case 3:
+          networkName = "Ropsten Testnet";
+          break
+        case 4:
+          networkName = "Rinkeby Testnet";
+          break
+        case 42:
+          networkName = "Kovan Testnet";
+          break
+        default:
+          networkName = "Unknown (localhost?)";
+      }
+
+      this.setState({ networkName })
+    })
+  }
+
   getBalance() {
-    this.props.web3.eth.getBalance(this.props.web3.eth.defaultAccount).then((balance) => {
+    this.props.web3.eth.getBalance(this.state.accountAddress).then((balance) => {
       this.setState({ balance })
     })
   }
 
+  getAccountAddress() {
+    this.props.web3.eth.getAccounts().then((accounts) => {
+      this.setState({ accountAddress: accounts[0] })
+    }).then(() => {
+      this.getBalance()
+    })
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.web3 === null && this.props.web3 !== null)
-      this.getBalance();
+    if (prevProps.web3 === null && this.props.web3 !== null) {
+      this.getNetworkName()
+      this.getAccountAddress()
+    }
   }
 
   render () {
@@ -84,7 +124,7 @@ const Header = class extends Component {
         <div className="navbar-menu">
           <div className="navbar-end">
             <div className="navbar-item">
-              &bull; Rinkeby Testnet
+              &bull; {this.state.networkName}
             </div>
             <div className="navbar-item">
               <Ether wei={this.state.balance} />
@@ -94,7 +134,7 @@ const Header = class extends Component {
                 <img className="is-circular" src={`/${AvatarPlaceholderImage}`} />
               </figure>
               &nbsp;
-              <Address address='0xaefbae9e2582318a3869a347067109679d5861fb' toggleFull={true} />
+              <Address address={this.state.accountAddress} toggleFull={true} />
             </div>
           </div>
         </div>
