@@ -91,24 +91,20 @@ Why is there both a truffle and truffle-config file?
 
 ## TODO:
 
-* Clean up JS in Header.jsx for controlling Bulma link active states
-* Show account balance, network and account address / avatar
 * Toast message to say token purchase was broadcast
 * Link to view on on etherscan
-* Integrate EthLawyer for better MetaMask events (login, logout, switch accounts, etc) (ensure this works for Web3-integrated browsers such as Trust) (https://github.com/QuantumProductions/eth-lawyer)
+* If the user switches their MetaMask account, need to refresh the page or stop/restart event listeners with new wallet address
+* Test w/ Web3-integrated browsers such as Trust
 * Set up a basic server to respond to tokenURI requests and store the tokenURI in the contract (`buyToken()` function)
-* Numbers (eg. 'NewSword222') in token name causes Ethereum transaction to fail (could be byte counting validation in smart contract)
-* Store transactionHash in localStorage and call info on it after page refreshes if it isn't in `store.getState().tokens` pool
-* Finish upgrade path by removing `oldNfTokenFactory` and in turn get `.events.BoughtToken()` working again: (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)
-* Add more DApp tests and refactor React components to have both presentation and container components
+* Refactor React components to have both presentation and container components
 * Add deepFreeze() to test immutability of Redux reducers
 
 ## Nice-to-haves:
 
+* Store transactionHash in localStorage and call info on it after page refreshes if it isn't in `store.getState().tokens` pool
 * Remove the build directory from the repo, build server-side on each deploy and possibly use truffle-migrate-off-chain (https://github.com/asselstine/truffle-migrate-off-chain)
-* Mock out a web3 object in the integration spec and test the happy path of filling out the form and purchasing a token via enzyme
+* Test the happy path of filling out the form and purchasing a token via (jest/enzyme)
 * Get `circleci` branch up and running, put a badge on the README for test runs
-* If the user switches their MetaMask account, need to refresh the page or stop/restart event listeners with new wallet address
 * Demo how ERC721 expects you to store data (such as the JSON response when the tokenURI is requested) as per https://eips.ethereum.org/EIPS/eip-721 (For instance, OpenSea has a server which takes a contract address and tokenID, which then does a GET request to the tokenURI to pull more info (as JSON) about the token (images, name, etc), for example: https://opensea-api.herokuapp.com/events/?asset_contract_address=0x06012c8cf97bead5deae237070f9587f8e7a266d&token_id=389343)
 
 
@@ -130,6 +126,11 @@ Why is there both a truffle and truffle-config file?
 * ~~On successful purchase, show a message about the new purchase and how it needs to be confirmed by the network, and redirect to show the now confirming token on Purchase History or My Tokens page~~
 * ~~Instead of 'Loading ...' should say confirming (show # of confirmations?)~~
 * ~~Race condition: sometimes we do not have the list of accounts from MetaMask on time when page loads (google for onPageLoad code)~~
+* ~~Mock out a web3 object in the specs~~
+* ~~Clean up JS in Header.jsx for controlling Bulma link active states~~
+* ~~Show account balance, network and account address / avatar~~
+* ~~Finish upgrade path by removing `oldNfTokenFactory` and in turn get `.events.BoughtToken()` working again: (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)~~
+
 
 #### Gratitude
 

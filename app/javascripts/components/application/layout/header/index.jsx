@@ -29,9 +29,6 @@ const Header = class extends Component {
   render () {
     return (
       <nav id="navbar" className="navbar is-fixed-top is-dark">
-        <div id="specialShadow" className="bd-special-shadow">
-        </div>
-
         <div className="container">
           <div className="navbar-brand">
             <div className="navbar-item">
