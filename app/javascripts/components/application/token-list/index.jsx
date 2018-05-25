@@ -51,6 +51,4 @@ TokenList.defaultProps = {
   tokens: []
 }
 
-const mapStateToProps = (state, props) => { return { web3: state.web3 } }
-
-export default connect(mapStateToProps)(TokenList)
+export default TokenList

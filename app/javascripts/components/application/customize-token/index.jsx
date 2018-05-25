@@ -37,10 +37,9 @@ const CustomizeToken = class extends Component {
     } else {
       let contractInstance
 
-      await nfToken(this.props.web3).then(function(instance) {
+      await nfToken(window.web3).then(function(instance) {
         contractInstance = instance
-      })
-      .catch(function(error) {
+      }).catch(function(error) {
         console.error(error)
       })
 
@@ -145,8 +144,6 @@ const CustomizeToken = class extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => { return { web3: state.web3 } }
-
 const mapDispatchToProps = (dispatch) => {
   return {
     addToken: (token) => {
@@ -155,4 +152,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CustomizeToken)
+export default connect(null, mapDispatchToProps)(CustomizeToken)

@@ -9,10 +9,8 @@ import {
 import { combineReducers, createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-import { initWeb3 } from '@/initWeb3'
-
-import { addTokenAction, updateTokenAction, addWeb3Action } from '@/redux/actions'
-import { tokens, web3 } from '@/redux/reducers'
+import { addTokenAction, updateTokenAction } from '@/redux/actions'
+import { tokens } from '@/redux/reducers'
 
 import oldNfToken from '@/contracts/oldNfTokenFactory'
 
@@ -28,7 +26,9 @@ import CustomizeToken from './customize-token'
 import PurchaseHistory from './purchase-history'
 import AllTokens from './all-tokens'
 
-const rootReducer = combineReducers({ tokens, web3 })
+// Add more reducers to this object:
+const rootReducer = combineReducers({ tokens })
+
 const store = createStore(rootReducer)
 
 //
@@ -51,10 +51,8 @@ export class Application extends Component {
   }
 
   componentDidMount() {
-    initWeb3().then(newWeb3 => {
-      store.dispatch(addWeb3Action(newWeb3))
+    if (window.web3 !== undefined)
       this.getTokensAndSubscribeToEvent();
-    }).catch((error) => console.error(error))
   }
 
   componentWillUnmount () {
@@ -66,7 +64,7 @@ export class Application extends Component {
   }
 
   getTokensAndSubscribeToEvent() {
-    oldNfToken(store.getState().web3).then((instance) => {
+    oldNfToken(window.web3).then((instance) => {
       this.boughtTokenEvent = instance.BoughtToken({}, {
         fromBlock: 0, toBlock: 'latest'
       });

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import nfToken from '@/contracts/nfTokenFactory'
@@ -30,13 +29,7 @@ const PurchaseHistory = class extends Component {
   componentDidMount() {
     this._isMounted = true;
 
-    // this.refreshTokensInterval = setInterval(this.refreshTokenList.bind(this), this.seconds);
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.web3 === null && this.props.web3 !== null) {
-      this.refreshTokenList();
-    }
+    this.refreshTokenList();
   }
 
   componentWillUnmount() {
@@ -44,24 +37,22 @@ const PurchaseHistory = class extends Component {
   }
 
   refreshTokenList() {
-    if (this.props && this.props.web3 !== null) {
-      nfToken(this.props.web3).then((instance) => {
-        instance.methods.myTokens().call((error, result) => {
-          if (this._isMounted) {
-            if (result !== undefined) {
-              this.setState({
-                tokens: result.map( (tokenId) => {
-                  return new BigNumber(tokenId)
-                } )
-              })
-            }
+    nfToken(window.web3).then((instance) => {
+      instance.methods.myTokens().call((error, result) => {
+        if (this._isMounted) {
+          if (result !== undefined) {
+            this.setState({
+              tokens: result.map( (tokenId) => {
+                return new BigNumber(tokenId)
+              } )
+            })
           }
-        })
+        }
       })
-      .catch((error) => {
-        console.error(error)
-      })
-    }
+    })
+    .catch((error) => {
+      console.error(error)
+    })
   }
 
   render () {
@@ -106,8 +97,4 @@ PurchaseHistory.propTypes = {
   web3: PropTypes.object
 }
 
-const mapStateToProps = (state, props) => {
-  return { web3: state.web3 }
-}
-
-export default connect(mapStateToProps)(PurchaseHistory)
+export default PurchaseHistory

@@ -1,7 +1,6 @@
 import React, {
   Component
 } from 'react'
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -15,7 +14,7 @@ const TokenRow = class extends Component {
   }
 
   componentDidMount () {
-    getToken(this.props.tokenId, this.props.web3).then((values) => {
+    getToken(this.props.tokenId, window.web3).then((values) => {
       this.setState({
         type: values[0],
         title: values[1]
@@ -45,6 +44,4 @@ TokenRow.propTypes = {
   tokenId: PropTypes.number.isRequired
 }
 
-const mapStateToProps = (state, props) => { return { web3: state.web3 } }
-
-export default connect(mapStateToProps)(TokenRow);
+export default TokenRow;

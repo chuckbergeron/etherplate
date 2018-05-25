@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom'
 
 import classNames from 'classnames';
@@ -84,6 +83,4 @@ const Header = class extends Component {
   }
 }
 
-const mapStateToProps = (state) => { return { web3: state.web3 } }
-
-export default connect(mapStateToProps)(Header);
+export default Header;

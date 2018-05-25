@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 
 import Hero from '@/components/hero'
 
@@ -19,9 +18,9 @@ export default function(WrappedComponent) {
       var contents = <div />
 
       if (
-        this.props.web3
-        && this.props.web3.eth.defaultAccount
-        && this.props.web3.eth.defaultAccount.length > 0
+        window.web3
+        && window.web3.eth.defaultAccount
+        && window.web3.eth.defaultAccount.length > 0
       ) {
         return <WrappedComponent {...this.props} />
       } else if ((typeof web3 !== 'undefined')) {
@@ -75,8 +74,6 @@ export default function(WrappedComponent) {
 
   }
 
-  const mapStateToProps = (state, props) => { return { web3: state.web3 } }
-
-  return connect(mapStateToProps)(Web3Wrap);
+  return Web3Wrap;
 
 }

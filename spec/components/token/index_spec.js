@@ -3,16 +3,16 @@ import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, { mount } from 'enzyme'
 import { combineReducers, createStore } from 'redux'
 import { Provider } from 'react-redux'
-import { tokens, web3 } from '@/redux/reducers'
+import { tokens } from '@/redux/reducers'
 
 import Token from '@/components/application/token';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const rootReducer = combineReducers({ tokens, web3 })
+const rootReducer = combineReducers({ tokens })
 const store = createStore(rootReducer)
 
-function setup() {
+async function setup() {
   const props = {
     token: {},
     match: {

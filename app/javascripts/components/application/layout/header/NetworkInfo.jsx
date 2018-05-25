@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
 
 import Address from '@/components/address'
 import Ether from '@/components/ether'
@@ -20,8 +19,17 @@ const NetworkInfo = class extends Component {
     }
   }
 
+  componentDidMount() {
+    if (window.web3 !== undefined) {
+      this.setState({ accountAddress: window.web3.eth.defaultAccount })
+
+      this.getNetworkName()
+      this.getBalance()
+    }
+  }
+
   getNetworkName() {
-    this.props.web3.eth.net.getId().then(netId => {
+    window.web3.eth.net.getId().then(netId => {
       let networkName = '';
 
       switch (netId) {
@@ -49,28 +57,13 @@ const NetworkInfo = class extends Component {
   }
 
   getBalance() {
-    this.props.web3.eth.getBalance(this.state.accountAddress).then((balance) => {
+    window.web3.eth.getBalance(window.web3.eth.defaultAccount).then((balance) => {
       this.setState({ balance })
     })
   }
 
-  getAccountAddress() {
-    this.props.web3.eth.getAccounts().then((accounts) => {
-      this.setState({ accountAddress: accounts[0] })
-    }).then(() => {
-      this.getBalance()
-    })
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.web3 === null && this.props.web3 !== null) {
-      this.getNetworkName()
-      this.getAccountAddress()
-    }
-  }
-
   render() {
-    if (this.props.web3 === null) {
+    if (window.web3 === undefined) {
       return null
     } else {
       return (
@@ -96,6 +89,4 @@ const NetworkInfo = class extends Component {
   }
 }
 
-const mapStateToProps = (state) => { return { web3: state.web3 } }
-
-export default connect(mapStateToProps)(NetworkInfo);
+export default NetworkInfo;

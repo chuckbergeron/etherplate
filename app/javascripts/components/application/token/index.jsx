@@ -15,8 +15,6 @@ require('./style.scss')
 
 const Token = class extends Component {
 
-  seconds = 1000;
-
   constructor (props) {
     super(props)
     this.state = {
@@ -31,28 +29,22 @@ const Token = class extends Component {
   componentDidMount() {
     this._isMounted = true;
 
-    this.getTokenInterval = setInterval(this.getTokenFromBlockchain.bind(this), this.seconds);
+    this.getTokenFromBlockchain();
   }
 
   componentWillUnmount() {
     this._isMounted = false;
-
-    clearInterval(this.getTokenInterval);
   }
 
   getTokenFromBlockchain() {
-    var tokenId = this.tokenId()
-
-    if (this.props.web3 !== null) {
-      getToken(tokenId, this.props.web3).then((values) => {
-        if (this._isMounted) {
-          this.setState({
-            type: values[0],
-            title: values[1]
-          })
-        }
-      })
-    }
+    getToken(this.tokenId(), window.web3).then((values) => {
+      if (this._isMounted) {
+        this.setState({
+          type: values[0],
+          title: values[1]
+        })
+      }
+    })
   }
 
   render () {
@@ -128,8 +120,7 @@ const mapStateToProps = function(state, props) {
   }
 
   return {
-    token: token,
-    web3: state.web3
+    token: token
   }
 }
 

@@ -1,23 +1,7 @@
-import { ADD_TOKEN, UPDATE_TOKEN, ADD_WEB3 } from './actions'
+import { ADD_TOKEN, UPDATE_TOKEN } from './actions'
 
 const initialTokenState = {
   tokens: []
-}
-
-const initialWeb3State = {
-  web3: null
-}
-
-export function web3(state = null, action) {
-  switch (action.type) {
-    case ADD_WEB3:
-      return action.web3;
-      // return Object.assign({}, state, {
-      //   web3: action.web3
-      // })
-    default:
-      return state
-  }
 }
 
 export function tokens(state = [], action) {
