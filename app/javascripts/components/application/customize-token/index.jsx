@@ -43,29 +43,32 @@ const CustomizeToken = class extends Component {
         console.error(error)
       })
 
-      contractInstance.methods.buyToken(this.state.tokenType, this.state.title)
-      .send()
-      .once('transactionHash', (hash) => {
-        this.props.addToken({ transactionHash: hash })
-        this.setState({ redirectToTokenList: true })
-      })
-      .once('receipt', (receipt) => {
-        // console.log(receipt)
-      })
-      .on('confirmation', (confNumber, receipt) => {
-        // happens for every blockchain network confirmation
-        // console.log(confNumber, receipt)
-      })
-      .on('error', (error, receipt) => {
-        console.error(error)
-        console.error(receipt)
-        this.setState({ errorMessage: error.message })
-      })
-      .then(function(receipt){
-        // will be fired once the receipt its mined
-        // console.log(receipt)
-      });
+      let txHash = contractInstance.buyToken(this.state.tokenType, this.state.title);
+      this.props.addToken({ transactionHash: txHash })
+      this.setState({ redirectToTokenList: true })
 
+      // contractInstance.methods.buyToken(this.state.tokenType, this.state.title)
+      // .send()
+      // .once('transactionHash', (hash) => {
+      //   this.props.addToken({ transactionHash: hash })
+      //   this.setState({ redirectToTokenList: true })
+      // })
+      // .once('receipt', (receipt) => {
+      //   // console.log(receipt)
+      // })
+      // .on('confirmation', (confNumber, receipt) => {
+      //   // happens for every blockchain network confirmation
+      //   // console.log(confNumber, receipt)
+      // })
+      // .on('error', (error, receipt) => {
+      //   console.error(error)
+      //   console.error(receipt)
+      //   this.setState({ errorMessage: error.message })
+      // })
+      // .then(function(receipt){
+      //   // will be fired once the receipt its mined
+      //   // console.log(receipt)
+      // });
     }
   }
 

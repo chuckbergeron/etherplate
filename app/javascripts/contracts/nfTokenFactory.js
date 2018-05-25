@@ -1,18 +1,11 @@
 import TruffleContract from 'truffle-contract'
 import NFTokenABI from '../../../build/contracts/NFToken.json'
 
-const nfToken = TruffleContract(NFTokenABI)
+const nfTokenContract = TruffleContract(NFTokenABI)
 
-export default async function (web3) {
-  var contractInstance
+export default function (web3) {
+  nfTokenContract.setProvider(web3.currentProvider)
+  nfTokenContract.web3.eth.defaultAccount = web3.eth.accounts[0]
 
-  nfToken.setProvider(web3.currentProvider)
-  nfToken.web3.eth.defaultAccount = web3.eth.defaultAccount
-
-  await nfToken.deployed().then((instance) => { contractInstance = instance })
-
-  return new web3.eth.Contract(contractInstance.abi, contractInstance.address, {
-    from: web3.eth.defaultAccount
-  })
+  return nfTokenContract.deployed()
 }
-

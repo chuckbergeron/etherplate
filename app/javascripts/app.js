@@ -6,11 +6,8 @@ window.addEventListener('load', async function() {
   if (typeof window.web3 !== 'undefined') {
     window.web3 = new Web3(window.web3.currentProvider);
 
-    await window.web3.eth.getAccounts().then((accounts) => {
-      window.web3.eth.defaultAccount = accounts[0]
-    }).catch((error) => {
-      console.error(error);
-    });
+    // window.web3 = new Web3(provider);
+    window.web3.eth.defaultAccount = window.web3.eth.accounts[0]
   }
 
   init(document.getElementById('application'))

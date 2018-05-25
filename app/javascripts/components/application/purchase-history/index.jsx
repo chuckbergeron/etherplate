@@ -38,17 +38,16 @@ const PurchaseHistory = class extends Component {
 
   refreshTokenList() {
     nfToken(window.web3).then((instance) => {
-      instance.methods.myTokens().call((error, result) => {
-        if (this._isMounted) {
-          if (result !== undefined) {
-            this.setState({
-              tokens: result.map( (tokenId) => {
-                return new BigNumber(tokenId)
-              } )
-            })
-          }
-        }
-      })
+      let tokenIds = instance.myTokens();
+
+      if (this._isMounted && tokenIds !== undefined) {
+        this.setState({
+          tokens: tokenIds.map( (tokenId) => {
+            return new BigNumber(tokenId)
+          } )
+        })
+      }
+
     })
     .catch((error) => {
       console.error(error)

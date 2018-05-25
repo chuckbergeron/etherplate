@@ -12,7 +12,7 @@ import { Provider } from 'react-redux'
 import { addTokenAction, updateTokenAction } from '@/redux/actions'
 import { tokens } from '@/redux/reducers'
 
-import oldNfToken from '@/contracts/oldNfTokenFactory'
+import nfToken from '@/contracts/nfTokenFactory'
 
 import web3Wrap from '@/components/web3Wrap'
 
@@ -56,15 +56,12 @@ export class Application extends Component {
   }
 
   componentWillUnmount () {
-    // web3 1.0 beta events are not yet implemented
-    // So we're not properly unsubscribing from this event listener properly at the moment
-
-    // if (this.boughtTokenEvent)
-      // this.boughtTokenEvent.stopWatching()
+    if (this.boughtTokenEvent)
+      this.boughtTokenEvent.stopWatching()
   }
 
   getTokensAndSubscribeToEvent() {
-    oldNfToken(window.web3).then((instance) => {
+    nfToken(window.web3).then((instance) => {
       this.boughtTokenEvent = instance.BoughtToken({}, {
         fromBlock: 0, toBlock: 'latest'
       });
@@ -86,33 +83,6 @@ export class Application extends Component {
       console.error(error)
     })
   }
-
-  // New way of doing things in Web3 beta 1.0 but doesn't work w/ current MetaMask provider
-  // (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)
-  //
-  // getTokensAndSubscribeToEvent() {
-  //   nfToken().then((instance) => {
-  //     console.log(instance)
-  //     this.boughtTokenEvent = instance.events.BoughtToken({
-  //       fromBlock: 0,
-  //       toBlock: 'latest'
-  //     })
-  //     .on('data', (event) => {
-  //       // All previous logs and also every time a new token is bought
-  //       console.log('bought token !')
-  //       console.log(event)
-  //       store.dispatch(addTokenAction(event))
-  //     })
-  //     .on('changed', (event) => {
-  //       console.log(event)
-  //       console.log('event changed?')
-  //         // remove event from local database
-  //     })
-  //     .on('error', console.error);
-  //   }).catch((error) => {
-  //     console.error(error)
-  //   })
-  // }
 
   render (){
     return (

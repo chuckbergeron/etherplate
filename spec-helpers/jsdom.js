@@ -5,14 +5,7 @@ global.document = dom.window.document
 global.window = dom.window
 global.navigator = dom.window.navigator
 
-
+// Inject the Web3 instance with a localhost provider for integration specs
 let provider = new Web3.providers.HttpProvider("http://localhost:8545");
 global.window.web3 = new Web3(provider);
-
-(async () => {
-  await window.web3.eth.getAccounts().then((accounts) => {
-    window.web3.eth.defaultAccount = accounts[0]
-  })
-})().catch(err => {
-    console.error(err);
-});
+global.window.web3.eth.defaultAccount = global.window.web3.eth.accounts[0]

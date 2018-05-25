@@ -29,37 +29,38 @@ const NetworkInfo = class extends Component {
   }
 
   getNetworkName() {
-    window.web3.eth.net.getId().then(netId => {
-      let networkName = '';
+    let networkId = web3.version.network
+    let networkName = '';
 
-      switch (netId) {
-        case 1:
-          networkName = "Ethereum Main";
-          break
-        case 2:
-          networkName = "Morden Testnet";
-          break
-        case 3:
-          networkName = "Ropsten Testnet";
-          break
-        case 4:
-          networkName = "Rinkeby Testnet";
-          break
-        case 42:
-          networkName = "Kovan Testnet";
-          break
-        default:
-          networkName = "Unknown (localhost?)";
-      }
+    switch (networkId) {
+      case 1:
+        networkName = "Ethereum Main";
+        break
+      case 2:
+        networkName = "Morden Testnet";
+        break
+      case 3:
+        networkName = "Ropsten Testnet";
+        break
+      case 4:
+        networkName = "Rinkeby Testnet";
+        break
+      case 42:
+        networkName = "Kovan Testnet";
+        break
+      default:
+        networkName = "Unknown (localhost?)";
+    }
 
-      this.setState({ networkName })
-    })
+    this.setState({ networkName })
   }
 
   getBalance() {
-    window.web3.eth.getBalance(window.web3.eth.defaultAccount).then((balance) => {
-      this.setState({ balance })
-    })
+    window.web3.eth.getBalance(window.web3.eth.defaultAccount, (err, balance) => {
+      if (err) console.error(err)
+
+      this.setState({ balance: balance.toString() })
+    });
   }
 
   render() {
