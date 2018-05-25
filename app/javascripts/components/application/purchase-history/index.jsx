@@ -16,13 +16,11 @@ require('./style.scss')
 //
 const PurchaseHistory = class extends Component {
 
-  seconds = 1000;
-
   constructor (props) {
     super(props)
 
     this.state = {
-      tokens: []
+      tokenIds: []
     }
   }
 
@@ -38,16 +36,11 @@ const PurchaseHistory = class extends Component {
 
   refreshTokenList() {
     nfToken(window.web3).then((instance) => {
-      let tokenIds = instance.myTokens();
-
-      if (this._isMounted && tokenIds !== undefined) {
-        this.setState({
-          tokens: tokenIds.map( (tokenId) => {
-            return new BigNumber(tokenId)
-          } )
-        })
-      }
-
+      instance.myTokens().then((result) => {
+        this.setState({ tokenIds: result })
+      }).catch((error) => {
+        console.error(error)
+      })
     })
     .catch((error) => {
       console.error(error)
@@ -55,9 +48,9 @@ const PurchaseHistory = class extends Component {
   }
 
   render () {
-    var content
-    if (this.state.tokens.length) {
-      var tokens = [...this.state.tokens].reverse()
+    let content
+    if (this.state.tokenIds.length) {
+      let tokenIds = [...this.state.tokenIds].reverse()
 
       content =
         <section className='section'>
@@ -74,7 +67,9 @@ const PurchaseHistory = class extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {tokens.map((tokenId) => <TokenRow tokenId={tokenId.toNumber()} key={tokenId.toNumber()} /> )}
+                  {tokenIds.map((tokenId) => {
+                    return <TokenRow tokenId={tokenId.toNumber()} key={tokenId.toNumber()} />
+                  } )}
                 </tbody>
               </table>
             </div>

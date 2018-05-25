@@ -33,19 +33,19 @@ const NetworkInfo = class extends Component {
     let networkName = '';
 
     switch (networkId) {
-      case 1:
+      case '1':
         networkName = "Ethereum Main";
         break
-      case 2:
+      case '2':
         networkName = "Morden Testnet";
         break
-      case 3:
+      case '3':
         networkName = "Ropsten Testnet";
         break
-      case 4:
+      case '4':
         networkName = "Rinkeby Testnet";
         break
-      case 42:
+      case '42':
         networkName = "Kovan Testnet";
         break
       default:
@@ -71,7 +71,7 @@ const NetworkInfo = class extends Component {
         <div className="navbar-menu">
           <div className="navbar-end">
             <div className="navbar-item">
-              &bull; {this.state.networkName}
+              <span class="has-text-success">{'\u2b24'}</span> &nbsp; {this.state.networkName}
             </div>
             <div className="navbar-item">
               <Ether wei={this.state.balance} />
