@@ -30,13 +30,17 @@ const PurchaseHistory = class extends Component {
   componentDidMount() {
     this._isMounted = true;
 
-    this.refreshTokensInterval = setInterval(this.refreshTokenList.bind(this), this.seconds);
+    // this.refreshTokensInterval = setInterval(this.refreshTokenList.bind(this), this.seconds);
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.web3 === null && this.props.web3 !== null) {
+      this.refreshTokenList();
+    }
   }
 
   componentWillUnmount() {
     this._isMounted = false;
-
-    clearInterval(this.refreshTokensInterval);
   }
 
   refreshTokenList() {

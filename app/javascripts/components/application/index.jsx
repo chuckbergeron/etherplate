@@ -120,7 +120,7 @@ export class Application extends Component {
     return (
       <Provider store={store}>
         <div>
-          <Header />
+          <Route path="/:active?" component={Header} />
 
           <Switch>
             <Route path='/tokens/all' component={this.web3AllTokens} />
