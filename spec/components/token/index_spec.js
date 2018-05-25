@@ -12,7 +12,7 @@ Enzyme.configure({ adapter: new Adapter() });
 const rootReducer = combineReducers({ tokens })
 const store = createStore(rootReducer)
 
-async function setup() {
+function setup() {
   const props = {
     token: {},
     match: {
@@ -38,29 +38,30 @@ describe('components', () => {
   describe('Token', () => {
     it('should render container if no state set yet', () => {
       const { enzymeWrapper } = setup()
+      console.log(enzymeWrapper.debug())
 
       expect(enzymeWrapper.find('div').hasClass('container')).toBe(true)
     })
 
-    xdescribe('after getToken() (with state set)', () => {
-      it('should render the image', () => {
-        const { enzymeWrapper, props } = setup()
+    // xdescribe('after getToken() (with state set)', () => {
+    //   it('should render the image', () => {
+    //     const { enzymeWrapper, props } = setup()
 
-        expect(false).toBe(1)
-      })
+    //     expect(false).toBe(1)
+    //   })
 
-      it('should render the transaction hash', () => {
-        const { enzymeWrapper, props } = setup()
+    //   it('should render the transaction hash', () => {
+    //     const { enzymeWrapper, props } = setup()
 
-        expect(false).toBe(1)
-      })
+    //     expect(false).toBe(1)
+    //   })
 
-      it('should render the transaction ID', () => {
-        const { enzymeWrapper, props } = setup()
+    //   it('should render the transaction ID', () => {
+    //     const { enzymeWrapper, props } = setup()
 
-        expect(false).toBe(1)
-      })
-    })
+    //     expect(false).toBe(1)
+    //   })
+    // })
 
   })
 })

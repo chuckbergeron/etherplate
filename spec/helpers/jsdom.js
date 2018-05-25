@@ -7,14 +7,11 @@ global.navigator = dom.window.navigator
 
 
 let provider = new Web3.providers.HttpProvider("http://localhost:8545");
-window.web3 = new Web3(provider);
-console.log(window.web3.currentProvider);
+global.window.web3 = new Web3(provider);
 
 (async () => {
-  let eth = window.web3.eth
-
-  await eth.getAccounts().then((accounts) => {
-    eth.defaultAccount = accounts[0]
+  await window.web3.eth.getAccounts().then((accounts) => {
+    window.web3.eth.defaultAccount = accounts[0]
   })
 })().catch(err => {
     console.error(err);

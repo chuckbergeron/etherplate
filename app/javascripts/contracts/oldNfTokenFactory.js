@@ -1,7 +1,7 @@
-import contract from 'truffle-contract'
+import TruffleContract from 'truffle-contract'
 import NFTokenABI from '../../../build/contracts/NFToken.json'
 
-const oldNfTokenContract = contract(NFTokenABI)
+const oldNfTokenContract = TruffleContract(NFTokenABI)
 
 export default function (web3) {
   console.log('*********************')

@@ -37,6 +37,10 @@ const Token = class extends Component {
   }
 
   getTokenFromBlockchain() {
+    console.log('##################')
+    console.log(window.web3)
+    console.log('##################')
+
     getToken(this.tokenId(), window.web3).then((values) => {
       if (this._isMounted) {
         this.setState({
