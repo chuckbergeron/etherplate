@@ -86,7 +86,13 @@ Why is there both a truffle and truffle-config file?
 
 `npm run build`
 
-*Note: Currently we are manually migrating contracts against the Ropsten & Rinkeby testnets, and checking the build into the repo. This is pretty lame. Ideally we would use a build script such as the [netlify-build.sh](https://github.com/chuckbergeron/etherplate/blob/master/netlify-build.sh) file and build / migrate contracts on the server.*
+*Note: Currently we are manually migrating contracts against the Ropsten & Rinkeby testnets, and checking the build into the repo. This is less than ideal. It would be better to use a build script such as the [netlify-build.sh](https://github.com/chuckbergeron/etherplate/blob/master/netlify-build.sh) file and compile contracts on the server.*
+
+# Running the Tests
+
+Simply:
+
+`npm run test`
 
 
 ## TODO:
