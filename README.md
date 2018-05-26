@@ -97,6 +97,7 @@ Simply:
 
 ## TODO:
 
+* Add a price for each token (say 0.03 eth)
 * Toast message to say token purchase was broadcast
 * Link to view on on etherscan
 * If the user switches their MetaMask account, need to refresh the page or stop/restart event listeners with new wallet address
@@ -104,6 +105,7 @@ Simply:
 * Set up a basic server to respond to tokenURI requests and store the tokenURI in the contract (`buyToken()` function)
 * Refactor React components to have both presentation and container components
 * Add deepFreeze() to test immutability of Redux reducers
+* Poll for MetaMask events (logout and switch accounts, etc) (ensure this works for Web3-integrated browsers such as Trust)
 
 ## Nice-to-haves:
 
