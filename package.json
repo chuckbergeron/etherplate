@@ -7,7 +7,7 @@
     "lint": "eslint app",
     "build": "webpack --mode production --config webpack.prod.js",
     "dev": "webpack-dev-server --config webpack.dev.js --mode development",
-    "test": "babel-node spec/support/run.js"
+    "test": "jest"
   },
   "author": "Chuck Bergeron",
   "license": "CC0",
