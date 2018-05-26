@@ -1,110 +1,83 @@
-import React, {
-  Component
-} from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
+
+import classNames from 'classnames';
+
+import NetworkInfo from '@/components/application/layout/header/NetworkInfo'
+
+import EtherplateWhiteLogoImage from '@/../images/logos/etherplate-logo--white--lg.png'
 
 import './header.scss';
 
-export default class Header extends Component {
+const Header = class extends Component {
 
-  componentDidMount() {
-    // Get all "navbar-burger" elements
-    var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-    // Check if there are any navbar burgers
-    if ($navbarBurgers.length > 0) {
-
-      // Add a click event on each of them
-      $navbarBurgers.forEach(function ($el) {
-        $el.addEventListener('click', function () {
-
-          // Get the target from the "data-target" attribute
-          var target = $el.dataset.target;
-          var $target = document.getElementById(target);
-
-          // Toggle the class on both the "navbar-burger" and the "navbar-menu"
-          $el.classList.toggle('is-active');
-          $target.classList.toggle('is-active');
-        });
-      });
+  constructor (props) {
+    super(props)
+    this.state = {
+      mobileNavActive: false
     }
+  }
 
-    // Links
-    var $navbarLinks = Array.prototype.slice.call(document.querySelectorAll('.navbar-item a'), 0);
+  handleBurgerClick = (event) => {
+    event.preventDefault()
 
-    // Check if there are any navbar burgers
-    if ($navbarBurgers.length > 0) {
-      // Add a click event on each of them
-      $navbarLinks.forEach(function ($el) {
-        $el.addEventListener('click', function () {
-          $navbarLinks.forEach(function ($el) { $el.classList.remove('is-active'); });
-
-          // Get the target from the "data-target" attribute of navbarBurger
-          var target = $navbarBurgers[0].dataset.target;
-          var $target = document.getElementById(target);
-
-          // Toggle the class on both the "navbar-item" and the "navbar-menu"
-          $el.classList.toggle('is-active');
-          $target.classList.toggle('is-active');
-        });
-      });
-    }
-
+    this.setState({
+      mobileNavActive: !this.state.mobileNavActive
+    })
   }
 
   render () {
     return (
       <nav id="navbar" className="navbar is-fixed-top is-dark">
-        <div id="specialShadow" className="bd-special-shadow">
-        </div>
-
         <div className="container">
           <div className="navbar-brand">
             <div className="navbar-item">
-              <Link to="/">
-                <img src="/images/logos/etherplate-logo--red--lg.png" />
-              </Link>
+              <NavLink to="/">
+                <img src={`/${EtherplateWhiteLogoImage}`} />
+              </NavLink>
             </div>
 
-            <a role="button" className="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+            <a
+              role="button"
+              className={classNames('navbar-burger', { 'is-active': this.state.mobileNavActive })}
+              data-target="navMenu"
+              aria-label="menu"
+              aria-expanded="false"
+              onClick={this.handleBurgerClick}>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
             </a>
           </div>
 
-          <div className="navbar-menu">
+          <div
+            id="navMenu"
+            className={classNames('navbar-menu', { 'is-active': this.state.mobileNavActive })}>
             <div className="navbar-start">
               <div className="navbar-item">
-                <Link to='/'>
-                  <span>Home</span>
-                </Link>
+                <NavLink to="/tokens/new" activeClassName="is-active"  className="button is-info">
+                  <span>Purchase Token</span>
+                </NavLink>
+              </div>
+              <div className='navbar-item'>
+                <NavLink to="/tokens/all" activeClassName="is-active">
+                  <span>All Tokens</span>
+                </NavLink>
+              </div>
+              <div className="navbar-item">
+                <NavLink to="/tokens/purchased" activeClassName="is-active">
+                  <span>My Purchase History</span>
+                </NavLink>
               </div>
             </div>
           </div>
 
-          <div className="navbar-menu" id="navMenu">
-            <div className="navbar-end">
-              <div className="navbar-item">
-                <Link to='/tokens/all'>
-                  <span>All Tokens</span>
-                </Link>
-              </div>
-              <div className="navbar-item">
-                <Link to='/tokens/purchased'>
-                  <span>My Purchase History</span>
-                </Link>
-              </div>
-              <div className="navbar-item">
-                <Link to="/tokens/new" className="button is-info">
-                  <span>Purchase Token</span>
-                </Link>
-              </div>
-            </div>
-          </div>
+          <NetworkInfo />
         </div>
 
       </nav>
     )
   }
 }
+
+export default Header;

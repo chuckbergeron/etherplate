@@ -1,14 +1,16 @@
-import React, {
-  Component
-} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class Ether extends Component {
   render() {
-    return `${web3.fromWei(this.props.wei, 'ether').toString()} ETH`
+    let balance = (this.props.wei === null)
+      ? '?'
+      : parseFloat(window.web3.fromWei(this.props.wei, 'ether')).toFixed(2)
+
+    return `${balance} Ξ`
   }
 }
 
 Ether.propTypes = {
-  wei: PropTypes.number.isRequired
+  wei: PropTypes.string
 }

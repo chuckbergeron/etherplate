@@ -7,14 +7,14 @@ import PropTypes from 'prop-types'
 import getToken from '@/services/get-token'
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 
-export default class TokenRow extends Component {
+const TokenRow = class extends Component {
   constructor (props) {
     super(props)
     this.state = {}
   }
 
   componentDidMount () {
-    getToken(this.props.tokenId).then((values) => {
+    getToken(this.props.tokenId, window.web3).then((values) => {
       this.setState({
         type: values[0],
         title: values[1]
@@ -43,3 +43,5 @@ export default class TokenRow extends Component {
 TokenRow.propTypes = {
   tokenId: PropTypes.number.isRequired
 }
+
+export default TokenRow;

@@ -1,8 +1,7 @@
-import React, {
-  Component
-} from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import nfToken from '@/contracts/nftoken-factory'
+import nfToken from '@/contracts/nfTokenFactory'
 import { BigNumber } from 'bignumber.js';
 
 import Hero from '@/components/hero'
@@ -15,23 +14,32 @@ require('./style.scss')
 // the current Ethereum addresses tokens directly, instead of
 // replaying the events as is the case in the parent Application component
 //
-export default class PurchaseHistory extends Component {
+const PurchaseHistory = class extends Component {
 
   constructor (props) {
     super(props)
+
     this.state = {
-      tokens: []
+      tokenIds: []
     }
   }
 
+  componentDidMount() {
+    this._isMounted = true;
+
+    this.refreshTokenList();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   refreshTokenList() {
-    nfToken().then((instance) => {
-      instance.methods.myTokens().call((error, result) => {
-        this.setState({
-          tokens: result.map( (tokenId) => {
-            return new BigNumber(tokenId)
-          } )
-        })
+    nfToken(window.web3).then((instance) => {
+      instance.myTokens().then((result) => {
+        this.setState({ tokenIds: result })
+      }).catch((error) => {
+        console.error(error)
       })
     })
     .catch((error) => {
@@ -39,14 +47,10 @@ export default class PurchaseHistory extends Component {
     })
   }
 
-  componentDidMount() {
-    this.refreshTokenList()
-  }
-
   render () {
-    var content
-    if (this.state.tokens.length) {
-      var tokens = [...this.state.tokens].reverse()
+    let content
+    if (this.state.tokenIds.length) {
+      let tokenIds = [...this.state.tokenIds].reverse()
 
       content =
         <section className='section'>
@@ -63,7 +67,9 @@ export default class PurchaseHistory extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {tokens.map((tokenId) => <TokenRow tokenId={tokenId.toNumber()} key={tokenId.toNumber()} /> )}
+                  {tokenIds.map((tokenId) => {
+                    return <TokenRow tokenId={tokenId.toNumber()} key={tokenId.toNumber()} />
+                  } )}
                 </tbody>
               </table>
             </div>
@@ -80,3 +86,9 @@ export default class PurchaseHistory extends Component {
     return content
   }
 }
+
+PurchaseHistory.propTypes = {
+  web3: PropTypes.object
+}
+
+export default PurchaseHistory

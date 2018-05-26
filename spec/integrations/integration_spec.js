@@ -1,23 +1,12 @@
-import 'jsdom-global/register';
-
 import React from 'react';
 
 import {
   MemoryRouter
 } from 'react-router-dom'
 
-import Enzyme, {
-  shallow,
-  mount,
-  render,
-  ReactWrapper
-} from 'enzyme';
-
-import Adapter from 'enzyme-adapter-react-16';
-Enzyme.configure({ adapter: new Adapter() });
-
 import { Application } from '@/components/application'
 
+global.window.web3 = undefined;
 
 describe('smokescreen integration tests', () => {
 

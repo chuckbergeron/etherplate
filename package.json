@@ -7,7 +7,7 @@
     "lint": "eslint app",
     "build": "webpack --mode production --config webpack.prod.js",
     "dev": "webpack-dev-server --config webpack.dev.js --mode development",
-    "test": "babel-node spec/support/run.js"
+    "test": "jest"
   },
   "author": "Chuck Bergeron",
   "license": "CC0",
@@ -35,7 +35,9 @@
     "@babel/preset-stage-2": "7.0.0-beta.46",
     "@babel/preset-stage-3": "7.0.0-beta.46",
     "@babel/register": "7.0.0-beta.46",
+    "babel-core": "^7.0.0-0",
     "babel-eslint": "^8.2.2",
+    "babel-jest": "^23.0.0",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-root-import": "^5.1.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -44,6 +46,7 @@
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-standard": "^11.0.0",
@@ -57,6 +60,7 @@
     "file-loader": "^1.1.11",
     "jasmine": "^3.1.0",
     "jasmine-enzyme": "^6.0.0",
+    "jest": "^23.0.0",
     "jimp": "^0.2.28",
     "jsdom": "^11.10.0",
     "jsdom-global": "^3.0.2",
@@ -68,7 +72,7 @@
     "node-sass": "^4.9.0",
     "raw-loader": "^0.5.1",
     "react-error-overlay": "^4.0.0",
-    "require-hacker": "^3.0.1",
+    "react-test-renderer": "^16.4.0",
     "sass-loader": "^7.0.1",
     "schema-utils": "^0.4.5",
     "style-loader": "^0.21.0",
@@ -102,7 +106,7 @@
     "tmp": "^0.0.33",
     "truffle-contract": "^3.0.5",
     "truffle-hdwallet-provider": "0.0.3",
-    "web3": "1.0.0-beta.34",
+    "web3": "0.20.6",
     "web3-redux": "^0.5.2"
   }
 }
