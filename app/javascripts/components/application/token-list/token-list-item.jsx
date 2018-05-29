@@ -41,6 +41,8 @@ const TokenListItem = class extends Component {
         type: values[0],
         title: values[1]
       })
+    }).catch((error) => {
+      console.error(error)
     })
   }
 

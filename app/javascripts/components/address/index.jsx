@@ -27,7 +27,7 @@ export default class Address extends Component {
         <span className='tag address__full'>{address}</span>
     } else {
       displayed = <span onClick={() => this.toggleFull()} className="address__short">
-        {address.substring(0, 6)}...
+        {address.substring(0, 10)} ...
       </span>
     }
 
