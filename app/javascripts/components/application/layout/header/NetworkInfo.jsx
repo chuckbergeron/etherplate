@@ -71,7 +71,7 @@ const NetworkInfo = class extends Component {
         <div className="navbar-menu">
           <div className="navbar-end">
             <div className="navbar-item">
-              <span class="has-text-success">{'\u2b24'}</span> &nbsp; {this.state.networkName}
+              <span className="has-text-success">{'\u2b24'}</span> &nbsp; {this.state.networkName}
             </div>
             <div className="navbar-item">
               <Ether wei={this.state.balance} />

@@ -29,15 +29,14 @@ const CustomizeToken = class extends Component {
     }
   }
 
-  componentDidMount() {
-    let that = this;
-    nfToken(window.web3).then((instance) => {
-      instance.getCurrentPrice().then( (price) => {
-        that.setState({ price: price.toString() })
-      });
-    }).catch(function(error) {
-      console.error(error)
-    })
+  async componentDidMount() {
+    try {
+      let contractInstance = await nfToken(window.web3);
+      let price = await contractInstance.getCurrentPrice();
+      this.setState({ price: price.toString() })
+    } catch(error) {
+      console.log(error);
+    }
   }
 
   async onClickSave () {
