@@ -97,15 +97,13 @@ Simply:
 
 ## TODO:
 
-* Add a price for each token (say 0.03 eth)
 * Toast message to say token purchase was broadcast
 * Link to view on on etherscan
-* If the user switches their MetaMask account, need to refresh the page or stop/restart event listeners with new wallet address
+* If the user switches their MetaMask account or logs out of MetaMask, need to refresh the page or stop/restart event listeners with new wallet address (Long Polling?)
 * Test w/ Web3-integrated browsers such as Trust
 * Set up a basic server to respond to tokenURI requests and store the tokenURI in the contract (`buyToken()` function)
 * Refactor React components to have both presentation and container components
 * Add deepFreeze() to test immutability of Redux reducers
-* Poll for MetaMask events (logout and switch accounts, etc) (ensure this works for Web3-integrated browsers such as Trust)
 
 ## Nice-to-haves:
 
@@ -138,7 +136,7 @@ Simply:
 * ~~Clean up JS in Header.jsx for controlling Bulma link active states~~
 * ~~Show account balance, network and account address / avatar~~
 * ~~Finish upgrade path by removing `oldNfTokenFactory` and in turn get `.events.BoughtToken()` working again: (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)~~
-
+* ~~Add a price for each token (say 0.03 eth)~~
 
 #### Gratitude
 
@@ -147,5 +145,3 @@ Big thanks to all of the fantastic open source developers who have made this tec
 #### Etherplate Wordmark
 
 The Etherplate Wordmark is set in Sign Painter: https://typekit.com/fonts/signpainter
-
-
