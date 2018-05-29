@@ -7,7 +7,8 @@ const nfToken = artifacts.require('NFToken')
 contract('NFToken', function (accounts) {
   let contract
 
-  const user = accounts[0]
+  const owner = accounts[0]
+  const otherUser = accounts[1]
 
   const TITLE = 'Name of the token'
 
@@ -67,10 +68,24 @@ contract('NFToken', function (accounts) {
     })
   })
 
+  describe('setCurrentPrice', () => {
+    it('sets a new price which each token will cost', async () => {
+      await contract.setCurrentPrice(400000, { from: owner })
+      let price = await contract.getCurrentPrice()
+      assert.equal('400000', price.toString())
+    })
+
+    it('fails to set new price when called by non-owner', async () => {
+      assertRevert(contract.setCurrentPrice(400, { from: otherUser }))
+
+      let price = await contract.getCurrentPrice()
+      assert.equal('3000000000000000', price.toString())
+    })
+  })
+
   describe('getCurrentPrice', () => {
     it('returns the price each token will cost', async () => {
       let price = await contract.getCurrentPrice()
-
       assert.equal('3000000000000000', price.toString())
     })
   })
