@@ -1,5 +1,7 @@
 import assertRevert from './support/assert-revert'
 import range from 'lodash.range'
+import Web3 from 'Web3'
+var web3 = new Web3();
 const nfToken = artifacts.require('NFToken')
 
 contract('NFToken', function (accounts) {
@@ -35,7 +37,7 @@ contract('NFToken', function (accounts) {
     })
 
     it('should emit the bought event', async () => {
-      var transaction = await contract.buyToken(TOKEN_TYPE, TITLE)
+      var transaction = await contract.buyToken(TOKEN_TYPE, TITLE, { value: web3.toWei(0.003) } )
 
       // Transfer & BoughtToken events
       assert.equal(transaction.logs.length, 2)
@@ -44,28 +46,32 @@ contract('NFToken', function (accounts) {
     })
 
     it('should count tokens properly', async () => {
-      await contract.buyToken(TOKEN_TYPE, TITLE)
+      await contract.buyToken(TOKEN_TYPE, TITLE, { value: web3.toWei(0.003) } )
+
       let tokens = await contract.myTokens()
       assert.equal(tokens.length, 1)
 
-      await contract.buyToken(TOKEN_TYPE, TITLE)
+      await contract.buyToken(TOKEN_TYPE, TITLE, { value: web3.toWei(0.003) } )
       tokens = await contract.myTokens()
       assert.equal(tokens.length, 2)
     })
   })
 
-  describe('getTokenType', () => {
-    it('should return the type of the token', async () => {
-      await contract.buyToken(TOKEN_TYPE, TITLE)
-      let tokenType = await contract.getTokenType(FIRST_TOKEN_ID)
-      assert.equal(TOKEN_TYPE.toString(), tokenType.toString())
+  describe('getToken', () => {
+    it('should return the type and title of the token', async () => {
+      await contract.buyToken(TOKEN_TYPE, TITLE, { value: web3.toWei(0.003) } )
+      let [tokenType_, tokenTitle_] = await contract.getToken(FIRST_TOKEN_ID)
+
+      assert.equal(TOKEN_TYPE.toString(), tokenType_.toString())
+      assert.equal(TITLE, tokenTitle_)
     })
   })
 
-  describe('getTokenTitle', () => {
-    it('should return the TITLE', async () => {
-      await contract.buyToken(TOKEN_TYPE, TITLE)
-      assert.equal((await contract.getTokenTitle(FIRST_TOKEN_ID)), TITLE)
+  describe('getCurrentPrice', () => {
+    it('returns the price each token will cost', async () => {
+      let price = await contract.getCurrentPrice()
+
+      assert.equal('3000000000000000', price.toString())
     })
   })
 

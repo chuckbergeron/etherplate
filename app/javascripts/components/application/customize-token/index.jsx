@@ -10,6 +10,7 @@ import nfToken from '@/contracts/nfTokenFactory'
 import { addTokenAction } from '@/redux/actions'
 
 import TokenType from '../token-type'
+import Ether from '@/components/ether'
 
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 
@@ -19,6 +20,7 @@ const CustomizeToken = class extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      price: '',
       tokenType: 0,
       title: '',
       titleError: '',
@@ -27,13 +29,24 @@ const CustomizeToken = class extends Component {
     }
   }
 
+  componentDidMount() {
+    let that = this;
+    nfToken(window.web3).then((instance) => {
+      instance.getCurrentPrice().then( (price) => {
+        that.setState({ price: price.toString() })
+      });
+    }).catch(function(error) {
+      console.error(error)
+    })
+  }
+
   async onClickSave () {
     // Reset the error handling
     this.setState({ titleError: '' })
 
     // TODO: Replace these magic numbers with an app-wide config:
-    if (this.state.title.length < 8) {
-      this.setState({ titleError: 'Please enter at least 8 characters for the title' })
+    if (this.state.title.length < 1) {
+      this.setState({ titleError: 'Please enter at least 1 character for the title' })
     } else {
       let contractInstance
 
@@ -45,7 +58,8 @@ const CustomizeToken = class extends Component {
 
       const txHash = await contractInstance.buyToken.sendTransaction(
         this.state.tokenType,
-        this.state.title
+        this.state.title,
+        { value: this.state.price }
       )
 
       this.props.addToken({ transactionHash: txHash })
@@ -88,6 +102,13 @@ const CustomizeToken = class extends Component {
                         </div>
                       )
                     })}
+                  </div>
+
+                  <div className="field">
+                    <label className="label">Price</label>
+                    <div className="control">
+                      <Ether wei={this.state.price} />
+                    </div>
                   </div>
 
                   <div className="field">
