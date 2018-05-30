@@ -1,5 +1,4 @@
-export const ADD_TOKEN = 'ADD_TOKEN'
-export const UPDATE_TOKEN = 'UPDATE_TOKEN'
+import { ADD_TOKEN, UPDATE_TOKEN } from '@/config/constants'
 
 export function addTokenAction(tokenObject) {
   return { type: ADD_TOKEN, token: tokenObject }

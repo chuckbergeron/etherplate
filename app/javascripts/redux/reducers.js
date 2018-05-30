@@ -1,4 +1,4 @@
-import { ADD_TOKEN, UPDATE_TOKEN } from './actions'
+import { ADD_TOKEN, UPDATE_TOKEN } from '@/config/constants'
 
 const initialTokenState = {
   tokens: []
