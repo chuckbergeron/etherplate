@@ -111,7 +111,6 @@ Examples of a bunch of different looking toast messages to show on an error mess
 
 ## TODO:
 
-* Toast message to say token purchase was broadcast
 * Link to view on on etherscan
 * If the user switches their MetaMask account or logs out of MetaMask, need to refresh the page or stop/restart event listeners with new wallet address (Long Polling?)
 * Test w/ Web3-integrated browsers such as Trust
@@ -151,6 +150,7 @@ Examples of a bunch of different looking toast messages to show on an error mess
 * ~~Show account balance, network and account address / avatar~~
 * ~~Finish upgrade path by removing `oldNfTokenFactory` and in turn get `.events.BoughtToken()` working again: (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)~~
 * ~~Add a price for each token (say 0.03 eth)~~
+* ~~Toast message to say token purchase was broadcast~~
 
 #### Gratitude
 
