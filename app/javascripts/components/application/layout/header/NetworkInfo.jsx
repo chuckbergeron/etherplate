@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import GetNetworkNameService from '@/services/get-network-name-service'
+
 import Address from '@/components/address'
 import Ether from '@/components/ether'
 
@@ -20,39 +22,15 @@ const NetworkInfo = class extends Component {
   }
 
   componentDidMount() {
-    if (window.web3 !== undefined) {
+    if (
+      window.web3
+      && window.web3.eth.defaultAccount
+      && window.web3.eth.defaultAccount.length > 0
+    ) {
       this.setState({ accountAddress: window.web3.eth.defaultAccount })
-
-      this.getNetworkName()
+      this.setState({ networkName: GetNetworkNameService() })
       this.getBalance()
     }
-  }
-
-  getNetworkName() {
-    let networkId = web3.version.network
-    let networkName = '';
-
-    switch (networkId) {
-      case '1':
-        networkName = "Ethereum Main";
-        break
-      case '2':
-        networkName = "Morden Testnet";
-        break
-      case '3':
-        networkName = "Ropsten Testnet";
-        break
-      case '4':
-        networkName = "Rinkeby Testnet";
-        break
-      case '42':
-        networkName = "Kovan Testnet";
-        break
-      default:
-        networkName = "Unknown (localhost?)";
-    }
-
-    this.setState({ networkName })
   }
 
   getBalance() {
@@ -64,9 +42,11 @@ const NetworkInfo = class extends Component {
   }
 
   render() {
-    if (window.web3 === undefined) {
-      return null
-    } else {
+    if (
+      window.web3
+      && window.web3.eth.defaultAccount
+      && window.web3.eth.defaultAccount.length > 0
+    ) {
       return (
         <div className="navbar-menu">
           <div className="navbar-end">
@@ -86,6 +66,8 @@ const NetworkInfo = class extends Component {
           </div>
         </div>
       )
+    } else {
+      return null
     }
   }
 }

@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom'
 import _ from 'lodash';
 import PropTypes from 'prop-types'
 import { BigNumber } from 'bignumber.js';
+
 import Address from '@/components/address'
+import EtherscanButton from '@/components/EtherscanButton'
 
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 import getToken from '@/services/get-token'
@@ -72,8 +74,10 @@ const Token = class extends Component {
                   <th>
                     TokenID
                   </th>
-                  <th>
+                  <th width="80%">
                     Transaction Hash
+                  </th>
+                  <th>
                   </th>
                 </tr>
               </thead>
@@ -84,6 +88,9 @@ const Token = class extends Component {
                   </td>
                   <td>
                     <Address address={address} toggleFull={true} />
+                  </td>
+                  <td>
+                    <EtherscanButton txHash={address} linkText='View on Etherscan' />
                   </td>
                 </tr>
               </tbody>

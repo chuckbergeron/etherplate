@@ -26,7 +26,7 @@ export default class Landing extends Component {
               <span>Buy a Token Now</span>
             </Link>
             <br />
-            <small className="is-light">(Only for testing, does not require actual Ether)</small>
+            <small className="is-size-7">(Only for testing, does not require actual Ether)</small>
           </div>
 
           <div className="column"></div>
