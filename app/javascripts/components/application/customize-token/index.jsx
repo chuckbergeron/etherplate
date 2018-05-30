@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { toastr } from 'react-redux-toastr'
 
 import range from 'lodash.range'
 import classnames from 'classnames'
@@ -15,6 +16,19 @@ import Ether from '@/components/ether'
 import nfTokenTypeImageUrl from '@/services/nfToken-type-image-url'
 
 import style from './style.scss'
+
+const MyCustomComponent = class extends Component {
+
+  render() {
+    return (
+      <span>
+        {this.props.children}
+      </span>
+    )
+  }
+
+}
+
 
 const CustomizeToken = class extends Component {
   constructor (props) {
@@ -33,9 +47,10 @@ const CustomizeToken = class extends Component {
     try {
       let contractInstance = await nfToken(window.web3);
       let price = await contractInstance.getCurrentPrice();
+
       this.setState({ price: price.toString() })
     } catch(error) {
-      console.log(error);
+      toastr.error('Error', error.message)
     }
   }
 
@@ -47,22 +62,21 @@ const CustomizeToken = class extends Component {
     if (this.state.title.length < 1) {
       this.setState({ titleError: 'Please enter at least 1 character for the title' })
     } else {
-      let contractInstance
+      try {
+        let contractInstance = await nfToken(window.web3);
 
-      await nfToken(window.web3).then(function(instance) {
-        contractInstance = instance
-      }).catch(function(error) {
-        console.error(error)
-      })
+        const txHash = await contractInstance.buyToken.sendTransaction(
+          this.state.tokenType,
+          this.state.title,
+          { value: this.state.price }
+        )
 
-      const txHash = await contractInstance.buyToken.sendTransaction(
-        this.state.tokenType,
-        this.state.title,
-        { value: this.state.price }
-      )
-
-      this.props.addToken({ transactionHash: txHash })
-      this.setState({ redirectToTokenList: true })
+        this.props.addToken({ transactionHash: txHash })
+        this.setState({ redirectToTokenList: true })
+        toastr.success('Success', 'The transaction has been broadcast.')
+      } catch(err) {
+        toastr.error('Error', 'The transaction was cancelled or rejected.')
+      }
     }
   }
 

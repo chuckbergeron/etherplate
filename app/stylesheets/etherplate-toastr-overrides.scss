@@ -1,0 +1,48 @@
+.redux-toastr .top-center,
+.redux-toastr .bottom-center {
+  left: 0;
+  margin-left: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.redux-toastr .toastr {
+  box-shadow: none;
+  border-radius: 0;
+  margin: 0;
+  opacity: 1;
+}
+
+.redux-toastr .toastr .close-toastr {
+  color: white;
+  height: 100%;
+  width: 8%;
+}
+
+.redux-toastr .rrt-light .close-toastr {
+  color: #333;
+}
+
+.redux-toastr .toastr:hover:not(.rrt-message) {
+  box-shadow: none;
+}
+
+.redux-toastr .toastr.rrt-info,
+.redux-toastr .toastr .toastr-status.info {
+  background-color: $info;
+}
+
+.redux-toastr .toastr.rrt-success,
+.redux-toastr .toastr .toastr-status.success {
+  background-color: $success;
+}
+
+.redux-toastr .toastr.rrt-error,
+.redux-toastr .toastr .toastr-status.error {
+  background-color: $danger;
+}
+
+.redux-toastr .toastr.rrt-warning,
+.redux-toastr .toastr .toastr-status.warning {
+  background-color: $warning;
+}

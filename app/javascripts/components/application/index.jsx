@@ -1,13 +1,8 @@
-import React, {
-  Component
-} from 'react'
-import {
-  BrowserRouter,
-  Route,
-  Switch
-} from 'react-router-dom'
+import React, { Component } from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { combineReducers, createStore } from 'redux'
 import { Provider } from 'react-redux'
+import ReduxToastr, { reducer as toastr } from 'react-redux-toastr'
 
 import { addTokenAction, updateTokenAction } from '@/redux/actions'
 import { tokens } from '@/redux/reducers'
@@ -27,7 +22,10 @@ import PurchaseHistory from './purchase-history'
 import AllTokens from './all-tokens'
 
 // Add more reducers to this object:
-const rootReducer = combineReducers({ tokens })
+const rootReducer = combineReducers({
+  tokens: tokens,
+  toastr: toastr
+})
 
 const store = createStore(
   rootReducer,
@@ -106,6 +104,13 @@ export class Application extends Component {
             <Route component={NotFoundPage} />
           </Switch>
 
+          <ReduxToastr
+            timeOut={700000}
+            newestOnTop={true}
+            tapToDismiss={false}
+            position="bottom-center"
+            transitionIn="bounceIn"
+            transitionOut="bounceOut" />
           <Footer />
         </div>
       </Provider>

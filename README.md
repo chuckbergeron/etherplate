@@ -94,6 +94,20 @@ Simply:
 
 `npm run test`
 
+## Toast Messages
+
+Examples of a bunch of different looking toast messages to show on an error message, success, info, etc.:
+
+```
+  toastr.light('test', 'message', { icon: 'info', status: 'info' })
+  toastr.light('test', 'message', { icon: 'success', status: 'success' })
+  toastr.light('test', 'message', { icon: 'warning', status: 'warning' })
+
+  toastr.success('test', 'message')
+  toastr.info('test', 'message')
+  toastr.warning('test', 'message')
+  toastr.error('test', 'message')
+```
 
 ## TODO:
 

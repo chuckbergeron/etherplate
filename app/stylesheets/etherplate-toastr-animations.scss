@@ -1,0 +1,61 @@
+// These are actually 'slide'-style animations, however react-redux-toastr's animation types
+// are deeply entrenched and enforced by propTypes, so this is a simple override
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+
+  &.bounceIn {
+    animation-duration: .7s;
+    animation-name: slideIn;
+  }
+
+  &.bounceOut {
+    animation-duration: .3s;
+    animation-name: slideOut;
+  }
+}
+
+@mixin transform {
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translate3d(0, 110%, 0);
+    visibility: visible;
+  }
+  to {
+    @include transform;
+  }
+}
+
+@keyframes bounceInDown {
+  from {
+    transform: translate3d(0, -110%, 0);
+    visibility: visible;
+  }
+  to {
+    @include transform;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    @include transform;
+  }
+  to {
+    visibility: hidden;
+    transform: translate3d(0, 110%, 0);
+  }
+}
+
+@keyframes bounceOutDown {
+  from {
+    @include transform;
+  }
+  to {
+    visibility: hidden;
+    transform: translate3d(0, -110%, 0);
+  }
+}
