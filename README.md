@@ -128,6 +128,7 @@ Examples of a bunch of different looking toast messages to show on an error mess
 
 ## Nice-to-haves:
 
+* Offline.js or react-detect-offline to let users know when their network connection is dead
 * Find a way to prevent `truffle test` from recompiling the contracts each time it is run
 * Store transactionHash in localStorage and call info on it after page refreshes if it isn't in `store.getState().tokens` pool
 * Remove the build directory from the repo, build server-side on each deploy and possibly use truffle-migrate-off-chain (https://github.com/asselstine/truffle-migrate-off-chain)
