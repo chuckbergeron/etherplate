@@ -3,6 +3,10 @@ body.has-navbar-fixed-top {
   padding-top: 7.25rem;
 }
 
+.application-content {
+  min-height: 350px;
+}
+
 .button.is-dark:hover,
 .button.is-dark.is-hovered {
   background: #111;

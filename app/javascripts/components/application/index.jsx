@@ -90,19 +90,21 @@ export class Application extends Component {
   render (){
     return (
       <Provider store={store}>
-        <div>
+        <>
           <Route path="/:active?" component={Header} />
 
-          <Switch>
-            <Route path='/tokens/all' component={this.web3AllTokens} />
-            <Route path='/tokens/purchased' component={this.web3PurchaseHistory} />
-            <Route path='/tokens/new' component={this.web3CustomizeToken} />
-            <Route path='/tokens/:tokenId' component={Token} />
+          <main className="application-content">
+            <Switch>
+              <Route path='/tokens/all' component={this.web3AllTokens} />
+              <Route path='/tokens/purchased' component={this.web3PurchaseHistory} />
+              <Route path='/tokens/new' component={this.web3CustomizeToken} />
+              <Route path='/tokens/:tokenId' component={Token} />
 
-            <Route exact={true} path='/' component={Landing} />
+              <Route exact={true} path='/' component={Landing} />
 
-            <Route component={NotFoundPage} />
-          </Switch>
+              <Route component={NotFoundPage} />
+            </Switch>
+          </main>
 
           <ReduxToastr
             timeOut={700000}
@@ -111,8 +113,9 @@ export class Application extends Component {
             position="bottom-center"
             transitionIn="bounceIn"
             transitionOut="bounceOut" />
+
           <Footer />
-        </div>
+        </>
       </Provider>
     )
   }

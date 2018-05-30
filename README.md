@@ -90,9 +90,15 @@ Why is there both a truffle and truffle-config file?
 
 # Running the Tests
 
-Simply:
+For the Solidity contract's truffle test suite:
 
-`npm run test`
+`truffle test`
+
+To run the DApp test suite (React components, etc):
+
+`npm test`
+
+--------------------
 
 ## Toast Messages
 
@@ -111,15 +117,18 @@ Examples of a bunch of different looking toast messages to show on an error mess
 
 ## TODO:
 
-* Link to view on on etherscan
-* If the user switches their MetaMask account or logs out of MetaMask, need to refresh the page or stop/restart event listeners with new wallet address (Long Polling?)
 * Test w/ Web3-integrated browsers such as Trust
 * Set up a basic server to respond to tokenURI requests and store the tokenURI in the contract (`buyToken()` function)
 * Refactor React components to have both presentation and container components
 * Add deepFreeze() to test immutability of Redux reducers
+* Fix issues where we should be unsubscribing / canceling server requests in `componentWillUnmount()`
+* Rename all services to have `-service` in the filename
+* Rename all components to use standard React naming scheme: `EtherscanButton.jsx` instead of `etherscan-button.jsx`
+* Follow a standard ES6 export pattern (use TokenListItem component code as an example)
 
 ## Nice-to-haves:
 
+* Find a way to prevent `truffle test` from recompiling the contracts each time it is run
 * Store transactionHash in localStorage and call info on it after page refreshes if it isn't in `store.getState().tokens` pool
 * Remove the build directory from the repo, build server-side on each deploy and possibly use truffle-migrate-off-chain (https://github.com/asselstine/truffle-migrate-off-chain)
 * Test the happy path of filling out the form and purchasing a token via (jest/enzyme)
@@ -151,6 +160,8 @@ Examples of a bunch of different looking toast messages to show on an error mess
 * ~~Finish upgrade path by removing `oldNfTokenFactory` and in turn get `.events.BoughtToken()` working again: (Error: The current provider doesn't support subscriptions: MetamaskInpageProvider)~~
 * ~~Add a price for each token (say 0.03 eth)~~
 * ~~Toast message to say token purchase was broadcast~~
+* ~~Link to view on on etherscan~~
+* ~~If the user switches their MetaMask account or logs out of MetaMask, need to refresh the page or stop/restart event listeners with new wallet address (Long Polling?)~~
 
 #### Gratitude
 
