@@ -14,7 +14,6 @@ contract NFToken is ERC721Token, Ownable {
   uint8 constant TITLE_MAX_LENGTH = 64;
 
   /*** DATA TYPES ***/
-
   /// Price set by contract owner for each token in Wei.
   /// @dev If you'd like a different price for each token type, you will
   ///   need to use a mapping like: `mapping(uint256 => uint256) tokenTypePrices;`
