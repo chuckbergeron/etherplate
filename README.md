@@ -46,31 +46,27 @@ Apt on Linux:
 
 4. Use `direnv allow` to export the env vars into your current terminal shell.
 
-### Ganache (CLI)
+### Run the Ganache CLI (local EVM)
 
-Create a directory for ganache-cli to store it's database in:
+Start up the local Ethereum test node with:
 
-`mkdir .ganache`
+`npm run ganache`
 
 ### Compile the Solidity code
 
+Once Ganache is running, in another terminal window compile and migrate the contracts:
+
 `truffle compile`
 
-### Migrate the Contracts
-
-This will deploy the contract to the network (tip: use --network=ropsten to deploy to Ethereum's Ropsten Testnet)
+This will deploy the compiled contracts to the network (tip: use --network=ropsten to deploy to Ethereum's Ropsten Testnet, --network=rinkeby for rinkeby, etc)
 
 `truffle migrate`
 
 # Run the Project
 
-Make sure the truffle contracts are compiled and migrated.
+Make sure the truffle contracts are compiled and migrated, and ganache is running.
 
-In one terminal window, run the ganache-cli (local Ethereum RPC test node) with:
-
-`./ganache.sh`
-
-Once Ganache is running, in another terminal start the Webpack dev server.
+Start the Webpack dev server.
 
 `npm run dev`
 
