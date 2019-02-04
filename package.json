@@ -78,7 +78,7 @@
     "sass-loader": "^7.0.1",
     "schema-utils": "^0.4.5",
     "style-loader": "^0.21.0",
-    "truffle": "4.1.8",
+    "truffle": "5.0.3",
     "truffle-deployer": "^2.0.5",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "vanilla-tilt": "^1.4.1",
