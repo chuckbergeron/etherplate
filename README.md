@@ -52,6 +52,8 @@ Start up the local Ethereum test node with:
 
 `npm run ganache`
 
+(You may need to loosen up the permissions on the file, try `chmod 755 scripts/ganache.sh`)
+
 ### Compile the Solidity code
 
 Once Ganache is running, in another terminal window compile and migrate the contracts:
