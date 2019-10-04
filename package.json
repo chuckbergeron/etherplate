@@ -8,7 +8,9 @@
     "build": "webpack --mode production --config webpack.prod.js",
     "ganache": "./scripts/ganache.sh",
     "dev": "webpack-dev-server --config webpack.dev.js --mode development",
-    "test": "jest"
+    "test": "jest",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": "Chuck Bergeron",
   "license": "CC0",
@@ -111,6 +113,8 @@
     "truffle-contract": "^3.0.5",
     "truffle-hdwallet-provider": "0.0.3",
     "web3": "0.20.6",
-    "web3-redux": "^0.5.2"
-  }
+    "web3-redux": "^0.5.2",
+    "snyk": "^1.230.5"
+  },
+  "snyk": true
 }
